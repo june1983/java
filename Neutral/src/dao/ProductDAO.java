@@ -21,7 +21,7 @@ public class ProductDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -120,8 +120,8 @@ public class ProductDAO {
 			// DB接続
 			connect();
 
-			// 商品データを全件取得するSQL文を用意
-			String sql = "SELECT * FROM product";
+			// 商品データ（在庫＋商品＋カテゴリー）を全件取得するSQL文を用意
+			String sql = "SELECT * FROM sku LEFT OUTER JOIN product ON sku.PRODUCT_ID = product.PRODUCT_ID LEFT OUTER JOIN category ON product.CATEGORY_ID = category.CATEGORY_ID";
 
 			// SQL文を発行し、結果セットを取得
 			ResultSet rs = executeQuery(sql);
@@ -132,13 +132,12 @@ public class ProductDAO {
 			// 結果セットから1行ずつ商品データを取得
 			while (rs.next()) {
 				Product product = new Product();
-				product.setProductId(rs.getString("productId"));
-				product.setCategoryId(rs.getString("categoryId"));
-				product.setProductName(rs.getString("productName"));
-				product.setProductImg(rs.getString("productImg"));
+				product.setProductId(rs.getString("product_id"));
+				product.setCategoryId(rs.getString("category_id"));
+				product.setProductName(rs.getString("product_Name"));
 				product.setPrice(rs.getInt("price"));
-				product.setSize(rs.getString("size"));
-				product.setStock(rs.getInt("stock"));
+				product.setSize(rs.getString("product_size"));
+				product.setStock(rs.getInt("sku_number"));
 				product.setDescription(rs.getString("description"));
 				product.setAttribute(rs.getString("attribute"));
 				productList.add(product);
@@ -182,13 +181,12 @@ public class ProductDAO {
 
 			// 結果セットから商品データを取得
 			if (rs.next()) {
-				product.setProductId(rs.getString("productId"));
-				product.setCategoryId(rs.getString("categoryId"));
-				product.setProductName(rs.getString("productName"));
-				product.setProductImg(rs.getString("productImg"));
+				product.setProductId(rs.getString("product_id"));
+				product.setCategoryId(rs.getString("category_id"));
+				product.setProductName(rs.getString("product_Name"));
 				product.setPrice(rs.getInt("price"));
-				product.setSize(rs.getString("size"));
-				product.setStock(rs.getInt("stock"));
+				product.setSize(rs.getString("product_size"));
+				product.setStock(rs.getInt("sku_number"));
 				product.setDescription(rs.getString("description"));
 				product.setAttribute(rs.getString("attribute"));
 			}
