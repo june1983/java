@@ -1,0 +1,113 @@
+===============
+ECサイト機能一覧表
+===============
+
+ログイン機能
+
+CONTROLLER
+ WelcomeServlet.java
+ LoginServlet.java
+
+MODEL
+ Login.java エンティティ
+ Account.java エンティティ
+ AccountDAO.java
+ LoginLogic.java ログインの有無を調べる
+
+VIEW
+ welcome.jsp TOPページ
+ login.jsp
+ loginOK.jsp
+
+------------------------
+
+会員登録
+
+CONTROLLER
+ RegisterServlet.java
+
+MODEL
+ RegisterLogic.java
+ Account.java エンティティ
+ AccountDAO.java
+
+VIEW
+ register.jsp
+ registerOK.jsp
+
+
+------------------------
+
+会員編集
+
+CONTROLLER
+ AccountServlet.java
+ AccountEditServlet.java
+ CancelServlet.java
+ CancelOkServlet キャンセルを確定
+ 
+
+MODEL
+ Account.java エンティティ
+ AccountDAO.java
+ AccountEditLogic.java
+ AccountDeleteLogic.java
+
+VIEW
+ accountEdit.jsp
+ cancel.jsp
+ account.jsp
+
+------------------------
+
+注文
+
+CONTROLLER
+ OrderServlet.java
+ CartServlet カートに入れる情報を集約
+ OrderSubmitServlet.java オーダーを確定
+
+
+MODEL
+ Product.java 商品情報エンティティ
+ Cart.java カート情報エンティティ
+ OrderDAO.java 注文テーブルの情報をDBから抜き出す
+ ProductDAO.java 商品テーブルの情報をDBから抜き出す
+ StockCheck.java 在庫を確認する、個数やサイズ
+ OrderSubmit.java オーダーをDBに反映
+
+
+VIEW
+ order.jsp
+ orderLogin.jsp
+ orderLogout.jsp
+ orderOK.jsp
+
+------------------------
+
+ワード検索
+
+CONTROLLER
+ WordQueryServlet.java
+
+MODEL
+ ProductDao.java(商品の情報をDBから抜き出す) 
+ FindWord.java(検索したワードと一致するか調べる)
+
+VIEW
+ welcome.jsp TOPページ
+ 
+------------------------
+
+カテゴリ検索
+
+CONTROLLER
+ CategoryQueryServlet.java
+
+MODEL
+ CategoryFind.java カテゴリーが一致する商品を抜き出す
+
+VIEW
+ welcome.jsp TOPページ
+ 
+------------------------
