@@ -21,7 +21,7 @@ public class ProductDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -121,7 +121,7 @@ public class ProductDAO {
 			connect();
 
 			// 商品データ（在庫＋商品＋カテゴリー）を全件取得するSQL文を用意
-			String sql = "SELECT * FROM sku LEFT OUTER JOIN product ON sku.PRODUCT_ID = product.PRODUCT_ID LEFT OUTER JOIN category ON product.CATEGORY_ID = category.CATEGORY_ID";
+			String sql = "SELECT * FROM product";
 
 			// SQL文を発行し、結果セットを取得
 			ResultSet rs = executeQuery(sql);
@@ -136,8 +136,8 @@ public class ProductDAO {
 				product.setCategoryId(rs.getString("category_id"));
 				product.setProductName(rs.getString("product_Name"));
 				product.setPrice(rs.getInt("price"));
-				product.setSize(rs.getString("product_size"));
-				product.setStock(rs.getInt("sku_number"));
+				//product.setSize(rs.getString("product_size"));
+				//product.setStock(rs.getInt("sku_number"));
 				product.setDescription(rs.getString("description"));
 				product.setAttribute(rs.getString("attribute"));
 				productList.add(product);
@@ -171,7 +171,7 @@ public class ProductDAO {
 			connect();
 
 			// 指定された商品IDの商品データを取得するSQL文を用意
-			String sql = "SELECT * FROM product WHERE productid='" + productId + "'";
+			String sql = "SELECT * FROM product WHERE product_id='" + productId + "'";
 
 			// SQL文を発行し、結果セットを取得
 			ResultSet rs = executeQuery(sql);
@@ -185,8 +185,8 @@ public class ProductDAO {
 				product.setCategoryId(rs.getString("category_id"));
 				product.setProductName(rs.getString("product_Name"));
 				product.setPrice(rs.getInt("price"));
-				product.setSize(rs.getString("product_size"));
-				product.setStock(rs.getInt("sku_number"));
+				//product.setSize(rs.getString("product_size"));
+				//product.setStock(rs.getInt("sku_number"));
 				product.setDescription(rs.getString("description"));
 				product.setAttribute(rs.getString("attribute"));
 			}

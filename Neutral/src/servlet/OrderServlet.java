@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ProductDAO;
 import model.Product;
@@ -28,7 +29,11 @@ public class OrderServlet extends HttpServlet {
 		Product product = productDao.selectByProductId(id);
 
 		// 商品リストをリクエストスコープに格納
-		request.setAttribute("product", product);
+		//request.setAttribute("product", product);
+
+		// 商品リストをセッションスコープに格納
+		HttpSession session = request.getSession();
+		session.setAttribute("Product", product);
 
 		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/order.jsp");

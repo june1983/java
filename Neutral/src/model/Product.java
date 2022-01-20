@@ -10,9 +10,9 @@ public class Product {
 	//単価
 	private int price;
 	//サイズ
-	private String size;
+	//private String size;
 	//在庫個数
-	private int stock;
+	//private int stock;
 	//商品説明
 	private String description;
 	//商品属性
@@ -24,8 +24,8 @@ public class Product {
 		this.categoryId = null;
 		this.productName = null;
 		this.price = 0;
-		this.size = null;
-		this.stock = 0;
+		//this.size = null;
+		//this.stock = 0;
 		this.description = null;
 		this.attribute = null;
 	}
@@ -62,6 +62,8 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+	/*
 	//商品サイズを取得する
 	public String getSize() {
 		return size;
@@ -78,6 +80,8 @@ public class Product {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	*/
+
 	//商品説明を取得する
 	public String getDescription() {
 		return description;
