@@ -18,7 +18,7 @@
 価格：<%=product.getPrice()%>
 <img src="img/<%=product.getProductId()%>.jpg" alt="<%=product.getProductName()%>">
 
-<form action="/Neutral/CartServlet">
+<form action="/neutral/CartServlet" method="post">
 <input type="number" name="orderNumber" value="1">
 <input type="submit" value="カートに入れる">
 </form>

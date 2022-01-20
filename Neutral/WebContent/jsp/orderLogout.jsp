@@ -17,5 +17,8 @@
 価格：<%=c.getOrderPrice()%>
 個数：<%=c.getOrderNumber()%>
 小計：<%=c.getSubtotal()%>
+
+<a href="/neutral/WelcomeServlet">TOPに戻る</a>
+<a href="/neutral/RegisterServlet">新規会員登録</a>
 </body>
 </html>

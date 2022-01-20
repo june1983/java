@@ -86,10 +86,10 @@
                   </div>
                 </li>
 
-                <li class="nav-item"><a href="cart.html" class="nav-link link-dark px-2">CART</a></li>
+                <li class="nav-item"><a href="/neutral/CartServlet" class="nav-link link-dark px-2">CART</a></li>
               </ul>
               <ul class="nav">
-                <li class="nav-item"><a href="login.html" class="nav-link link-dark px-2">Login</a></li>
+                <li class="nav-item"><a href="/neutral/LoginServlet" class="nav-link link-dark px-2">Login</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Sign up</a></li>
               </ul>
             </div>
@@ -117,7 +117,7 @@
 	<% for (Product product: productList) { %>
 	<div class="photo">
 	    <div class="inner">
-	    <a href="/Neutral/OrderServlet?id=<%=product.getProductId()%>">
+	    <a href="/neutral/OrderServlet?id=<%=product.getProductId()%>">
 	    	<img src="img/<%=product.getProductId()%>.jpg" alt="<%=product.getProductName()%>">
 	    </a>
 	    </div>
