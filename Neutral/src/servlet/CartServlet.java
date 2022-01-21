@@ -19,21 +19,21 @@ public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// セッションスコープからAccountデータを取得
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute("Account");
-		
+
 		//　Accountデータが空でない場合（ログイン時）
 		if(account != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogin.jsp");
 			dispatcher.forward(request,  response);
-		//　Accountデータが空の場合（非ログイン時）	
+		//　Accountデータが空の場合（非ログイン時）
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogout.jsp");
 			dispatcher.forward(request,  response);
 		}
-		
+
 	}
 
 
@@ -42,6 +42,7 @@ public class CartServlet extends HttpServlet {
 		//リクエストパラメーターを取得（注文個数）
 		request.setCharacterEncoding("UTF-8");
 		int orderNumber = Integer.parseInt(request.getParameter("orderNumber"));
+		String orderSize = request.getParameter("orderSize");
 
 		//セッションスコープから商品データを取得
 		HttpSession session = request.getSession();
@@ -58,23 +59,27 @@ public class CartServlet extends HttpServlet {
 		cart.setProductId(productId);
 		cart.setOrderProduct(productName);
 		cart.setOrderPrice(orderPrice);
-		cart.setOrderSize("");
+		cart.setOrderSize(orderSize);
 		cart.setOrderNumber(orderNumber);
 		cart.setSubtotal();
 
 		//セッションスコープにCartインスタンスを保存
 		session.setAttribute("cart", cart);
-		
+
 		// セッションスコープからAccountデータを取得
 		Account account = (Account) session.getAttribute("Account");
-		
+
 		//　Accountデータが空でない場合（ログイン時）
 		if(account != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogin.jsp");
 			dispatcher.forward(request,  response);
-		
-		//　Accountデータが空の場合（非ログイン時）	
+
+		//　Accountデータが空の場合（非ログイン時）
 		}else {
+
+
+
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogout.jsp");
 			dispatcher.forward(request,  response);
 		}

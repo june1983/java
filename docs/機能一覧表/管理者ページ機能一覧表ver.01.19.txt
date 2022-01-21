@@ -1,0 +1,59 @@
+==================
+管理者ページ機能一覧表
+==================
+
+ログイン機能
+
+CONTROLLER
+ AdminServlet.java
+ AdminLoginServlet.java
+
+MODEL
+ Login.java エンティティ
+ Account.java エンティティ
+ AccountDAO.java
+ LoginLogic.java ログインの有無を調べる
+
+VIEW
+ index.jsp TOPページ
+ adminLogin.jsp
+ adminLoginOK.jsp
+
+------------------------
+
+商品登録
+
+CONTROLLER
+ RegisterProductServlet.java
+
+MODEL
+ RegisterProductLogic.java 登録情報をDBに反映
+ Product.java エンティティ
+ ProductDAO.java
+
+VIEW
+ registerProduct.jsp
+ registerProductOK.jsp
+
+------------------------
+
+商品編集
+
+CONTROLLER
+ ProductEditServlet.java
+ ProductEditOkServlet.java 商品編集を確定
+ ProductCancelServlet.java
+ ProductCancelOkServlet 商品削除を確定
+ 
+MODEL
+ Product.java エンティティ
+ ProductDAO.java
+ ProductEditLogic.java
+ ProductDeleteLogic.java
+
+VIEW
+ productEdit.jsp
+ productCancel.jsp
+ productEditOK.jsp
+
+------------------------

@@ -16,9 +16,10 @@
 商品名：<%=c.getOrderProduct()%>
 価格：<%=c.getOrderPrice()%>
 個数：<%=c.getOrderNumber()%>
+サイズ：<%=c.getOrderSize()%>
 小計：<%=c.getSubtotal()%>
 
-<a href="/neutral/WelcomeServlet">TOPに戻る</a>
-<a href="/neutral/RegisterServlet">新規会員登録</a>
+<a href="/Neutral/WelcomeServlet">TOPに戻る</a>
+<a href="/Neutral/RegisterServlet">新規会員登録</a>
 </body>
 </html>

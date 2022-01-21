@@ -18,9 +18,21 @@
 価格：<%=product.getPrice()%>
 <img src="img/<%=product.getProductId()%>.jpg" alt="<%=product.getProductName()%>">
 
-<form action="/neutral/CartServlet" method="post">
+<form action="/Neutral/CartServlet" method="post">
+
 <input type="number" name="orderNumber" value="1">
+
+	<select name="orderSize" size="1">
+		<option value="XS">XS</option>
+		<option value="S">S</option>
+		<option value="M">M</option>
+		<option value="L">L</option>
+		<option value="XL">XL</option>
+		<option value="FREE">FREE</option>
+	</select>
+	
 <input type="submit" value="カートに入れる">
+
 </form>
 <p><%=product.getDescription()%></p>
 
