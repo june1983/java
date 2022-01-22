@@ -1,78 +1,149 @@
 @charset "UTF-8";
 
+/* index.html */
 .b-example-divider {
-    height: 3rem;
-    background-color: rgba(0, 0, 0, .1);
-    border: solid rgba(0, 0, 0, .15);
-    border-width: 1px 0;
-    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-  }
-  .form-control-dark {
-    color: #fff;
-    background-color: var(--bs-dark);
-    border-color: var(--bs-gray);
-  }
-  .form-control-dark:focus {
-    color: #fff;
-    background-color: var(--bs-dark);
-    border-color: #fff;
-    box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
-  }
-  .bi {
-    vertical-align: -.125em;
-    fill: currentColor;
-  }
-  .text-small {
-    font-size: 85%;
-  }
-  .dropdown-toggle {
-    outline: 0;
-  }
+	height: 3rem;
+	background-color: rgba(0, 0, 0, .1);
+	border: solid rgba(0, 0, 0, .15);
+	border-width: 1px 0;
+	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+	}
+  
+.form-control-dark {
+	color: #fff;
+	background-color: var(--bs-dark);
+	border-color: var(--bs-gray);
+	}
 
+.form-control-dark:focus {
+	color: #fff;
+	background-color: var(--bs-dark);
+	border-color: #fff;
+	box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+	}
+
+.bi {
+	vertical-align: -.125em;
+	fill: currentColor;
+	}
+
+.text-small {
+	font-size: 85%;
+	}
+
+.dropdown-toggle {
+	outline: 0;
+	}
+
+/* 検索 */
+.search_box {
+	display: inline-block; /* なくても大丈夫だけど、念の為 */
+	position: relative;    /* 基準値とする */
+	margin-top: 20px;
+	}
+
+.search_box::before {
+	content: "";           /* 疑似要素に必須 */
+	width: 30px;           /* アイコンの横幅 */
+	height: 28px;          /* アイコンの高さ */
+	background: url(../img/icon.png) no-repeat center center / auto 100%; /* 背景にアイコン画像を配置 */
+	display: inline-block; /* 高さを持たせるためにインラインブロック要素にする */
+	position: absolute;    /* 相対位置に指定 */
+	top: 1.5px;              /* アイコンの位置。微調整してね */
+	left: 1px;             /* アイコンの位置。微調整してね */
+	}
+
+.search_box input {
+	padding: 3px 0 3px 2em; /* アイコンを設置するため左の余白を多めに指定*/
+	}
+
+/* ロゴ */
 .logo{
     font-family: 'Lobster', cursive;
     font-size: 70px; 
     padding-top: 20px;
-    }   
-
+	}   
 
 .p{
     font-family: 'Varela Round', sans-serif;
-    line-height: 2.0;
+    line-height: 5.0;
     padding-bottom: 20px;
-}
+	}
 
 .nav-item{
     padding: 8px 16px;
-    }
-    
+	}
+
+.nav-link{
+	padding: 0;
+	}
+
 .nav-item:hover {
     opacity: 0.4;
-    color: white;
-    }
+    color: rgb(192, 179, 179);
+	}
 
+/* ドロップダウンメニュー */
+.dropdown a {
+	color: #000;
+	padding: 8px 16px;
+	}
 
-.container{
-    display: flex;
-    justify-content: space-around;
-    margin: 0 auto ;
-}
-.container-s{
-text-align: left;  
-}
+.dropdown a:hover{
+	opacity: 0.4;
+	color: rgb(39, 35, 35);
+	}
 
-.box{
-    height: 200px;
-    width: 200px;
-    background-color: rgb(27, 233, 199);
-}
+.dropdown a:visited{
+	color: rgb(39, 35, 35);
+	}
 
 body {
-    margin: 30px auto;   /* 外側の余白を30pxにする */
+    margin: 10px auto;   /* 外側の余白を30pxにする */
     padding: 0;      /* 内側の余白を消す(念のため) */
     width: 960px;
     text-align: center;
- }
+	}
+
+/* 商品一覧（フォトギャラリー風）*/
+.photogallery{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+	}
+
+.photo {
+    position: relative;
+    width: 31%;
+    height: auto;
+    margin: 1%;
+    overflow: hidden;
+	}
+
+.photo:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+	}
+
+.inner {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+	}
+
+.inner img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 100%;
+	}
 
 /* footerのスタイル */
 div#footer {
@@ -108,7 +179,59 @@ div#footer {
     float: right;
     } 
 
-/*loginOK*/
-.btn btn-outline-primary{
-  color:#9497a1;
-}
+/* register.jsp */
+/* container のスタイル */
+.container-s{
+	text-align: left;
+	margin-top: 50px;  
+ 	}
+ 	
+ .container-sc{
+	width: 700px;
+	text-align: left;
+	margin: 0 auto ; 
+	margin-top: 50px; 
+ 	}
+ 	
+ .container-scr {
+	width: 500px;
+	text-align: center;
+	margin: 0 auto ;  
+	margin-top: 50px;
+ 	}
+ 	
+ /* number formのスタイル */
+  input[type="number"] {
+	 width: 50px;
+	 text-align: right;
+ 	}
+ 	
+ /* kosuu formのスタイル */
+ input[class="kosuu"] {
+	width:50px;
+	text-align: right;
+ 	}
+ 	
+ /* tableのスタイル */  
+ td.example1 {
+	text-align: right;
+ 	}
+ 	
+ th.example1 {
+	text-align: right;
+	}
+	
+ th.checkbox {
+	text-align: center;
+	margin: 0 auto ;  
+ 	}
+ 	
+ /* form fontのスタイル(bg-dark) */
+ .input-group-text {
+	color: #FFFFFF;
+	}
+
+ /* input-group-text のスタイル */
+.input-group-text {
+	width: 100px;
+	}

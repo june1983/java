@@ -5,56 +5,141 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import model.Account;
 import model.Login;
 
+
 public class AccountDAO {
-
 	//接続用の情報をフィールドに定数として定義
-//	private static String RDB_DRIVE = "com.mysql.jdbc.Driver";
-//	private static String URL = "jdbc:mysql://localhost:3306/neutral?characterEncoding=UTF-8&serverTimezone=JST";
-//	private static String EMAIL = "root";
-//	private static String PASS = "";
+	// JDBCドライバ内部のDriverクラスパス
+	private static final String RDB_DRIVE = "com.mysql.jdbc.Driver";
 
-	//データベース接続を行うメソッド
-//	public static Connection getConnection(){
-//	try{
-//		Class.forName(RDB_DRIVE);
-//		Connection con = DriverManager.getConnection(URL, EMAIL, PASS);
-//		return con;
-//	}catch(Exception e){
-//		throw new IllegalStateException(e);
-//	}
-//	}
+	// 接続するMySQLデータベースパス
+	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/neutral?characterEncoding=UTF-8&serverTimezone=JST";
+
+	// データベースのユーザー名
+	private static final String DB_USER = "root";
+
+	// データベースのパスワード
+	private static final String DB_PASS = "root";
+
+	// DBコネクション保持用
+	private Connection con = null;
+
+	// ステートメント保持用
+	private Statement smt = null;
+	private PreparedStatement pStmt = null;
 
 
+	/**
+	 * フィールド変数の情報を基に、DB接続をおこなう関数
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	private void connect() {
+
+		try {
+
+			Class.forName(RDB_DRIVE);
+			this.con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
+			this.smt = this.con.createStatement();
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		}
+
+	}
+
+		/**
+	 * DB接続解除をおこなう関数
+	 */
+	private void disconnect() {
+
+		if (this.smt != null) {
+			try {
+				this.smt.close();
+			} catch (SQLException ignore) {
+			}
+		}
+
+		if (this.con != null) {
+			try {
+				this.con.close();
+			} catch (SQLException ignore) {
+			}
+		}
+
+	}
+
+	/**
+	 * クエリ発行をおこなう関数
+	 *
+	 * @return クエリ結果セット
+	 *
+	 * @param sql 発行するSQL
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	private ResultSet executeQuery(String sql) {
+
+		try {
+			return this.smt.executeQuery(sql);
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		}
+
+	}
+
+	/**
+	 * SQLで更新実行（INSERT、UPDATE、DELETE）をおこなう関数
+	 *
+	 * @return 更新行数
+	 *
+	 * @param sql 実行するSQL
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	private int executeUpdate(String sql) {
+
+		try {
+			return this.smt.executeUpdate(sql);
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		}
+
+	}
+
+	/**
+	 * 引数のログイン情報を基にDBのユーザー情報を格納するUSERテーブルから該当ユーザーデータの検索をおこなう関数
+	 *
+	 * @param login 検索対象のログイン情報
+	 *
+	 * @return 検索結果のユーザー情報のAccountオブジェクト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
 	public Account findByLogin(Login login) {
-		//変数宣言
-		Account account = null;
-		Connection conn = null;
-		PreparedStatement pStmt = null;
-		String sql = "SELECT USER_ID, USER_NAME, EMAIL, PASS, ADRESS, TEL, CARD FROM USER WHERE EMAIL = ? AND PASS = ?";
 
-		//データベースへ接続
-		try  {
-			Class.forName("com.mysql.jdbc.Driver");
-		    String dburl = "jdbc:mysql://localhost:3306/neutral?characterEncoding=UTF-8&serverTimezone=JST";
-		    conn = DriverManager.getConnection(dburl,"root","root");
+		try {
+			// DB接続
+			connect();
 
-			//SELECT文を準備
-
-			pStmt = conn.prepareStatement(sql);
+			// 指定されたログイン情報のユーザーデータを取得するSQL文を用意
+			String sql = "SELECT USER_ID, USER_NAME, EMAIL, PASS, ADRESS, TEL, CARD FROM USER WHERE EMAIL = ? AND PASS = ?";
+			pStmt = con.prepareStatement(sql);
 			pStmt.setString(1, login.getEmail());
 			pStmt.setString(2, login.getPass());
 
-			//SELECT文を実行し、結果表を取得
+			// SQL文を発行し、結果セットを取得
 			ResultSet rs = pStmt.executeQuery();
 
-			//一致したユーザーが存在した場合
-			//そのユーザーを表すAccountインスタンスを生成
+			// 商品データ格納用のAccountオブジェクトを生成
+			Account account = null;
+
+			// 結果セットからユーザーデータを取得
 			if (rs.next()) {
-				//結果表からデータを取得
 				int userId = rs.getInt("USER_ID");
 				String userName = rs.getString("USER_NAME");
 				String email = rs.getString("EMAIL");
@@ -63,99 +148,96 @@ public class AccountDAO {
 				String tel = rs.getString("TEL");
 				String card = rs.getString("CARD");
 				account = new Account(userId, userName, email, pass, adress, tel, card);
-
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} catch (ClassNotFoundException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+
+			// 呼び出し元へ商品データを返す
+			return account;
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
 		}
-		//見つかったユーザーまたはNULLを返す
-		return account;
+
 	}
 
-
-/*	//データベースに同じデータがあるかを確認するメソッド
-	public boolean select(Login login) {
-		//変数宣言
-		Account account = null;
-		Connection con = null;
-	    String sql = "SELECT USER_NAME, ADDRESS, EMAIL, PASS, TEL, CARD FROM ACCOUNT WHERE EMAIL = ? AND PASS = ?";
-
-		try {
-			con = getConnection();
-			 //SELECT文を準備
-		    PreparedStatement pStmt = con.prepareStatement(sql);
-		    pStmt.setString(1, login.getEmail());
-		    pStmt.setString(2, login.getPass());
-
-		    //SELECT文を実行し、結果表を取得
-		    ResultSet rs = pStmt.executeQuery();
-
-		    //一致したユーザーが存在した場合、そのユーザーを表すAccountインスタンスを生成
-		    if(rs.next()) {
-		    	//結果表からデータを取得
-		    	String userName = rs.getString("USER_NAME");
-		    	String address = rs.getString("ADDRESS");
-	    		String email = rs.getString("EMAIL");
-		    	String pass = rs.getString("PASS");
-		    	String tel = rs.getString("TEL");
-		    	String card = rs.getString("CARD");
-		    	account = new Account(userName, address, email, pass, tel, card);
-		    	return false;
-		    }
-		}catch(Exception e) {
-			return false;
-		}
-			return true;
-		}
-
-
-    //データベースへデータを登録するメソッド
-    public boolean insert(Account account){
-
-        //変数宣言
-        Connection con = null;
-       	Statement  smt = null;
-
-        //return用変数
-        int count = 0;
-
-        //SQL文
-       String sql = "INSERT INTO account VALUES('"
-                    + account.getUserName() + "','"
-                    + account.getAdress() + "','"
-                    + account.getEmail() + "','"
-                    + account.getPass() + "','"
-                    + account.getTel() + "','"
-                    + account.getCard() + "')";
-
-        try{
-            con = getConnection();
-            smt = con.createStatement();
-
-            //SQLをDBへ発行
-            count = smt.executeUpdate(sql);
+	/**
+	 * 引数のアカウント情報を基にUSERテーブルにユーザー情報を登録する関数
+	 *
+	 * @param login 検索対象のログイン情報
+	 *
+	 * @return 検索結果のユーザー情報のAccountオブジェクト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public boolean insert(Account account){
+	
+	    try{
+			// DB接続
+			connect();
+			
+	        //return用変数
+	        int count = 0;
+	
+	        //SQL文
+	        String sql = "INSERT INTO user VALUES('"
+	        		 	+ account.getUserId() + "','"
+	                    + account.getUserName() + "','"
+	                    + account.getAdress() + "','"
+	                    + account.getEmail() + "','"
+	                    + account.getPass() + "','"
+	                    + account.getTel() + "','"
+	                    + account.getCard() + "')";
+	
+	        //SQLをDBへ発行
+	        count = smt.executeUpdate(sql);
 	        if(count == 0) {
 	        	return false;
 	        }else {
 	            return true;
-
+	
 	        }
+	
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    	return false;
+	    }finally{
+	        //リソースの開放
+	        if(smt != null){
+	            try{smt.close();}catch(SQLException ignore){}
+	        }
+	        if(con != null){
+	            try{con.close();}catch(SQLException ignore){}
+	        }
+	    }
+	}
+	/**
+	 * 顧客情報を格納するUSERテーブルから、引数で与えられたuserIdを持つ顧客データの削除をおこなう関数
+	 *
+	 * @param userId 削除対象のuserId
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public void delete(int userId) {
 
-        }catch(Exception e){
-        	e.printStackTrace();
-        	return false;
-        }finally{
-            //リソースの開放
-            if(smt != null){
-                try{smt.close();}catch(SQLException ignore){}
-            }
-            if(con != null){
-                try{con.close();}catch(SQLException ignore){}
-            }
-        }
-    } */
+	    try {
+	        // DB接続
+	        connect();
+
+	        // 指定されたuserId番号の顧客データを削除するSQL文を用意
+	        String sql = "DELETE FROM user WHERE user_id ='" + userId + "'";
+
+	        // SQL文を発行
+	        executeUpdate(sql);
+
+	    } catch (Exception e) {
+	        throw new IllegalStateException(e);
+	    } finally {
+	        // DB接続解除
+	        disconnect();
+	    }
+
+	}
+
 }

@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -89,7 +88,7 @@ public class ProductDAO {
 	}
 
 	/**
-	 * SQL実行をおこなう関数
+	 * SQLで更新実行（INSERT、UPDATE、DELETE）をおこなう関数
 	 *
 	 * @return 更新行数
 	 *
@@ -120,7 +119,7 @@ public class ProductDAO {
 			// DB接続
 			connect();
 
-			// 商品データ（在庫＋商品＋カテゴリー）を全件取得するSQL文を用意
+			// 商品データを全件取得するSQL文を用意
 			String sql = "SELECT * FROM product";
 
 			// SQL文を発行し、結果セットを取得
@@ -136,8 +135,6 @@ public class ProductDAO {
 				product.setCategoryId(rs.getString("category_id"));
 				product.setProductName(rs.getString("product_Name"));
 				product.setPrice(rs.getInt("price"));
-				//product.setSize(rs.getString("product_size"));
-				//product.setStock(rs.getInt("sku_number"));
 				product.setDescription(rs.getString("description"));
 				product.setAttribute(rs.getString("attribute"));
 				productList.add(product);

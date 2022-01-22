@@ -24,11 +24,18 @@ public class CartServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute("Account");
 
-		//　Accountデータが空でない場合（ログイン時）
+		// Accountデータが空でない場合（ログイン時）
 		if(account != null) {
+			/*
+			CartDAO dao = new CartDAO();
+			int userId =account.getUserId();
+			ArrayList<Cart> cart = dao.selectByUser_Id(userId);
+			System.out.println(cart.get(0).getOrderSize());
+			request.setAttribute("keyCartList", cart);
+			*/
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogin.jsp");
 			dispatcher.forward(request,  response);
-		//　Accountデータが空の場合（非ログイン時）
+		// Accountデータが空の場合（非ログイン時）
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogout.jsp");
 			dispatcher.forward(request,  response);
@@ -39,47 +46,55 @@ public class CartServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//リクエストパラメーターを取得（注文個数）
+		// リクエストパラメーターを取得（注文個数）
 		request.setCharacterEncoding("UTF-8");
 		int orderNumber = Integer.parseInt(request.getParameter("orderNumber"));
 		String orderSize = request.getParameter("orderSize");
-
-		//セッションスコープから商品データを取得
+		
+		
+		// セッションスコープからアカウントデータと商品データを取得
 		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("Account");
 		Product product = (Product) session.getAttribute("Product");
-
 		String productId = product.getProductId();
 		String productName = product.getProductName();
 		int orderPrice = product.getPrice();
-
+		
 		// 商品データ格納用のCartオブジェクトを生成
 		Cart cart = new Cart();
-
-		cart.setUserId(0);
 		cart.setProductId(productId);
 		cart.setOrderProduct(productName);
 		cart.setOrderPrice(orderPrice);
 		cart.setOrderSize(orderSize);
 		cart.setOrderNumber(orderNumber);
 		cart.setSubtotal();
-
-		//セッションスコープにCartインスタンスを保存
+		
+		// セッションスコープにCartインスタンスを保存
 		session.setAttribute("cart", cart);
 
-		// セッションスコープからAccountデータを取得
-		Account account = (Account) session.getAttribute("Account");
-
-		//　Accountデータが空でない場合（ログイン時）
+		// Accountデータが空でない場合（ログイン時）
 		if(account != null) {
+			/*
+			// 顧客ID情報を取得してcartに反映する
+			int userId = account.getUserId();
+			cart.setUserId(userId);
+			
+			// CartDAOインスタンスを生成し、Cartテーブルに情報を追加
+			CartDAO cartDao = new CartDAO();
+			cartDao.insert(cart);
+			
+			// 特定のユーザーに紐づくカートテーブルのデータを全件取得する命令を呼び出し、戻り値を取得する
+			ArrayList<Cart> cartList = cartDao.selectByUser_Id(userId);
+
+			// カート情報をリクエストスコープに格納
+			request.setAttribute("cartList", cartList);
+			*/
+			// フォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogin.jsp");
 			dispatcher.forward(request,  response);
 
-		//　Accountデータが空の場合（非ログイン時）
+		// Accountデータが空の場合（非ログイン時）
 		}else {
-
-
-
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogout.jsp");
 			dispatcher.forward(request,  response);
 		}
