@@ -14,24 +14,11 @@ import dao.AccountDAO;
 import model.Account;
 import model.AccountDeleteLogic;
 
-/**
- * Servlet implementation class CancelOkServlet
- */
+
 @WebServlet("/CancelOkServlet")
 public class CancelOkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CancelOkServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
 		try {

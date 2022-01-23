@@ -20,7 +20,7 @@ public class CartDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -181,7 +181,7 @@ public class CartDAO {
 					   + "'" + cart.getOrderSize() + "',"
 					   + cart.getOrderNumber() + ","
 					   + cart.getOrderPrice() + ","
-					   + 	   cart.getSubtotal() + ")";
+					   + cart.getSubtotal() + ")";
 //			 SQL文を発行
 			System.out.println(sql);
 			executeUpdate(sql);

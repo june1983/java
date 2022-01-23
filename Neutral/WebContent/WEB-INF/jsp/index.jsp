@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dao.SkuDAO,model.SKU,java.util.ArrayList"%>
+<%
+    // リクエストスコープから商品情報を取得
+    ArrayList<SKU> skuList = (ArrayList<SKU>)session.getAttribute("skuList");
+%>    
 
 <!DOCTYPE html>
 <html>
@@ -10,31 +15,20 @@
 <script src="jquery-3.6.0.min.js"></script>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' id='jquery-js'></script>
 <script src="js/paginathing.min.js"></script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nunito:ital,wght@1,200&family=Permanent+Marker&family=Titillium+Web:wght@200&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="css/headers.css">
 <link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style-ad.css">
+<link rel="stylesheet" href="css/style-ad2.css">
 </head>
 <body>
- <header>
-      <div class="b-example-divider">
-      <div class="row align-items-center">
-        <div class="col">
-          <h4 class="logo2">Neutral</h4>
-        </div>
-        <div class="col">
-          <p class="title2">管理画面／商品登録・編集ページ</p>
-        </div>
-        <div class="col">
-        </div>
-      </div>
-      </div>      
- </header>
+<!-- HEADER -->
+<jsp:include page="admin-header.jsp"></jsp:include>
 
  <main>
   <div class="container-sl">
@@ -67,8 +61,8 @@
               <li><a class="dropdown-item" href="#">BA:バッグ</a></li>
             </ul>
           </div>
-          <div class="example5"><button type="button" class="btn btn-outline-primary">日付</button></div>
-          <div class="example5"><button type="button" class="btn btn-primary">商品を登録する</button></div>                 
+          <!-- <div class="example5"><button type="button" class="btn btn-outline-primary">日付</button></div> -->
+          <a href="/Neutral/RegisterProductServlet"><div class="example5"><button type="button" class="btn btn-primary">商品を登録する</button></a></div>                 
         </form>
       </div>
     </nav>
@@ -78,208 +72,29 @@
         <tr>
           <th scope="col" class="example2">商品ID</th>
           <th scope="col" class="example2">商品名</th>
-          <th scope="col" class="fileulimg">写真</th>
           <th scope="col" class="example2">カテゴリ</th>
           <th scope="col" class="example2">サイズ</th>
           <th scope="col" class="example2">単価</th>
           <th scope="col" class="example2">商品説明</th>
+          <th scope="col" class="example2">商品属性</th>
           <th scope="col" class="example2">在庫数量</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
+      	<% for (SKU sku: skuList) { %>
         <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
+          <td class="example2"><%=sku.getProductId()%></td>
+          <td class="example2"><%=sku.getProductName()%></td>
+          <td class="example2"><%=sku.getCategoryId()%></td>
+          <td class="example2"><%=sku.getSize()%></td>
+          <td class="example2"><%=sku.getPrice()%></td>
+          <td class="example2"><%=sku.getDescription()%></td>
+          <td class="example2"><%=sku.getAttribute()%></td>
+          <td class="example2"><%=sku.getStock()%></td>
+          <td class="hensyubotton"><a href="/Neutral/ProductEditServlet?id=<%=sku.getProductId()%>"><button type="button" class="btn btn-primary btn-sm">編集する</button></a></td>
         </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <th scope="row"></th>
-        <td class="example2"></td>
-        <td class="fileulimg">
-          <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-        </td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        <tr>
-        </tr>
-        <th scope="row"></th>
-        <td class="example2"></td>
-        <td class="fileulimg">
-          <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-        </td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="example2"></td>
-        <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td class="example2"></td>
-          <td class="fileulimg">
-            <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">        
-          </td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="example2"></td>
-          <td class="hensyubotton"><button type="button" class="btn btn-primary btn-sm">編集する</button></td>
-        </tr>
+        <% } %>
         
       </tbody>
     </table>

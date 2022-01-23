@@ -8,12 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dao.AccountDAO;
-import model.Account;
-import model.Login;
-import model.RegisterLogic;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -45,6 +39,7 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
 		try {
+			/*
 			//リクエストパラメータの取得
 			request.setCharacterEncoding("UTF-8");
 			int userId = Integer.parseInt(request.getParameter("userId"));
@@ -77,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
 			if(judge == false) {
 				request.setAttribute("errorMsg", "登録失敗");
 			}
-			
+			*/
 			//フォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registerOK.jsp");
 			dispatcher.forward(request, response);

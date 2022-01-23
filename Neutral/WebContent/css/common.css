@@ -68,3 +68,8 @@ a {
     vertical-align:baseline;
     background:transparent;
 }
+
+/*その他*/
+.off {
+	display:none;
+}

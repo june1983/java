@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import model.Account;
 import model.Cart;
 import model.Product;
+import dao.CartDAO;
 
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {

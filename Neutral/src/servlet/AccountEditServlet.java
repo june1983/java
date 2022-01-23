@@ -8,46 +8,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dao.AccountDAO;
-import model.Account;
-import model.AccountEditLogic;
-import model.Login;
 
 
-/**
- * Servlet implementation class AccountEditServlet
- */
+
 @WebServlet("/AccountEditServlet")
 public class AccountEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccountEditServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/accountEdit.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
 		/*
 		try {
 		*/
+		
+		/*
 			//リクエストパラメータの取得
 			request.setCharacterEncoding("UTF-8");
 			int userId = Integer.parseInt(request.getParameter("userId"));
@@ -74,17 +54,17 @@ public class AccountEditServlet extends HttpServlet {
 			//更新処理の実行
 			Login login = new Login(email, pass);
 			AccountEditLogic ael = new AccountEditLogic();
-			boolean judge = ael.execute(login, account);
+			boolean judge = ael.execute(login);
 
 			//更新処理失敗の時にエラーメッセージを表示
 			if(judge == false) {
 				request.setAttribute("errorMsg", "更新失敗");
 			}
-
+		*/
 			//フォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/account.jsp");
 			dispatcher.forward(request, response);
-/*
+		/*
 		}catch (IllegalStateException e) {
 			error ="DB接続エラーの為、更新できませんでした。";
 

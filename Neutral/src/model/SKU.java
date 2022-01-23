@@ -1,6 +1,6 @@
 package model;
 
-public class Product {
+public class SKU {
 	//商品のID
 	private String productId;
 	//商品のカテゴリーID
@@ -10,22 +10,22 @@ public class Product {
 	//単価
 	private int price;
 	//サイズ
-	//private String size;
+	private String size;
 	//在庫個数
-	//private int stock;
+	private int stock;
 	//商品説明
 	private String description;
 	//商品属性
 	private String attribute;
 
 	//（商品ID・カテゴリーID・価格）の初期設定をおこなう（コンストラクタ）
-	public Product() {
+	public SKU() {
 		this.productId = null;
 		this.categoryId = null;
 		this.productName = null;
 		this.price = 0;
-		//this.size = null;
-		//this.stock = 0;
+		this.size = null;
+		this.stock = 0;
 		this.description = null;
 		this.attribute = null;
 	}
@@ -66,7 +66,6 @@ public class Product {
 		this.price = price;
 	}
 
-	/*
 	//商品サイズを取得する
 	public String getSize() {
 		return size;
@@ -75,6 +74,7 @@ public class Product {
 	public void setSize(String size) {
 		this.size = size;
 	}
+	
 	//商品の在庫個数を取得する
 	public int getStock() {
 		return stock;
@@ -83,7 +83,6 @@ public class Product {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	*/
 
 	//商品説明を取得する
 	public String getDescription() {

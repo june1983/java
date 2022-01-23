@@ -12,24 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import model.Account;
 
-/**
- * Servlet implementation class AccountServlet
- */
+
 @WebServlet("/AccountServlet")
 public class AccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccountServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
 		//ログイン時とログアウト時の処理
