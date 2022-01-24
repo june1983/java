@@ -1,7 +1,9 @@
 package model;
 
 public class SKU {
-	//商品のID
+	//在庫ID
+	private int skuId;
+	//商品ID
 	private String productId;
 	//商品のカテゴリーID
 	private String categoryId;
@@ -20,6 +22,7 @@ public class SKU {
 
 	//（商品ID・カテゴリーID・価格）の初期設定をおこなう（コンストラクタ）
 	public SKU() {
+		this.skuId = 0;
 		this.productId = null;
 		this.categoryId = null;
 		this.productName = null;
@@ -29,7 +32,16 @@ public class SKU {
 		this.description = null;
 		this.attribute = null;
 	}
-
+	
+	//在庫IDを取得する
+	public int getSkuId() {
+		return skuId;
+	}
+	//在庫IDを設定する
+	public void setSkuId(int skuId) {
+		this.skuId = skuId;
+	}
+	
 	//商品のIDを取得する
 	public String getProductId() {
 		return productId;

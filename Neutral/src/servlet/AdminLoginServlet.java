@@ -24,9 +24,21 @@ public class AdminLoginServlet extends HttpServlet {
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminLogin.jsp");
-		dispatcher.forward(request,  response);
+		// セッションスコープからAccountデータを取得
+		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("Account");
+		
+		// Accountデータが空でない場合（ログイン時）
+		if(account != null) {
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+			dispatcher.forward(request,  response);
+		// Accountデータが空の場合（非ログイン時）
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminLogin.jsp");
+			dispatcher.forward(request,  response);
+		}
+		
 	}
 
 

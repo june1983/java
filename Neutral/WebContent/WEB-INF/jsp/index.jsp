@@ -49,6 +49,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+          <th scope="col" class="example2">在庫ID</th>
           <th scope="col" class="example2">商品ID</th>
           <th scope="col" class="example2">商品名</th>
           <th scope="col" class="example2">カテゴリ</th>
@@ -63,6 +64,7 @@
       <tbody>
       	<% for (SKU sku: skuList) { %>
         <tr>
+          <td class="example2"><%=sku.getSkuId()%></td>
           <td class="example2"><%=sku.getProductId()%></td>
           <td class="example2"><%=sku.getProductName()%></td>
           <td class="example2"><%=sku.getCategoryId()%></td>
@@ -71,7 +73,7 @@
           <td class="example2"><%=sku.getDescription()%></td>
           <td class="example2"><%=sku.getAttribute()%></td>
           <td class="example2"><%=sku.getStock()%></td>
-          <td class="hensyubotton"><a href="/Neutral/ProductEditServlet?id=<%=sku.getProductId()%>"><button type="button" class="btn btn-primary btn-sm">編集する</button></a></td>
+          <td class="hensyubotton"><a href="/Neutral/ProductEditServlet?id=<%=sku.getSkuId()%>"><button type="button" class="btn btn-primary btn-sm">編集する</button></a></td>
         </tr>
         <% } %>
 
@@ -82,7 +84,7 @@
       <div></div>
 
 
-        <button type="button" class="btn btn-outline-primary">管理画面TOPへ</button><br>
+        <a href="#"><button type="button" class="btn btn-outline-primary">管理画面TOPへ</button></a><br>
       </div>
     </div>
 

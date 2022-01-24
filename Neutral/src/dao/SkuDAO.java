@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -131,6 +131,7 @@ public class SkuDAO {
 			// 結果セットから1行ずつ商品データを取得
 			while (rs.next()) {
 				SKU sku = new SKU();
+				sku.setSkuId(rs.getInt("sku_id"));
 				sku.setProductId(rs.getString("product_id"));
 				sku.setCategoryId(rs.getString("category_id"));
 				sku.setProductName(rs.getString("product_name"));
@@ -144,6 +145,55 @@ public class SkuDAO {
 
 			// 呼び出し元へ商品データを返す
 			return skuList;
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
+	}
+
+	/**
+	 * 引数の在庫IDを基にDBの商品情報を格納するproductテーブルと在庫テーブルから該当商品在庫データの検索をおこなう関数
+	 *
+	 * @param skuId 検索対象の在庫ID
+	 *
+	 * @return 検索結果の商品情報のSKUオブジェクト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public SKU selectBySkuId(int skuId) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 指定された商品IDの商品データを取得するSQL文を用意
+			String sql = "SELECT * FROM sku LEFT OUTER JOIN product ON sku.PRODUCT_ID = product.PRODUCT_ID LEFT OUTER JOIN category ON product.CATEGORY_ID = category.CATEGORY_ID WHERE sku_id='" + skuId + "'";
+
+			// SQL文を発行し、結果セットを取得
+			ResultSet rs = executeQuery(sql);
+
+			// 商品データ格納用のproductオブジェクトを生成
+			SKU sku = new SKU();
+
+			// 結果セットから商品データを取得
+			if (rs.next()) {
+				sku.setSkuId(rs.getInt("sku_id"));
+				sku.setProductId(rs.getString("product_id"));
+				sku.setCategoryId(rs.getString("category_id"));
+				sku.setProductName(rs.getString("product_name"));
+				sku.setSize(rs.getString("product_size"));
+				sku.setStock(rs.getInt("sku_number"));
+				sku.setPrice(rs.getInt("price"));
+				sku.setDescription(rs.getString("description"));
+				sku.setAttribute(rs.getString("attribute"));
+			}
+
+			// 呼び出し元へ商品データを返す
+			return sku;
 
 		} catch (Exception e) {
 			throw new IllegalStateException(e);

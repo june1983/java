@@ -235,3 +235,8 @@ div#footer {
 .input-group-text {
 	width: 100px;
 	}
+
+/***** 1/24追加 ****/
+#img {
+	max-width: 100%;
+	}
