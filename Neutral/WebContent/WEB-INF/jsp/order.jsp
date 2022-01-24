@@ -23,7 +23,7 @@ Product product = (Product) session.getAttribute("Product");
 <link rel="stylesheet" href="css/item-image.scss">
 </head>
 <body>
-<header class="py-3 mb-4 border-bottom">  
+<header class="py-3 mb-4 border-bottom">
 	<nav class="py-2 bg-white border-bottom">
 		<div class="container d-flex flex-wrap">
 			<ul class="nav me-auto">
@@ -53,7 +53,7 @@ Product product = (Product) session.getAttribute("Product");
 			    <li class="nav-item"><a href="/Neutral/AdminLoginServlet" class="nav-link link-dark px-2">お店を管理する</a></li>
 			</ul>
 		</div>
-	</nav>  
+	</nav>
 	<div class="container d-flex flex-wrap justify-content-center">
 		<a href="/Neutral/WelcomeServlet" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
 			<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -67,7 +67,7 @@ Product product = (Product) session.getAttribute("Product");
 	</div>
 </header>
 <body>
-  
+
 <main>
   <p>ファッションを楽しむすべての人に。</p><br>
   <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
@@ -80,7 +80,7 @@ Product product = (Product) session.getAttribute("Product");
             <div id="featured_img">
             <img id="img" src="img/<%=product.getProductId()%>.jpg"alt="<%=product.getProductName()%>">
             </div>
-            <!--  
+            <!--
             <div id="thumb_img" class="cf">
             <img class="active" src="#" onclick="changeimg('#',this);">
             <img src="#" onclick="changeimg('#',this);">
@@ -101,7 +101,7 @@ Product product = (Product) session.getAttribute("Product");
 
         <form action="/Neutral/CartServlet" method="post">
           サイズ：
-          <select class="form-select-s" aria-label="Default select example">            
+          <select class="form-select-s" name="orderSize" aria-label="Default select example">
             <option selected>サイズを選択してください</option>
             <option value="XS">XS</option>
             <option value="S">S</option>
@@ -109,7 +109,7 @@ Product product = (Product) session.getAttribute("Product");
             <option value="L">L</option>
             <option value="XL">XL</option>
             <option value="FREE">FREE</option>
-          </select><br><br>            
+          </select><br><br>
           個数：
           <input type="number" name="orderNumber" value="1">
           <!--
@@ -126,7 +126,7 @@ Product product = (Product) session.getAttribute("Product");
 
     </div>
   </div>
-</main> 
+</main>
 <!-- FOOTER -->
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

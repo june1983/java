@@ -23,7 +23,7 @@ public class AccountDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -172,14 +172,14 @@ public class AccountDAO {
 	 * @throws IllegalStateException 関数内部で例外が発生した場合
 	 */
 	public boolean insert(Account account){
-	
+
 	    try{
 			// DB接続
 			connect();
-			
+
 	        //return用変数
 	        int count = 0;
-	
+
 	        //SQL文
 	        String sql = "INSERT INTO user VALUES('"
 	        		 	+ account.getUserId() + "','"
@@ -189,16 +189,16 @@ public class AccountDAO {
 	                    + account.getPass() + "','"
 	                    + account.getTel() + "','"
 	                    + account.getCard() + "')";
-	
+
 	        //SQLをDBへ発行
 	        count = smt.executeUpdate(sql);
 	        if(count == 0) {
 	        	return false;
 	        }else {
 	            return true;
-	
+
 	        }
-	
+
 	    }catch(Exception e){
 	    	e.printStackTrace();
 	    	return false;

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.Cart,java.util.ArrayList"%>    
+<%@ page import="model.Cart,java.util.ArrayList"%>
 <%
 // セッションスコープからカート情報を取得
 Cart cart = (Cart) session.getAttribute("cart");
@@ -23,7 +23,7 @@ Cart cart = (Cart) session.getAttribute("cart");
 <body>
 <!-- HEADER -->
 <jsp:include page="header.jsp"></jsp:include>
-   
+
 <main>
     <p>ファッションを楽しむすべての人に。</p><br>
     <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
@@ -51,10 +51,10 @@ Cart cart = (Cart) session.getAttribute("cart");
               </svg></th>
               <td style="width: 100px"><%=cart.getProductId()%></td>
               <td style="width: 200px"><%=cart.getOrderProduct()%></td>
-              <td style="width: 100px"></td>
+              <td style="width: 100px"><%=cart.getOrderSize()%></td>
               <td style="width: 120px"><input class="kosuu" value="<%=cart.getOrderNumber()%>">個</td>
               <td style="width: 120px" class="example1"><%=cart.getOrderPrice()%>円</td>
-              <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>  
+              <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>
           </tr>
         </tbody>
         <tfoot>
@@ -76,10 +76,10 @@ Cart cart = (Cart) session.getAttribute("cart");
       <div><br>
       <a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">TOPへ戻る</button></a>
       </div>
-      </div>  
+      </div>
     </div>
 
-</main>    
+</main>
 <!-- FOOTER -->
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

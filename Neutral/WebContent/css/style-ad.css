@@ -1,12 +1,6 @@
 @charset "UTF-8";
 
-/*index.html*/
-.b-example-divider {
- padding-top: 0;
- margin-top: 0;
- height: 40px;
- background-color: #9ec5fe;
-}
+/* 管理画面 body　部分のスタイル */
 
 .dropdown-toggle {
  outline: 0;
@@ -45,14 +39,7 @@
   color: rgb(39, 35, 35);
 }
 
-.container{
-    display: flex;
-    justify-content: space-around;
-    margin: 0 auto ;
-}
-.container-s{
-text-align: left;  
-}
+
 
 .box{
     height: 200px;
@@ -67,33 +54,47 @@ body {
     text-align: center;
  }
 
+main {
+	 margin: 30px auto;   /* 外側の余白を30pxにする */
+     padding: 0;      /* 内側の余白を消す(念のため) */
+     margin-top: 0;
+     text-align: center;
+}
 
-/*register.html*/
 /* container のスタイル */
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto ;
+}
 .container-s{
-  text-align: left;  
+  text-align: left;
  }
  .container-sc{
   width: 700px;
   text-align: left;
-  margin: 0 auto ;  
+  margin: 0 auto ;
  }
  .container-scr {
   width: 500px;
   text-align: center;
-  margin: 0 auto ;  
+  margin: 0 auto ;
  }
+
  /* number formのスタイル */
   input[type="number"] {
   width: 50px;
   text-align: right;
  }
+
  /* kosuu formのスタイル */
  input[class="kosuu"] {
   width:50px;
   text-align: right;
  }
- /* table のスタイル */  
+
+ /* table のスタイル */
  td.example1 {
   text-align: right;
  }
@@ -102,9 +103,9 @@ body {
  }
  th.checkbox {
    text-align: center;
-   margin: 0 auto ;  
+   margin: 0 auto ;
  }
- /* 商品登録・編集table のスタイル */  
+ /* 商品登録・編集table のスタイル */
  th.example2 {
   text-align: center;
   width: 100px;
@@ -126,12 +127,12 @@ body {
  td.hensyubotton {
   text-align: center;
   margin: 0 auto ;
-  width: 100px;  
+  width: 100px;
  }
  th.bottom {
   text-align: center;
   margin: 0 auto ;
-  width: 100px;  
+  width: 100px;
  }
 
  /* form fontのスタイル(bg-dark) */
@@ -187,13 +188,13 @@ li.page.navi-active a {
 .container-sl {
   width: 1100px;
   text-align: center;
-  margin: 20px auto ;  
+  margin: 20px auto ;
  }
 
 /* 商品管理 nav div btn のスタイル */
  .example5 {
   padding-left: 20px;
-  } 
+  }
 
 /* 管理画面 logo2　のスタイル */
  .logo2 {
@@ -219,14 +220,10 @@ label {
   padding: 0px ;
   cursor: pointer;
 }
-/*
-input[type="file"] {
-  display: none;
-}
-*/
+
 p.fileup {
   margin: 10px 0 0 0;
-  font-size: small;    
+  font-size: small;
 }
 
 .filelabel{
@@ -242,8 +239,26 @@ p.fileup {
 .filelabel:hover{
   background-color: #9ec5fe;
 }
-/*
-.fileinput{
-  display: none;
+
+
+/*index.html*/
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) * -.5);
+  margin-left: 200px;
 }
-*/
+
+.align-items-center {
+  text-align: center;
+}
+
+.col2 {
+  margin-left: 200px;
+}
+
+

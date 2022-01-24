@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.Account"  %>
 <%
-// リクエストスコープからインスタンスを取得
+// セッションスコープからインスタンスを取得
 Account account = (Account) session.getAttribute("Account");
 %>
 <!DOCTYPE html>
@@ -10,6 +11,7 @@ Account account = (Account) session.getAttribute("Account");
 <head>
 <meta charset="UTF-8">
 <title>NEUTRAL/会員情報　編集ページ</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nunito:ital,wght@1,200&family=Permanent+Marker&family=Titillium+Web:wght@200&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
@@ -20,6 +22,7 @@ Account account = (Account) session.getAttribute("Account");
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
+<body>
 <!-- HEADER -->
 <jsp:include page="header.jsp"></jsp:include>
 
@@ -34,33 +37,44 @@ Account account = (Account) session.getAttribute("Account");
 			      <div class="input-group flex-nowrap">
 
 			       <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
-			       <input type="text" name="user_Name" class="form-control" placeholder="<%= account.getUserName() %>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="user_Name" class="form-control" placeholder="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 			       <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
-			       <input type="text" name="adress" class="form-control" placeholder="<%= account.getAdress() %>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="adress" class="form-control" placeholder="<c:out value="${sessionScope.Account.getAdress() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 			       <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>
-			       <input type="text" name="email" class="form-control" placeholder="<%= account.getEmail() %>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="email" class="form-control" placeholder="<c:out value="${sessionScope.Account.getEmail() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 			       <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">TEL</span>
-			       <input type="text" name="tel" class="form-control" placeholder="<%= account.getTel() %>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="tel" class="form-control" placeholder="<c:out value="${sessionScope.Account.getTel() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>            <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">パスワード</span>
-			       <input type="text" name="pass" class="form-control" placeholder="<%= account.getPass() %>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="pass" class="form-control" placeholder="<c:out value="${sessionScope.Account.getPass() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>            <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">CARD</span>
-			       <input type="text" name="card" class="form-control" placeholder="<%= account.getCard() %>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="card" class="form-control" placeholder="<c:out value="${sessionScope.Account.getCard() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 
 			        <button type="submit" class="btn btn-dark">変更する</button><br>
 		        </form>
-	     </div>
-	</div>
+      </div>
+    </div>
+
 </main>
-<!-- FOOTER -->
-<jsp:include page="footer.jsp"></jsp:include>
 </body>
+<!--▼FOTTER-->
+
+<div id="footer">
+ <ul id="footer-nav">
+ <li><a href="https://www.official-store.jp/kinggnugoods/user_data/privacy.php">個人情報の取り扱い</a></li>
+ <li>&nbsp;| <a href="https://www.official-store.jp/kinggnugoods/user_data/kiyaku.php">特定商取引法に基づく表記</a></li>
+</ul>
+
+ <address>Copyright (c) 2022 lightvan co. ltd. All Rights Reserved. </address>
+</div>
+
+<!--▲FOTTER-->
 </html>

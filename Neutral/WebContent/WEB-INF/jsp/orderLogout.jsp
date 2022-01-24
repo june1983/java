@@ -21,7 +21,7 @@ Cart cart = (Cart) session.getAttribute("cart");
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header class="py-3 mb-4 border-bottom">  
+<header class="py-3 mb-4 border-bottom">
 	<nav class="py-2 bg-white border-bottom">
 		<div class="container d-flex flex-wrap">
 			<ul class="nav me-auto">
@@ -51,7 +51,7 @@ Cart cart = (Cart) session.getAttribute("cart");
 			    <li class="nav-item"><a href="/Neutral/AdminLoginServlet" class="nav-link link-dark px-2">お店を管理する</a></li>
 			</ul>
 		</div>
-	</nav>  
+	</nav>
 	<div class="container d-flex flex-wrap justify-content-center">
 		<a href="/Neutral/WelcomeServlet" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
 			<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -65,7 +65,7 @@ Cart cart = (Cart) session.getAttribute("cart");
 	</div>
 </header>
 <body>
-   
+
 <main>
     <p>ファッションを楽しむすべての人に。</p><br>
     <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
@@ -86,7 +86,7 @@ Cart cart = (Cart) session.getAttribute("cart");
 		        </tr>
 		      </thead>
 		      <tbody>
-		      	 
+
 		        <% // for (Cart cart: cartList) { %>
 			        <% if (cart != null) { %>
 			        <tr>
@@ -95,10 +95,10 @@ Cart cart = (Cart) session.getAttribute("cart");
 			          </div></th>
 			          <td style="width: 100px"><%=cart.getProductId()%></td>
 			          <td style="width: 200px"><%=cart.getOrderProduct()%></td>
-			          <td style="width: 100px"></td>
+			          <td style="width: 100px"><%=cart.getOrderSize()%></td>
 			          <td style="width: 120px"><input class="kosuu" value="<%=cart.getOrderNumber()%>">個</td>
 			          <td style="width: 120px" class="example1"><%=cart.getOrderPrice()%>円</td>
-			          <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>   
+			          <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>
 			        </tr>
 			        <% } else { %>
 			        <tr>
@@ -110,7 +110,7 @@ Cart cart = (Cart) session.getAttribute("cart");
 			          <td style="width: 100px"></td>
 			          <td style="width: 120px"><input class="kosuu" value=""> 個</td>
 			          <td style="width: 120px" class="example1"> 円</td>
-			          <td style="width: 120px" class="example1"> 円</td>   
+			          <td style="width: 120px" class="example1"> 円</td>
 			        </tr>
 			        <% } %>
 		        <%// } %>
@@ -136,9 +136,9 @@ Cart cart = (Cart) session.getAttribute("cart");
 				 <a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
 			     <a href="/Neutral/RegisterServlet"><button type="button" class="btn btn-dark">新規会員登録</button><br><br></a>
 		    </div>
-	    </div>  
+	    </div>
     </div>
-</main> 
+</main>
 <!-- FOOTER -->
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

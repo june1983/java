@@ -3,9 +3,9 @@
 <%@ page import="dao.CartDAO,model.Cart,java.util.ArrayList"%>
 <%
 //リクエストスコープからカート情報を取得
-Cart cart = (Cart) session.getAttribute("cart");
+// Cart cart = (Cart) session.getAttribute("cart");
 // リクエストスコープからカート情報を取得
-//ArrayList<Cart> cartList = (ArrayList<Cart>)request.getAttribute("cartList");
+ArrayList<Cart> cartList = (ArrayList<Cart>)request.getAttribute("cartList");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@ Cart cart = (Cart) session.getAttribute("cart");
 <body>
 <!-- HEADER -->
 <jsp:include page="header.jsp"></jsp:include>
-  
+
 <main>
   <p>ファッションを楽しむすべての人に。</p><br>
   <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
@@ -46,20 +46,35 @@ Cart cart = (Cart) session.getAttribute("cart");
         </tr>
       </thead>
       <tbody>
-      	 
-        <% // for (Cart cart: cartList) { %>
-	       	<% if (cart != null) { %>
+
+	    <% if (cartList != null) { %>
+	    	<% int totalPrice = 0; %>
+        	<%  for (Cart cart: cartList) { %>
 	        <tr>
 	          <th scope="row" style="width: 50px" class="checkbox"><div>
 	            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
 	          </div></th>
 	          <td style="width: 100px"><%=cart.getProductId()%></td>
 	          <td style="width: 200px"><%=cart.getOrderProduct()%></td>
-	          <td style="width: 100px"></td>
+	          <td style="width: 100px"><%=cart.getOrderSize()%></td>
 	          <td style="width: 120px"><input class="kosuu" value="<%=cart.getOrderNumber()%>">個</td>
 	          <td style="width: 120px" class="example1"><%=cart.getOrderPrice()%>円</td>
-	          <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>   
+	          <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>
 	        </tr>
+	        <% totalPrice += cart.getSubtotal(); %>
+			<% } %>
+	      </tbody>
+	      <tfoot>
+	        <tr>
+	          <th scope="col" style="width: 50px"></th>
+	          <th scope="col" style="width: 100px"></th>
+	          <th scope="col" style="width: 200px"></th>
+	          <th scope="col" style="width: 100px"></th>
+	          <th scope="col" style="width: 120px"></th>
+	          <th scope="col" style="width: 120px" class="example1">合計金額</th>
+	          <th scope="col" style="width: 120px" class="example1"><%= totalPrice %>円</th>
+	        </tr>
+	      </tfoot>
 	     	<% } else { %>
 	        <tr>
 	          <th scope="row" style="width: 50px" class="checkbox"><div>
@@ -70,10 +85,8 @@ Cart cart = (Cart) session.getAttribute("cart");
 	          <td style="width: 100px"></td>
 	          <td style="width: 120px"><input class="kosuu" value=""> 個</td>
 	          <td style="width: 120px" class="example1"> 円</td>
-	          <td style="width: 120px" class="example1"> 円</td>   
+	          <td style="width: 120px" class="example1"> 円</td>
 	        </tr>
-	        <% } %>
-        <%// } %>
       </tbody>
       <tfoot>
         <tr>
@@ -86,6 +99,7 @@ Cart cart = (Cart) session.getAttribute("cart");
           <th scope="col" style="width: 120px" class="example1">円</th>
         </tr>
       </tfoot>
+	        <% } %>
     </table>
     </form>
 
@@ -93,14 +107,14 @@ Cart cart = (Cart) session.getAttribute("cart");
     <p>上記内容でよろしければご注文を確定するボタンをクリックしてください。</p>
     <div><br>
     	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
-    	<% if (cart != null) { %>
+    	<%// if (cart != null) { %>
         <a href="/Neutral/OrderSubmitServlet"><button type="button" class="btn btn-dark <% System.out.println("off");%>">ご注文内容を確定する</button></a>
-        <% } %>
+        <%// } %>
         <br><br>
-    </div>  
-    </div>  
+    </div>
+    </div>
   </div>
-</main> 
+</main>
 <!-- FOOTER -->
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

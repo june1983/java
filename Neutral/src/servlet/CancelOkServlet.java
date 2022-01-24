@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AccountDAO;
 import model.Account;
 import model.AccountDeleteLogic;
 
@@ -39,11 +38,6 @@ public class CancelOkServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("registerServlet", account);
 
-			//DAOオブジェクト宣言
-			AccountDAO ad = new AccountDAO();
-
-			//削除メソッドを呼び出し
-			ad.delete(account);
 
 			//削除処理の実行
 			AccountDeleteLogic adl = new AccountDeleteLogic();

@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -157,35 +157,47 @@ public class SkuDAO {
 
 
 	/**
-	 * 引数で与えられた商品情報を、書籍データを格納するbookinfoテーブルへ登録する関数
+	 * 引数で与えられた商品在庫情報を、それぞれのデータを格納する商品テーブルと在庫テーブルに登録する関数
 	 *
-	 * @param book 登録する書籍情報のBookオブジェクト
+	 * @param sku 登録する書籍情報のSKUオブジェクト
 	 *
 	 * @throws IllegalStateException 関数内部で例外が発生した場合
 	 */
-//	public void insert(Book book) {
-//
-//		try {
-//			// DB接続
-//			connect();
-//
-//			// 書籍データを登録するSQL文を用意
-//			String sql = "INSERT INTO bookinfo VALUES("
-//					   + "'" + book.getIsbn()  + "',"
-//					   + "'" + book.getTitle() + "',"
-//					   + 	   book.getPrice() + ")";
-//
-//			// SQL文を発行
-//			executeUpdate(sql);
-//
-//		} catch (Exception e) {
-//			throw new IllegalStateException(e);
-//		} finally {
-//			// DB接続解除
-//			disconnect();
-//		}
-//
-//	}
+	public void insert(SKU sku) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 商品データを登録するSQL文を用意
+			String productSql = "INSERT INTO product (PRODUCT_ID, CATEGORY_ID, PRODUCT_NAME, PRICE, DESCRIPTION, ATTRIBUTE) VALUES("
+					   + "'" + sku.getProductId()  + "',"
+					   + "'" + sku.getCategoryId() + "',"
+					   + "'" + sku.getProductName() + "',"
+					   + "'" + sku.getPrice() + "',"
+					   + "'" + sku.getDescription() + "',"
+					   + "'" + sku.getAttribute() + "')";
+
+
+			// 在庫データを登録するSQL文を用意
+			String skuSql = "INSERT INTO sku (PRODUCT_ID, PRODUCT_SIZE, SKU_NUMBER) VALUES("
+//					   + "'" + "" + "',"
+					   + "'" + sku.getProductId() + "',"
+					   + "'" + sku.getSize() + "',"
+					   + "'" + sku.getStock() + "')";
+
+			// SQL文を発行
+			executeUpdate(productSql);
+			executeUpdate(skuSql);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
+	}
 
 	/**
 	 * 書籍情報を格納するbookinfoテーブルに存在する、引数で与えられたISBNを持つ書籍情報を、 引数で与えられた書籍情報に変更をおこなう関数
