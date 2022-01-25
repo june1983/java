@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="dao.SkuDAO,model.SKU"%>
+<%
+    // セッションスコープから商品情報を取得
+    SKU sku = (SKU)session.getAttribute("SKU");
+%>
 
 <!-- HEADER -->
 <jsp:include page="admin-header.jsp"></jsp:include>
@@ -14,32 +18,34 @@
 		<table class="table table-bordered">
 		  <thead>
 		    <tr>
+		      <th scope="col" class="example2">在庫ID</th>
 		      <th scope="col" class="example2">商品ID</th>
 		      <th scope="col" class="example2">商品名</th>
-		      <th scope="col" class="fileulimg">写真</th>
 		      <th scope="col" class="example2">カテゴリ</th>
 		      <th scope="col" class="example2">サイズ</th>
 		      <th scope="col" class="example2">単価</th>
 		      <th scope="col" class="example2">商品説明</th>
+		      <th scope="col" class="example2">商品属性</th>
 		      <th scope="col" class="example2">在庫数量</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    <tr>
-		      <th scope="row"></th>
-		      <td class="example2"></td>
-		      <td class="fileulimg"></td>
-		      <td class="example2"></td>
-		      <td class="example2"></td>
-		      <td class="example2"></td>
-		      <td class="example2"></td>
-		      <td class="example2"></td>
+		      <th scope="row"><%=sku.getSkuId()%></th>
+		      <td class="example2"><%=sku.getProductId()%></td>
+		      <td class="example2"><%=sku.getProductName()%></td>
+		      <td class="example2"><%=sku.getCategoryId()%></td>
+		      <td class="example2"><%=sku.getSize()%></td>
+		      <td class="example2"><%=sku.getPrice()%></td>
+		      <td class="example2"><%=sku.getDescription()%></td>
+		      <td class="example2"><%=sku.getAttribute()%></td>
+		      <td class="example2"><%=sku.getStock()%></td>
 		    </tr>
 		  </tbody>
 		</table>
 		<div>
 		 <a href="/Neutral/ProductEditOkServlet"><button type="button" class="btn btn-primary">はい、変更します</button></a>
-		 <a href="/Neutral/ProductEditServlet"><button type="button" class="btn btn-outline-primary">戻る</button></a>
+		 <a href="/Neutral/ProductEditServlet?id=<%=sku.getSkuId()%>"><button type="button" class="btn btn-outline-primary">戻る</button></a>
 		</div>
 	</div>
 </div>

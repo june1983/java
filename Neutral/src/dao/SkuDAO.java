@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -250,34 +250,47 @@ public class SkuDAO {
 	}
 
 	/**
-	 * 書籍情報を格納するbookinfoテーブルに存在する、引数で与えられたISBNを持つ書籍情報を、 引数で与えられた書籍情報に変更をおこなう関数
+	 * 引数で与えられた在庫IDを持つ商品在庫データを、 引数で与えられた商品在庫データに変更をおこなう関数
 	 *
-	 * @param book 更新する書籍情報のBookオブジェクト
+	 * @param skuUd 更新する商品在庫情報のSKUオブジェクト
 	 *
 	 * @throws IllegalStateException 関数内部で例外が発生した場合
 	 */
-//	public void update(Book book) {
-//
-//		try {
-//			// DB接続
-//			connect();
-//
-//			// 指定されたISBN番号の書籍データを更新するSQL文を用意
-//			String sql = "UPDATE bookinfo SET"
-//					   + " title = '" + book.getTitle() + "',"
-//					   + " price =  " + book.getPrice()
-//					   + " WHERE isbn = '" + book.getIsbn() + "'";
-//
-//			// SQL文を発行
-//			executeUpdate(sql);
-//
-//		} catch (Exception e) {
-//			throw new IllegalStateException(e);
-//		} finally {
+	public void update(SKU skuUd) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 編集を行う商品の商品テーブルを更新するSQL文を用意
+			String productSQL = "UPDATE product SET"
+					   + " PRODUCT_ID = '" + skuUd.getProductId() + "',"
+					   + " CATEGORY_ID = '" + skuUd.getCategoryId() + "',"
+					   + " PRODUCT_NAME = '" + skuUd.getProductName() + "',"
+					   + " PRICE = '" + skuUd.getPrice() + "',"
+					   + " DESCRIPTION = '" + skuUd.getDescription() + "',"
+					   + " ATTRIBUTE = '" + skuUd.getAttribute() + "'"
+					   + " WHERE PRODUCT_ID = '" + skuUd.getProductId() + "'";
+			System.out.println(productSQL);
+
+			// 編集を行う商品の在庫テーブルを更新するSQL文を用意
+			String skuSQL = "UPDATE sku SET"
+					   + " PRODUCT_ID = '" + skuUd.getProductId() + "',"
+				       + " PRODUCT_SIZE = '" + skuUd.getSize() + "',"
+					   + " SKU_NUMBER = '" + skuUd.getStock() + "'"
+					   + " WHERE SKU_ID = '" + skuUd.getSkuId() + "'";
+
+			// SQL文を発行
+			executeUpdate(productSQL);
+			executeUpdate(skuSQL);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
 			// DB接続解除
-//			disconnect();
-//		}
-//	}
+			disconnect();
+		}
+	}
 
 	/**
 	 * 書籍情報を格納するbookinfoテーブルから、引数で与えられたISBNを持つ書籍データの削除をおこなう関数

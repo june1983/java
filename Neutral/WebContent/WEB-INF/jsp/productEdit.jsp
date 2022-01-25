@@ -13,56 +13,68 @@
 <div class="container-scr">
 	<form action="/Neutral/ProductEditServlet" method="post">
 		<div class="shadow p-3 mb-5 bg-body rounded" style="width:500px">
+
+		<div class="input-group flex-nowrap">
+		  <span class="input-group-text bg-info" id="addon-wrapping">在庫ID</span>
+		  <input type="text" name="skuId" class="form-control" value="<%=sku.getSkuId()%>" readonly="readonly" aria-label="Username" aria-describedby="addon-wrapping">
+		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text bg-info" id="addon-wrapping">商品ID</span>
-		  <input type="text" class="form-control" value="<%=sku.getProductId()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="productId" class="form-control" value="<%=sku.getProductId()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text bg-info" id="addon-wrapping">商品名</span>
-		  <input type="text" class="form-control" value="<%=sku.getProductName()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="productName" class="form-control" value="<%=sku.getProductName()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
-		
+
 <!-- 	<div class="input-group flex-nowrap">
 		  <span class="input-group-text bg-info" id="addon-wrapping">写真</span>
 		  <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">
 		</div><br> -->
-		
+
 		<div class="input-group mb-3">
 		  <label class="input-group-text bg-info" for="inputGroupSelect01">カテゴリ</label>
-		  <select class="form-select" id="inputGroupSelect01">
-
+		  <select  name="category" class="form-select" id="inputGroupSelect01">
 		    <option selected><%=sku.getCategoryId()%></option>
-		    <option value="1">ＴＳ:　Tシャツ・カットソー</option>
-		    <option value="2">ＳＷ:　スウェット</option>
-		    <option value="3">ＣＯ:　コート</option>
-		    <option value="3">ＤＣ:　ダウン</option>
-		    <option value="3">ＫＮ:　ニット・セーター</option>
-		    <option value="3">ＪＥ:　ジーンズ・カラージーンズ</option>
-		    <option value="3">ＨＰ:　ハーフパンツ</option>
-		    <option value="3">ＣＡ:　帽子・キャップ・ハット</option>
-		    <option value="3">ＭＡ:　マスク</option>
-		    <option value="3">ＢＡ:　バッグ</option>
+		    <option value="TS">ＴＳ: Tシャツ・カットソー</option>
+		    <option value="SW">ＳＷ: スウェット</option>
+		    <option value="CO">ＣＯ: コート</option>
+		    <option value="DC">ＤＣ: ダウン</option>
+		    <option value="KN">ＫＮ: ニット・セーター</option>
+		    <option value="JE">ＪＥ: ジーンズ・カラージーンズ</option>
+		    <option value="HP">ＨＰ: ハーフパンツ</option>
+		    <option value="CA">ＣＡ: 帽子・キャップ・ハット</option>
+		    <option value="MA">ＭＡ: マスク</option>
+		    <option value="BA">ＢＡ: バッグ</option>
 		  </select>
 		</div>
-		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">サイズ</span>
-		  <input type="text" class="form-control" value="<%=sku.getSize()%>" aria-label="Username" aria-describedby="addon-wrapping">
-		</div><br>
+		<div class="input-group mb-3">
+		  <label class="input-group-text bg-info" for="inputGroupSelect01">サイズ</label>
+          <select   name="size" class="form-select" name="orderSize" aria-label="Default select example">
+            <option selected><%=sku.getSize()%></option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="FREE">FREE</option>
+          </select>
+		</div>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text bg-info" id="addon-wrapping">単価</span>
-		  <input type="text" class="form-control" value="<%=sku.getPrice()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="price" class="form-control" value="<%=sku.getPrice()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text bg-info" id="addon-wrapping">商品説明</span>
-		  <input type="text" class="form-control" value="<%=sku.getDescription()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="description" class="form-control" value="<%=sku.getDescription()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text bg-info" id="addon-wrapping">商品属性</span>
-		  <input type="text" class="form-control" value="<%=sku.getAttribute()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="attribute" class="form-control" value="<%=sku.getAttribute()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text bg-info" id="addon-wrapping">在庫数量</span>
-		  <input type="text" class="form-control" value="<%=sku.getStock()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="stock" class="form-control" value="<%=sku.getStock()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		  <button type="submit" class="btn btn-primary">変更する</button>
 		  <a href="/Neutral/ProductCancelServlet"><button type="button" class="btn btn-outline-danger">商品情報を削除する</button><br><br>

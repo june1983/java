@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,14 +9,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.SkuDAO;
+import model.SKU;
 
 
 @WebServlet("/ProductEditOkServlet")
 public class ProductEditOkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// セッションスコープから編集済み商品在庫データを取得
+		HttpSession session = request.getSession();
+		SKU SKU = (SKU) session.getAttribute("SKU");
+
+		// SkuDAOインスタンスを生成し、編集済み商品在庫データをDBに反映
+		SkuDAO skuDao = new SkuDAO();
+		skuDao.update(SKU);
+
+		// セッションスコープからインスタンスを削除する
+		session.removeAttribute("SKU");
+
+		// 更新後、商品データを全件取得する命令を呼び出し、戻り値を取得する
+		ArrayList<SKU> skuList = skuDao.selectAll();
+
+		// 商品リストをセッションスコープに格納
+		session.setAttribute("skuList", skuList);
+
 		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		dispatcher.forward(request, response);

@@ -31,7 +31,7 @@ public class CartServlet extends HttpServlet {
 			CartDAO dao = new CartDAO();
 			int userId =account.getUserId();
 			ArrayList<Cart> cart = dao.selectByUser_Id(userId);
-			System.out.println(cart.get(0).getOrderSize());
+//			System.out.println(cart.get(0).getOrderSize());
 			request.setAttribute("cartList", cart);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogin.jsp");
 			dispatcher.forward(request,  response);

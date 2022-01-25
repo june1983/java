@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <% 
+ <%
 	//セッションスコープからインスタンスを取得
 %>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 <body>
 <!-- HEADER -->
 <jsp:include page="header.jsp"></jsp:include>
-   
+
 <main>
     <p>ファッションを楽しむすべての人に。</p><br>
     <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
@@ -31,32 +31,32 @@
       <p strong>会員登録</p>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="text" class="form-control"  name="userName"  placeholder="Username" required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
-        <input type="text" class="form-control" placeholder="Address" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="text" class="form-control"  name="adress"  placeholder="Address"  required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>
-        <input type="text" class="form-control" placeholder="E-mail" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="text" class="form-control"  name="email"  placeholder="E-mail"  required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">TEL</span>
-        <input type="text" class="form-control" placeholder="Tel" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="text" class="form-control"  name="tel"  placeholder="Tel"  required>
       </div><br>            <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">パスワード</span>
-        <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="text" class="form-control"  name="pass"  placeholder="Password"  required>
       </div><br>            <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">CARD</span>
-        <input type="text" class="form-control" placeholder="CARD" aria-label="Username" aria-describedby="addon-wrapping">
-      </div><br>     
+        <input type="text" class="form-control"  name="card"  placeholder="CARD"  required>
+      </div><br>
 
-        <button type="submit" class="btn btn-dark">登録する</button><br>       
-      </form>  
+        <button type="submit" class="btn btn-dark">登録する</button><br>
+      </form>
     </div>
 
-</main>    
+</main>
 <!-- FOOTER -->
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

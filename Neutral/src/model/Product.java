@@ -9,10 +9,6 @@ public class Product {
 	private String productName;
 	//単価
 	private int price;
-	//サイズ
-	//private String size;
-	//在庫個数
-	//private int stock;
 	//商品説明
 	private String description;
 	//商品属性
@@ -24,8 +20,6 @@ public class Product {
 		this.categoryId = null;
 		this.productName = null;
 		this.price = 0;
-		//this.size = null;
-		//this.stock = 0;
 		this.description = null;
 		this.attribute = null;
 	}
@@ -38,7 +32,7 @@ public class Product {
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-	
+
 	//商品のカテゴリーIDを取得する
 	public String getCategoryId() {
 		return categoryId;
@@ -47,7 +41,7 @@ public class Product {
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
-	
+
 	//商品名を取得する
 	public String getProductName() {
 		return productName;
@@ -56,7 +50,7 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	
+
 	//商品単価を取得する
 	public int getPrice() {
 		return price;
@@ -66,25 +60,6 @@ public class Product {
 		this.price = price;
 	}
 
-	/*
-	//商品サイズを取得する
-	public String getSize() {
-		return size;
-	}
-	//商品サイズを設定する
-	public void setSize(String size) {
-		this.size = size;
-	}
-	//商品の在庫個数を取得する
-	public int getStock() {
-		return stock;
-	}
-	//商品の在庫個数を設定する
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-	*/
-
 	//商品説明を取得する
 	public String getDescription() {
 		return description;
@@ -93,7 +68,7 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	//商品属性を取得する
 	public String getAttribute() {
 		return attribute;

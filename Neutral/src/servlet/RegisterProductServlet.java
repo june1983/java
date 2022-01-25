@@ -50,7 +50,7 @@ public class RegisterProductServlet extends HttpServlet {
 		sku.setAttribute(attribute);
 		sku.setStock(price);
 
-		// SkuDAOインスタンスを生成し、Cartテーブルに情報を追加
+		// SkuDAOインスタンスを生成し、商品在庫テーブルに情報を追加
 		SkuDAO skuDao = new SkuDAO();
 		skuDao.insert(sku);
 
