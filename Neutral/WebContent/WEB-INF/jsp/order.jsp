@@ -58,8 +58,8 @@ Product product = (Product) session.getAttribute("Product");
 
         <form action="/Neutral/CartServlet" method="post">
           サイズ：
-          <select class="form-select-s" name="orderSize" aria-label="Default select example">
-            <option selected>サイズを選択してください</option>
+          <select class="form-select-s" name="orderSize" required>
+            <option value="">サイズを選択してください</option>
             <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>

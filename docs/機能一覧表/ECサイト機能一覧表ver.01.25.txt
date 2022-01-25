@@ -9,8 +9,8 @@ CONTROLLER
  LoginServlet.java
 
 MODEL
- Login.java　エンティティ
- Account.java　エンティティ
+ Login.java　ログインしたユーザー情報を格納するエンティティ
+ Account.java　特定の顧客情報を格納するエンティティ
  AccountDAO.java　USERテーブルに接続
  LoginLogic.java　ログインの有無を調べる
 
@@ -50,8 +50,6 @@ CONTROLLER
 MODEL
  Account.java　顧客情報エンティティ
  AccountDAO.java　顧客テーブルに接続
- AccountEditLogic.java　アカウント情報を編集する
- AccountDeleteLogic.java　アカウント情報を削除する
 
 VIEW
  accountEdit.jsp
@@ -70,15 +68,12 @@ CONTROLLER
 MODEL
  Product.java　商品情報エンティティ
  Cart.java　カート情報エンティティ
- CartInsert.java(BO) カートに情報を入れる
- DeleteCart.java(BO) カート情報を削除
- CartDAO.java　カートテーブルに接続
- ProductDao.java　商品の情報をDBから抜き出す
+ CartDAO.java　カートテーブルの情報を取得
+ ProductDao.java　商品テーブルの情報を取得
  StockCheck.java　在庫を確認する、個数やサイズ
- OrderSubmit.java(BO)　オーダーをDBに反映
+ Order.java 注文テーブルの情報を取得
  OrderDAO.java　オーダーテーブルに接続
  SkuDAO 在庫テーブルに接続
- SkuSubmit.java(BO) 注文を在庫テーブルに反映させる
 
 VIEW
  order.jsp
@@ -127,8 +122,8 @@ CONTROLLER
 
 MODEL
  Login.java エンティティ
- Account.java エンティティ
- AccountDAO.java
+ AdminUser.java エンティティ
+ AdminUserDAO.java 管理者テーブルの情報を取得
  LoginLogic.java ログインの有無を調べる
 
 VIEW
@@ -144,9 +139,8 @@ CONTROLLER
  RegisterProductServlet.java
 
 MODEL
- RegisterProductLogic.java 登録情報をDBに反映
- Product.java エンティティ
- ProductDAO.java
+ SKU.java 商品在庫エンティティ
+ SkuDAO.java 商品在庫テーブルの情報を取得
 
 VIEW
  registerProduct.jsp
@@ -163,9 +157,8 @@ CONTROLLER
  ProductCancelOkServlet 商品削除を確定
  
 MODEL
- Product.java エンティティ
- ProductDAO.java
- ProductEditLogic.java
+ SKU.java 商品在庫エンティティ
+ SkuDAO.java 商品在庫テーブルの情報を取得
  ProductDeleteLogic.java
 
 VIEW

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Account;
-import model.AccountDeleteLogic;
 
 
 @WebServlet("/CancelOkServlet")
@@ -37,16 +36,6 @@ public class CancelOkServlet extends HttpServlet {
 			//セッションスコープに登録ユーザーを保存
 			HttpSession session = request.getSession();
 			session.setAttribute("registerServlet", account);
-
-
-			//削除処理の実行
-			AccountDeleteLogic adl = new AccountDeleteLogic();
-			boolean judge = adl.execute(account);
-			
-			//削除処理失敗の時にエラーメッセージを表示
-			if(judge == false) {
-				request.setAttribute("errorMsg", "削除失敗");
-			}
 			
 			//フォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/welcome.jsp");

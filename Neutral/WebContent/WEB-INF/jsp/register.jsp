@@ -44,10 +44,12 @@
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">TEL</span>
         <input type="text" class="form-control"  name="tel"  placeholder="Tel"  required>
-      </div><br>            <div class="input-group flex-nowrap">
+      </div><br>            
+      <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">パスワード</span>
         <input type="text" class="form-control"  name="pass"  placeholder="Password"  required>
-      </div><br>            <div class="input-group flex-nowrap">
+      </div><br>            
+      <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">CARD</span>
         <input type="text" class="form-control"  name="card"  placeholder="CARD"  required>
       </div><br>

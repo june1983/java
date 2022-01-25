@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -271,7 +271,6 @@ public class SkuDAO {
 					   + " DESCRIPTION = '" + skuUd.getDescription() + "',"
 					   + " ATTRIBUTE = '" + skuUd.getAttribute() + "'"
 					   + " WHERE PRODUCT_ID = '" + skuUd.getProductId() + "'";
-			System.out.println(productSQL);
 
 			// 編集を行う商品の在庫テーブルを更新するSQL文を用意
 			String skuSQL = "UPDATE sku SET"

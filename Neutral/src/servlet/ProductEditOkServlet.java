@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,14 +32,8 @@ public class ProductEditOkServlet extends HttpServlet {
 		// セッションスコープからインスタンスを削除する
 		session.removeAttribute("SKU");
 
-		// 更新後、商品データを全件取得する命令を呼び出し、戻り値を取得する
-		ArrayList<SKU> skuList = skuDao.selectAll();
-
-		// 商品リストをセッションスコープに格納
-		session.setAttribute("skuList", skuList);
-
 		//フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminLoginServlet");
 		dispatcher.forward(request, response);
 	}
 

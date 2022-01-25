@@ -23,7 +23,7 @@ public class AccountDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -147,7 +147,7 @@ public class AccountDAO {
 				String adress = rs.getString("ADRESS");
 				String tel = rs.getString("TEL");
 				String card = rs.getString("CARD");
-				account = new Account(userId, userName, email, pass, adress, tel, card);
+				account = new Account(userId, userName, adress, email, pass, tel, card);
 			}
 
 			// 呼び出し元へ商品データを返す
@@ -171,47 +171,67 @@ public class AccountDAO {
 	 *
 	 * @throws IllegalStateException 関数内部で例外が発生した場合
 	 */
-	public boolean insert(Account account){
+	public void insert(Account account){
 
 	    try{
 			// DB接続
 			connect();
 
-	        //return用変数
-	        int count = 0;
-
 	        //SQL文
-	        String sql = "INSERT INTO user VALUES('"
-	        		 	+ account.getUserId() + "','"
-	                    + account.getUserName() + "','"
-	                    + account.getAdress() + "','"
-	                    + account.getEmail() + "','"
-	                    + account.getPass() + "','"
-	                    + account.getTel() + "','"
-	                    + account.getCard() + "')";
+	        String accountSql = "INSERT INTO user (USER_ID, USER_NAME, ADRESS, EMAIL, PASS, TEL, CARD) VALUES("
+					   + "'" + account.getUserId()  + "',"
+					   + "'" + account.getUserName() + "',"
+					   + "'" + account.getAdress() + "',"
+					   + "'" + account.getEmail() + "',"
+					   + "'" + account.getPass() + "',"
+					   + "'" + account.getTel() + "',"
+	        		   + "'" + account.getCard() + "')";
 
-	        //SQLをDBへ発行
-	        count = smt.executeUpdate(sql);
-	        if(count == 0) {
-	        	return false;
-	        }else {
-	            return true;
-
-	        }
-
+	        // SQL文を発行
+	     	executeUpdate(accountSql);
+	     			
 	    }catch(Exception e){
-	    	e.printStackTrace();
-	    	return false;
+	    	throw new IllegalStateException(e);
 	    }finally{
-	        //リソースの開放
-	        if(smt != null){
-	            try{smt.close();}catch(SQLException ignore){}
-	        }
-	        if(con != null){
-	            try{con.close();}catch(SQLException ignore){}
-	        }
+	    	// DB接続解除
+	        disconnect();
 	    }
 	}
+
+	/**
+	 * 引数で与えられたユーザーIDを持つ顧客データを、 引数で与えられた顧客データに変更をおこなう関数
+	 *
+	 * @param account 更新する顧客情報のAccountオブジェクト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public void update(Account account) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 編集を行う商品の商品テーブルを更新するSQL文を用意
+			String SQL = "UPDATE user SET"
+					   + " USER_NAME = '" + account.getUserName() + "',"
+					   + " EMAIL = '" + account.getEmail() + "',"
+					   + " PASS = '" + account.getPass() + "',"
+					   + " ADRESS = '" + account.getAdress() + "',"
+					   + " TEL = '" + account.getTel() + "',"
+					   + " CARD = '" + account.getCard() + "'"
+					   + " WHERE USER_ID = '" + account.getUserId() + "'";
+
+			// SQL文を発行
+			executeUpdate(SQL);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+	}
+	
 	/**
 	 * 顧客情報を格納するUSERテーブルから、引数で与えられたuserIdを持つ顧客データの削除をおこなう関数
 	 *

@@ -8,7 +8,7 @@
 	border-width: 1px 0;
 	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 	}
-  
+
 .form-control-dark {
 	color: #fff;
 	background-color: var(--bs-dark);
@@ -60,9 +60,9 @@
 /* ロゴ */
 .logo{
     font-family: 'Lobster', cursive;
-    font-size: 70px; 
+    font-size: 70px;
     padding-top: 20px;
-	}   
+	}
 
 .p{
     font-family: 'Varela Round', sans-serif;
@@ -151,21 +151,21 @@ div#footer {
     margin: 20px 0;
     float: left;
     }
-   
+
    div#footer ul#footer-nav {
     margin-bottom: 5px;
     list-style-type: none;
     float: left;
     display: inline;
     }
-   
+
    div#footer ul#footer-nav li {
     display: inline;
     float: left;
     font-size: x-small;
     color: #000000;
     }
-   
+
    div#footer ul#footer-nav li a:link,
    div#footer ul#footer-nav li a:visited { color: #000; text-decoration: none; }
    div#footer ul#footer-nav li a:hover,
@@ -177,55 +177,55 @@ div#footer {
     font-size: x-small;
     color: #000;
     float: right;
-    } 
+    }
 
 /* register.jsp */
 /* container のスタイル */
 .container-s{
 	text-align: left;
-	margin-top: 50px;  
+	margin-top: 50px;
  	}
- 	
+
  .container-sc{
 	width: 700px;
 	text-align: left;
-	margin: 0 auto ; 
-	margin-top: 50px; 
+	margin: 0 auto ;
+	margin-top: 50px;
  	}
- 	
+
  .container-scr {
 	width: 500px;
 	text-align: center;
-	margin: 0 auto ;  
+	margin: 0 auto ;
 	margin-top: 50px;
  	}
- 	
+
  /* number formのスタイル */
   input[type="number"] {
 	 width: 50px;
 	 text-align: right;
  	}
- 	
+
  /* kosuu formのスタイル */
  input[class="kosuu"] {
 	width:50px;
 	text-align: right;
  	}
- 	
- /* tableのスタイル */  
+
+ /* tableのスタイル */
  td.example1 {
 	text-align: right;
  	}
- 	
+
  th.example1 {
 	text-align: right;
 	}
-	
+
  th.checkbox {
 	text-align: center;
-	margin: 0 auto ;  
+	margin: 0 auto ;
  	}
- 	
+
  /* form fontのスタイル(bg-dark) */
  .input-group-text {
 	color: #FFFFFF;
@@ -240,3 +240,28 @@ div#footer {
 #img {
 	max-width: 100%;
 	}
+
+
+/**** 1/25追加 ****/
+.d-flex {
+    display: flex!important;
+    margin-bottom: auto;
+    margin-top: auto;
+    }
+
+.example2 li {
+display: inline;
+padding:10px 15px;
+border:1px #ccc solid;
+color:#000053;
+border-radius: 5px / 5px;
+}
+
+.btn-outline-primary {
+     color: black;
+    border-color: black;
+}
+
+.btn-outline-primary:hover {
+	background: #000053;
+}

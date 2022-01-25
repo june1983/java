@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AccountDAO;
+import dao.AdminUserDAO;
 import dao.SkuDAO;
-import model.Account;
+import model.AdminLoginLogic;
+import model.AdminUser;
 import model.Login;
-import model.LoginLogic;
 import model.SKU;
 
 @WebServlet("/AdminLoginServlet")
@@ -26,13 +26,23 @@ public class AdminLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// セッションスコープからAccountデータを取得
 		HttpSession session = request.getSession();
-		Account account = (Account) session.getAttribute("Account");
+		AdminUser adminUser = (AdminUser) session.getAttribute("AdminUser");
 		
 		// Accountデータが空でない場合（ログイン時）
-		if(account != null) {
+		if(adminUser != null) {
+			
+			// データベースアクセス用オブジェクトの生成
+			SkuDAO skuDao = new SkuDAO();
+
+			// 商品データを全件取得する命令を呼び出し、戻り値を取得する
+			ArrayList<SKU> skuList = skuDao.selectAll();
+
+			// 商品リストをセッションスコープに格納
+			session.setAttribute("skuList", skuList);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			dispatcher.forward(request,  response);
+			
 		// Accountデータが空の場合（非ログイン時）
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminLogin.jsp");
@@ -49,19 +59,21 @@ public class AdminLoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		//ログイン処理の実行
-		Login login = new Login(email, pass);
-		LoginLogic bo = new LoginLogic();
-		boolean result = bo.execute(login);
+		Login adminLogin = new Login(email, pass);
+		AdminLoginLogic adminBo = new AdminLoginLogic();
+		boolean result = adminBo.execute(adminLogin);
+		
+		System.out.println("ログインの結果：" + result);
 
 		//アカウント情報の取得
-		AccountDAO dao = new AccountDAO();
-		Account account = dao.findByLogin(login);
+		AdminUserDAO dao = new AdminUserDAO();
+		AdminUser adminUser = dao.findByLogin(adminLogin);
 
 		//ログイン処理の成否によって処理を分岐
 		if(result) {//ログイン成功時
 			//セッションスコープにメールアドレスとアカウント情報を保存
 			HttpSession session = request.getSession();
-			session.setAttribute("Account", account);
+			session.setAttribute("AdminUser", adminUser);
 			
 			// データベースアクセス用オブジェクトの生成
 			SkuDAO skuDao = new SkuDAO();

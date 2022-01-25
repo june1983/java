@@ -37,25 +37,25 @@ Account account = (Account) session.getAttribute("Account");
 			      <div class="input-group flex-nowrap">
 
 			       <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
-			       <input type="text" name="user_Name" class="form-control" placeholder="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="user_Name" class="form-control" value="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 			       <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
-			       <input type="text" name="adress" class="form-control" placeholder="<c:out value="${sessionScope.Account.getAdress() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="adress" class="form-control" value="<c:out value="${sessionScope.Account.getAdress() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 			       <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>
-			       <input type="text" name="email" class="form-control" placeholder="<c:out value="${sessionScope.Account.getEmail() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="email" class="form-control" value="<c:out value="${sessionScope.Account.getEmail() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 			       <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">TEL</span>
-			       <input type="text" name="tel" class="form-control" placeholder="<c:out value="${sessionScope.Account.getTel() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="tel" class="form-control" value="<c:out value="${sessionScope.Account.getTel() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>            <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">パスワード</span>
-			       <input type="text" name="pass" class="form-control" placeholder="<c:out value="${sessionScope.Account.getPass() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="pass" class="form-control" value="<c:out value="${sessionScope.Account.getPass() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>            <div class="input-group flex-nowrap">
 			       <span class="input-group-text bg-dark" id="addon-wrapping">CARD</span>
-			       <input type="text" name="card" class="form-control" placeholder="<c:out value="${sessionScope.Account.getCard() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+			       <input type="text" name="card" class="form-control" value="<c:out value="${sessionScope.Account.getCard() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
 			       </div><br>
 
 			        <button type="submit" class="btn btn-dark">変更する</button><br>

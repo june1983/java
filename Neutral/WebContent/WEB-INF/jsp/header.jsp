@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<header class="py-3 mb-4 border-bottom">  
+<header class="py-3 mb-4 border-bottom">
 	<nav class="py-2 bg-white border-bottom">
 		<div class="container d-flex flex-wrap">
 			<ul class="nav me-auto">
@@ -30,16 +30,15 @@
 			    <li class="nav-item"><a href="/Neutral/AdminLoginServlet" class="nav-link link-dark px-2">お店を管理する</a></li>
 			</ul>
 		</div>
-	</nav>  
+	</nav>
 	<div class="container d-flex flex-wrap justify-content-center">
 		<a href="/Neutral/WelcomeServlet" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
 			<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
 			<span class="fs-4"> <h1 class="logo">Neutral</h1></span>
 		</a>
-		<form class="col-12 col-lg-auto mb-3 mb-lg-0">
-			<div class="search_box">
-				<input type="text" placeholder="search...">
-			</div>
-		</form>
+		<form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
 	</div>
 </header>
