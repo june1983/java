@@ -10,47 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AccountDAO;
 import model.Account;
 
 
 @WebServlet("/CancelOkServlet")
 public class CancelOkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String error = "";
-		try {
-			//リクエストパラメータの取得
-			request.setCharacterEncoding("UTF-8");
-			int userId = Integer.parseInt(request.getParameter("userId"));
-			String userName = request.getParameter("userName");
-			String adress = request.getParameter("adress");
-			String email = request.getParameter("email");
-			String pass = request.getParameter("pass");
-			String tel = request.getParameter("tel");
-			String card = request.getParameter("card");
+		// セッションスコープからアカウント情報を取得
+		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("Account");
 
-			//登録するユーザーの情報を設定
-			Account account = new Account(userId, userName, adress, email, pass, tel, card);
+		// USER_IDを取得して変数に代入
+		int userId = account.getUserId();
 
-			//セッションスコープに登録ユーザーを保存
-			HttpSession session = request.getSession();
-			session.setAttribute("registerServlet", account);
-			
-			//フォワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/welcome.jsp");
-			dispatcher.forward(request, response);
+		// データベースアクセス用オブジェクトの生成
+		AccountDAO accountDao = new AccountDAO();
 
-		}catch (IllegalStateException e) {
-			error ="DB接続エラーの為、削除できませんでした。";
+		// 指定したuserIdの顧客データを削除する命令を呼び出す
+		accountDao.delete(userId);
 
-		}catch(Exception e){
-			error ="予期せぬエラーが発生しました。<br>"+e;
-
-		}finally{
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/WEB-INF/jsp/accountEdit.jsp").forward(request, response);
-		}
+		//フォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WelcomeServlet");
+		dispatcher.forward(request, response);
 	}
 
 	/**

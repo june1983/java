@@ -38,7 +38,7 @@
 		</a>
 		<form class="d-flex" action="/Neutral/WelcomeServlet" method="post">
           <input class="form-control me-2" type="search" name="query" placeholder="Search">
-          <button class="btn btn-outline-primary" type="submit">Search</button>
+          <button class="btn btn-outline-dark" type="submit">Search</button>
         </form>
 	</div>
 </header>

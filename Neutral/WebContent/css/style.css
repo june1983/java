@@ -265,3 +265,13 @@ border-radius: 5px / 5px;
 .btn-outline-primary:hover {
 	background: #000053;
 }
+
+.fade1{
+    animation: fadeIn 1s 1 normal;
+}
+
+/**** 1/26追加 CSS フェードインアニメーション ****/
+@keyframes fadeIn { /*animation-nameで設定した値を書く*/
+    0% {opacity: 0} /*アニメーション開始時は不透明度0%*/
+    100% {opacity: 1} /*アニメーション終了時は不透明度100%*/
+}

@@ -95,6 +95,11 @@ main {
  }
 
  /* table のスタイル */
+
+th,td {
+	vertical-align: middle;
+}
+
  td.example1 {
   text-align: right;
  }
@@ -111,14 +116,40 @@ main {
   width: 100px;
   background-color: #9ec5fe;
  }
- th.fileulimg {
+ th.example3 {
   text-align: center;
-  width: 200px;
+  width: 400px;
   background-color: #9ec5fe;
  }
+ th.example4 {
+  text-align: center;
+  width: 100px;
+  background-color: #9ec5fe;
+ }
+ th.example5 {
+  text-align: center;
+  width: 100px;
+  background-color: #9ec5fe;
+ }
+
  td.example2 {
   text-align: left;
   width: 100px;
+ }
+ th.example3 {
+  text-align: center;
+  width: 400px;
+  background-color: #9ec5fe;
+ }
+ th.example4 {
+  text-align: center;
+  width: 100px;
+  background-color: #9ec5fe;
+ }
+ th.example5 {
+  text-align: center;
+  width: 100px;
+  background-color: #9ec5fe;
  }
  td.fileulimg {
   text-align: center;
@@ -186,7 +217,7 @@ li.page.navi-active a {
 
 /* 商品管理 container のスタイル */
 .container-sl {
-  width: 1100px;
+  width: 1500px;
   text-align: center;
   margin: 20px auto ;
  }
@@ -261,4 +292,12 @@ p.fileup {
   margin-left: 200px;
 }
 
+/* 1/26 追加分 */
+
+table td {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
+<%
 // リクエストスコープからインスタンスを取得
 %>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 <body>
 <!-- HEADER -->
 <jsp:include page="header.jsp"></jsp:include>
-   
+
 <main>
     <p>ファッションを楽しむすべての人に。</p><br>
     <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
@@ -29,10 +29,12 @@
     <div class="container-scr">
       <div class="shadow p-3 mb-5 bg-body rounded">
       <p strong>本当に退会しますか？</p>
-        <a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-danger">はい、退会します</button></a><br>         
-      </div>  
+
+        <a href="/Neutral/CancelOkServlet"><button type="button" class="btn btn-outline-danger">はい、退会します</button></a><br>
+
+      </div>
     </div>
-</main> 
+</main>
 
 <!-- FOOTER -->
 <jsp:include page="footer.jsp"></jsp:include>

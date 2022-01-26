@@ -19,15 +19,6 @@
 <link rel="stylesheet" href="css/headers.css">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/style.css">
-<style>
-.fade1{
-    animation: fadeIn 1s 1 normal;
-}
-@keyframes fadeIn { /*animation-nameで設定した値を書く*/
-    0% {opacity: 0} /*アニメーション開始時は不透明度0%*/
-    100% {opacity: 1} /*アニメーション終了時は不透明度100%*/
-}
-</style>
 </head>
 <body>
 <!-- HEADER -->

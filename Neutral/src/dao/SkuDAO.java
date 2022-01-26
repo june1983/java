@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -364,8 +364,7 @@ public class SkuDAO {
 					+ "ON product.CATEGORY_ID = category.CATEGORY_ID "
 					+ "WHERE ATTRIBUTE LIKE '%" + words + "%' "
 							+ "or DESCRIPTION LIKE '%" + words + "%' "
-									+ "or PRODUCT_ID LIKE '%" + words + "%' "
-											+ "or PRODUCT_NAME LIKE '%" + words + "%'";
+							+ "or PRODUCT_NAME LIKE '%" + words + "%'";
 
 			// SQL文を発行し、結果セットを取得
 			ResultSet rs = executeQuery(sql);
