@@ -11,16 +11,16 @@
 				  CATEGORY
 				</a>
 					<ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="navbarDarkDropdownMenuLink">
-						<li><a class="dropdown-item" href="#">ＴＳ:　Tシャツ・カットソー</a></li>
-						<li><a class="dropdown-item" href="#">ＳＷ:　スウェット</a></li>
-						<li><a class="dropdown-item" href="#">ＣＯ:　コート</a></li>
-						<li><a class="dropdown-item" href="#">ＤＣ:　ダウン</a></li>
-						<li><a class="dropdown-item" href="#">ＫＮ:　ニット・セーター</a></li>
-						<li><a class="dropdown-item" href="#">ＪＥ:　ジーンズ・カラージーンズ</a></li>
-						<li><a class="dropdown-item" href="#">ＨＰ:　ハーフパンツ</a></li>
-						<li><a class="dropdown-item" href="#">ＣＡ:　帽子・キャップ・ハット</a></li>
-						<li><a class="dropdown-item" href="#">ＭＡ:　マスク</a></li>
-						<li><a class="dropdown-item" href="#">ＢＡ:　バッグ</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=TS">ＴＳ:　Tシャツ・カットソー</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=SW">ＳＷ:　スウェット</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=CO">ＣＯ:　コート</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=DC">ＤＣ:　ダウン</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=KN">ＫＮ:　ニット・セーター</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=JE">ＪＥ:　ジーンズ・カラージーンズ</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=HP">ＨＰ:　ハーフパンツ</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=CA">ＣＡ:　帽子・キャップ・ハット</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=MA">ＭＡ:　マスク</a></li>
+						<li><a class="dropdown-item" href="/Neutral/WelcomeServlet?id=BA">ＢＡ:　バッグ</a></li>
 					</ul>
 				</li>
 				<li class="nav-item"><a href="/Neutral/CartServlet" class="nav-link link-dark px-2">CART</a></li>
@@ -36,8 +36,8 @@
 			<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
 			<span class="fs-4"> <h1 class="logo">Neutral</h1></span>
 		</a>
-		<form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		<form class="d-flex" action="/Neutral/WelcomeServlet" method="post">
+          <input class="form-control me-2" type="search" name="query" placeholder="Search">
           <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
 	</div>

@@ -21,16 +21,16 @@ import model.SKU;
 @WebServlet("/AdminLoginServlet")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// セッションスコープからAccountデータを取得
 		HttpSession session = request.getSession();
 		AdminUser adminUser = (AdminUser) session.getAttribute("AdminUser");
-		
+
 		// Accountデータが空でない場合（ログイン時）
 		if(adminUser != null) {
-			
+
 			// データベースアクセス用オブジェクトの生成
 			SkuDAO skuDao = new SkuDAO();
 
@@ -38,17 +38,18 @@ public class AdminLoginServlet extends HttpServlet {
 			ArrayList<SKU> skuList = skuDao.selectAll();
 
 			// 商品リストをセッションスコープに格納
-			session.setAttribute("skuList", skuList);
+			request.setAttribute("skuList", skuList);
 
+			//フォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			dispatcher.forward(request,  response);
-			
+
 		// Accountデータが空の場合（非ログイン時）
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminLogin.jsp");
 			dispatcher.forward(request,  response);
 		}
-		
+
 	}
 
 
@@ -62,7 +63,7 @@ public class AdminLoginServlet extends HttpServlet {
 		Login adminLogin = new Login(email, pass);
 		AdminLoginLogic adminBo = new AdminLoginLogic();
 		boolean result = adminBo.execute(adminLogin);
-		
+
 		System.out.println("ログインの結果：" + result);
 
 		//アカウント情報の取得
@@ -74,7 +75,7 @@ public class AdminLoginServlet extends HttpServlet {
 			//セッションスコープにメールアドレスとアカウント情報を保存
 			HttpSession session = request.getSession();
 			session.setAttribute("AdminUser", adminUser);
-			
+
 			// データベースアクセス用オブジェクトの生成
 			SkuDAO skuDao = new SkuDAO();
 
@@ -82,12 +83,12 @@ public class AdminLoginServlet extends HttpServlet {
 			ArrayList<SKU> skuList = skuDao.selectAll();
 
 			// 商品リストをセッションスコープに格納
-			session.setAttribute("skuList", skuList);
+			request.setAttribute("skuList", skuList);
 
 			//フォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
 			dispatcher.forward(request, response);
-			
+
 		} else { //ログイン失敗時
 			//フォワード
 			request.setAttribute("message", "メールアドレスまたはパスワードが違います");

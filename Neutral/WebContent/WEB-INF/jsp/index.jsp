@@ -3,7 +3,7 @@
 <%@ page import="dao.SkuDAO,model.SKU,java.util.ArrayList"%>
 <%
     // リクエストスコープから商品情報を取得
-    ArrayList<SKU> skuList = (ArrayList<SKU>)session.getAttribute("skuList");
+    ArrayList<SKU> skuList = (ArrayList<SKU>)request.getAttribute("skuList");
 %>
 
 <!-- HEADER -->
@@ -14,8 +14,8 @@
   <div class="shadow p-3 mb-5 bg-body rounded" style="width:1100px">
     <nav class="navbar navbar-white">
       <div class="container-fluid">
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex action="/Neutral/WelcomeAdminServlet" method="post">
+          <input class="form-control me-2" type="search" name="query" placeholder="Search">
           <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
       </div>
@@ -28,16 +28,16 @@
               CATEGORY
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">TS:Tシャツ・カットソー</a></li>
-              <li><a class="dropdown-item" href="#">SW:スウェット</a></li>
-              <li><a class="dropdown-item" href="#">CO:コート</a></li>
-              <li><a class="dropdown-item" href="#">DC:ダウン</a></li>
-              <li><a class="dropdown-item" href="#">KN:ニット・セーター</a></li>
-              <li><a class="dropdown-item" href="#">JE:ジーンズ・カラージーンズ</a></li>
-              <li><a class="dropdown-item" href="#">HP:ハーフパンツ</a></li>
-              <li><a class="dropdown-item" href="#">CA:帽子・キャップ・ハット</a></li>
-              <li><a class="dropdown-item" href="#">MA:マスク</a></li>
-              <li><a class="dropdown-item" href="#">BA:バッグ</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=Tシャツ・カットソー">TS:Tシャツ・カットソー</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=スウェット">SW:スウェット</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=コート">CO:コート</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=ダウン">DC:ダウン</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=ニット・セーター">KN:ニット・セーター</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=ジーンズ・カラージーンズ">JE:ジーンズ・カラージーンズ</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=ハーフパンツ">HP:ハーフパンツ</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=帽子・キャップ・ハット">CA:帽子・キャップ・ハット</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=マスク">MA:マスク</a></li>
+              <li><a class="dropdown-item" href="/Neutral/WelcomeAdminServlet?id=バッグ">BA:バッグ</a></li>
             </ul>
           </div>
           <!-- <div class="example5"><button type="button" class="btn btn-outline-primary">日付</button></div> -->

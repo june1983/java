@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -107,7 +107,7 @@ public class SkuDAO {
 	}
 
 	/**
-	 * 商品情報を持つproductテーブルと在庫情報を持つSKUテーブルから全商品情報を取得する関数
+	 * 商品情報を持つPRODUCTテーブルと在庫情報を持つSKUテーブルから全商品情報を取得する関数
 	 *
 	 * @return 全商品情報のリスト
 	 *
@@ -156,7 +156,58 @@ public class SkuDAO {
 	}
 
 	/**
-	 * 引数の在庫IDを基にDBの商品情報を格納するproductテーブルと在庫テーブルから該当商品在庫データの検索をおこなう関数
+	 * 商品在庫情報を格納するPRODUCTテーブルとSKUテーブルから特定のカテゴリー名に紐づく全商品情報を取得する関数
+	 *
+	 * @return カテゴリー別の全商品情報リスト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public ArrayList<SKU> selectByCategoryId(String cateoryName) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 商品データを全件取得するSQL文を用意
+			String sql = "SELECT * FROM sku LEFT OUTER JOIN product ON sku.PRODUCT_ID = product.PRODUCT_ID LEFT OUTER JOIN category ON product.CATEGORY_ID = category.CATEGORY_ID WHERE category_name = '" + cateoryName + "'";
+
+			// SQL文を発行し、結果セットを取得
+			ResultSet rs = executeQuery(sql);
+
+			// 商品データ格納用のリストオブジェクトを生成
+			ArrayList<SKU> SkuCategoryList = new ArrayList<SKU>();
+
+
+			// 結果セットから1行ずつ商品データを取得
+			while (rs.next()) {
+				SKU sku = new SKU();
+				sku.setSkuId(rs.getInt("sku_id"));
+				sku.setProductId(rs.getString("product_id"));
+				sku.setCategoryId(rs.getString("category_id"));
+				sku.setProductName(rs.getString("product_name"));
+				sku.setSize(rs.getString("product_size"));
+				sku.setStock(rs.getInt("sku_number"));
+				sku.setPrice(rs.getInt("price"));
+				sku.setDescription(rs.getString("description"));
+				sku.setAttribute(rs.getString("attribute"));
+				SkuCategoryList.add(sku);
+			}
+
+			// 呼び出し元へ商品データを返す
+			return SkuCategoryList;
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
+	}
+
+
+	/**
+	 * 引数の在庫IDを基にDBの商品情報を格納するPRODUCTテーブルとSKUテーブルから該当商品在庫データの検索をおこなう関数
 	 *
 	 * @param skuId 検索対象の在庫ID
 	 *
@@ -207,7 +258,7 @@ public class SkuDAO {
 
 
 	/**
-	 * 引数で与えられた商品在庫情報を、それぞれのデータを格納する商品テーブルと在庫テーブルに登録する関数
+	 * 引数で与えられた商品在庫情報を、それぞれのデータを格納するPRODUCTテーブルとSKUテーブルに登録する関数
 	 *
 	 * @param sku 登録する書籍情報のSKUオブジェクト
 	 *
@@ -250,7 +301,7 @@ public class SkuDAO {
 	}
 
 	/**
-	 * 引数で与えられた在庫IDを持つ商品在庫データを、 引数で与えられた商品在庫データに変更をおこなう関数
+	 * 引数で与えられた在庫IDを持つ商品+在庫データを、 引数で与えられた商品+在庫データに変更をおこなう関数
 	 *
 	 * @param skuUd 更新する商品在庫情報のSKUオブジェクト
 	 *
@@ -289,6 +340,65 @@ public class SkuDAO {
 			// DB接続解除
 			disconnect();
 		}
+	}
+
+	/**
+	 * 引数の検索ワードを基にDBの商品在庫情報を格納するPRODUCTテーブルから該当商品データの絞込み検索処理をおこなう関数
+	 *
+	 * @param words 検索対象の文言
+	 *
+	 * @return 該当商品データのリスト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public ArrayList<SKU> search(String words) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 指定された書籍タイトルに該当する書籍データを取得するSQL文を用意
+			String sql = "SELECT * FROM sku LEFT OUTER JOIN product "
+					+ "ON sku.PRODUCT_ID = product.PRODUCT_ID "
+					+ "LEFT OUTER JOIN category "
+					+ "ON product.CATEGORY_ID = category.CATEGORY_ID "
+					+ "WHERE ATTRIBUTE LIKE '%" + words + "%' "
+							+ "or DESCRIPTION LIKE '%" + words + "%' "
+									+ "or PRODUCT_ID LIKE '%" + words + "%' "
+											+ "or PRODUCT_NAME LIKE '%" + words + "%'";
+
+			// SQL文を発行し、結果セットを取得
+			ResultSet rs = executeQuery(sql);
+
+			// 商品データ格納用のリストオブジェクトを生成
+			ArrayList<SKU> SkuSearchList = new ArrayList<SKU>();
+
+
+			// 結果セットから1行ずつ商品データを取得
+			while (rs.next()) {
+				SKU sku = new SKU();
+				sku.setSkuId(rs.getInt("sku_id"));
+				sku.setProductId(rs.getString("product_id"));
+				sku.setCategoryId(rs.getString("category_id"));
+				sku.setProductName(rs.getString("product_name"));
+				sku.setSize(rs.getString("product_size"));
+				sku.setStock(rs.getInt("sku_number"));
+				sku.setPrice(rs.getInt("price"));
+				sku.setDescription(rs.getString("description"));
+				sku.setAttribute(rs.getString("attribute"));
+				SkuSearchList.add(sku);
+			}
+
+			// 呼び出し元へ書籍リストを返す
+			return SkuSearchList;
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
 	}
 
 	/**

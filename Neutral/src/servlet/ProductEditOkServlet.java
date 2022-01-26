@@ -33,7 +33,7 @@ public class ProductEditOkServlet extends HttpServlet {
 		session.removeAttribute("SKU");
 
 		//フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminLoginServlet");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WelcomeAdminServlet");
 		dispatcher.forward(request, response);
 	}
 

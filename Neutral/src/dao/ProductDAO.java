@@ -20,7 +20,7 @@ public class ProductDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -107,7 +107,7 @@ public class ProductDAO {
 	}
 
 	/**
-	 * DBの商品情報を格納するproductテーブルから全商品情報を取得する関数
+	 * 商品情報を格納するproductテーブルから全商品情報を取得する関数
 	 *
 	 * @return 全商品情報のリスト
 	 *
@@ -142,6 +142,53 @@ public class ProductDAO {
 
 			// 呼び出し元へ商品データを返す
 			return productList;
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
+	}
+
+
+	/**
+	 * 商品情報を格納するproductテーブルから特定のカテゴリーIDに紐づく全商品情報を取得する関数
+	 *
+	 * @return カテゴリー別の全商品情報リスト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public ArrayList<Product> selectByCategoryId(String cateoryId) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 商品データを全件取得するSQL文を用意
+			String sql = "SELECT * FROM product WHERE category_id='" + cateoryId + "'";
+
+			// SQL文を発行し、結果セットを取得
+			ResultSet rs = executeQuery(sql);
+
+			// 商品データ格納用のリストオブジェクトを生成
+			ArrayList<Product> productCategoryList = new ArrayList<Product>();
+
+			// 結果セットから1行ずつ商品データを取得
+			while (rs.next()) {
+				Product product = new Product();
+				product.setProductId(rs.getString("product_id"));
+				product.setCategoryId(rs.getString("category_id"));
+				product.setProductName(rs.getString("product_Name"));
+				product.setPrice(rs.getInt("price"));
+				product.setDescription(rs.getString("description"));
+				product.setAttribute(rs.getString("attribute"));
+				productCategoryList.add(product);
+			}
+
+			// 呼び出し元へ商品データを返す
+			return productCategoryList;
 
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
@@ -200,137 +247,52 @@ public class ProductDAO {
 
 	}
 
-	/**
-	 * 引数で与えられた商品情報を、書籍データを格納するbookinfoテーブルへ登録する関数
-	 *
-	 * @param book 登録する書籍情報のBookオブジェクト
-	 *
-	 * @throws IllegalStateException 関数内部で例外が発生した場合
-	 */
-//	public void insert(Book book) {
-//
-//		try {
-//			// DB接続
-//			connect();
-//
-//			// 書籍データを登録するSQL文を用意
-//			String sql = "INSERT INTO bookinfo VALUES("
-//					   + "'" + book.getIsbn()  + "',"
-//					   + "'" + book.getTitle() + "',"
-//					   + 	   book.getPrice() + ")";
-//
-//			// SQL文を発行
-//			executeUpdate(sql);
-//
-//		} catch (Exception e) {
-//			throw new IllegalStateException(e);
-//		} finally {
-//			// DB接続解除
-//			disconnect();
-//		}
-//
-//	}
 
 	/**
-	 * 書籍情報を格納するbookinfoテーブルに存在する、引数で与えられたISBNを持つ書籍情報を、 引数で与えられた書籍情報に変更をおこなう関数
+	 * 引数の検索ワードを基にDBの商品情報を格納するPRODUCTテーブルから該当商品データの絞込み検索処理をおこなう関数
 	 *
-	 * @param book 更新する書籍情報のBookオブジェクト
+	 * @param words 検索対象の文言
+	 *
+	 * @return 該当商品データのリスト
 	 *
 	 * @throws IllegalStateException 関数内部で例外が発生した場合
 	 */
-//	public void update(Book book) {
-//
-//		try {
-//			// DB接続
-//			connect();
-//
-//			// 指定されたISBN番号の書籍データを更新するSQL文を用意
-//			String sql = "UPDATE bookinfo SET"
-//					   + " title = '" + book.getTitle() + "',"
-//					   + " price =  " + book.getPrice()
-//					   + " WHERE isbn = '" + book.getIsbn() + "'";
-//
-//			// SQL文を発行
-//			executeUpdate(sql);
-//
-//		} catch (Exception e) {
-//			throw new IllegalStateException(e);
-//		} finally {
+	public ArrayList<Product> search(String words) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 指定された書籍タイトルに該当する書籍データを取得するSQL文を用意
+			String sql = "SELECT * FROM product WHERE ATTRIBUTE LIKE '%" + words + "%' or DESCRIPTION LIKE '%" + words + "%' or PRODUCT_ID LIKE '%" + words + "%' or PRODUCT_NAME LIKE '%" + words + "%'";
+
+			// SQL文を発行し、結果セットを取得
+			ResultSet rs = executeQuery(sql);
+
+			// 書籍データ格納用のリストオブジェクトを生成
+			ArrayList<Product> searchProductList = new ArrayList<Product>();
+
+			// 結果セットから1行ずつ書籍データを取得
+			while (rs.next()) {
+				Product product = new Product();
+				product.setProductId(rs.getString("product_id"));
+				product.setCategoryId(rs.getString("category_id"));
+				product.setProductName(rs.getString("product_Name"));
+				product.setPrice(rs.getInt("price"));
+				product.setDescription(rs.getString("description"));
+				product.setAttribute(rs.getString("attribute"));
+				searchProductList.add(product);
+			}
+
+			// 呼び出し元へ書籍リストを返す
+			return searchProductList;
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
 			// DB接続解除
-//			disconnect();
-//		}
-//	}
+			disconnect();
+		}
 
-	/**
-	 * 書籍情報を格納するbookinfoテーブルから、引数で与えられたISBNを持つ書籍データの削除をおこなう関数
-	 *
-	 * @param isbn 削除対象のISBN
-	 *
-	 * @throws IllegalStateException 関数内部で例外が発生した場合
-	 */
-//	public void delete(String isbn) {
-//
-//		try {
-//			// DB接続
-//			connect();
-//
-//			// 指定されたISBN番号の書籍データを削除するSQL文を用意
-//			String sql = "DELETE FROM bookinfo WHERE isbn='" + isbn + "'";
-//
-//			// SQL文を発行
-//			executeUpdate(sql);
-//
-//		} catch (Exception e) {
-//			throw new IllegalStateException(e);
-//		} finally {
-//			// DB接続解除
-//			disconnect();
-//		}
-//
-//	}
-
-	/**
-	 * 引数の各データを基にDBの書籍情報を格納するbookinfoテーブルから該当書籍データの絞込み検索処理をおこなう関数
-	 *
-	 * @param title 検索対象のTITLE
-	 *
-	 * @return 該当書籍データのリスト
-	 *
-	 * @throws IllegalStateException 関数内部で例外が発生した場合
-	 */
-//	public ArrayList<Book> search(String title) {
-//
-//		try {
-//			// DB接続
-//			connect();
-//
-//			// 指定された書籍タイトルに該当する書籍データを取得するSQL文を用意
-//			String sql = "SELECT * FROM bookinfo WHERE title LIKE '%" + title + "%'";
-//
-//			// SQL文を発行し、結果セットを取得
-//			ResultSet rs = executeQuery(sql);
-//
-//			// 書籍データ格納用のリストオブジェクトを生成
-//			ArrayList<Book> bookList = new ArrayList<Book>();
-//
-//			// 結果セットから1行ずつ書籍データを取得
-//			while (rs.next()) {
-//				Book book = new Book();
-//				book.setIsbn(rs.getString("isbn"));
-//				book.setTitle(rs.getString("title"));
-//				book.setPrice(rs.getInt("price"));
-//				bookList.add(book);
-//			}
-//
-//			// 呼び出し元へ書籍リストを返す
-//			return bookList;
-//
-//		} catch (Exception e) {
-//			throw new IllegalStateException(e);
-//		} finally {
-//			// DB接続解除
-//			disconnect();
-//		}
-//
-//	}
+	}
 }

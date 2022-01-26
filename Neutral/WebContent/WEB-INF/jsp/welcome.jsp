@@ -18,12 +18,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/headers.css">
 <link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/style.css"> 
+<link rel="stylesheet" href="css/style.css">
+<style>
+.fade1{
+    animation: fadeIn 1s 1 normal;
+}
+@keyframes fadeIn { /*animation-nameで設定した値を書く*/
+    0% {opacity: 0} /*アニメーション開始時は不透明度0%*/
+    100% {opacity: 1} /*アニメーション終了時は不透明度100%*/
+}
+</style>
 </head>
 <body>
 <!-- HEADER -->
 <jsp:include page="header.jsp"></jsp:include>
-  
+
 <main>
     <p>ファッションを楽しむすべての人に。</p><br>
     <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
@@ -31,7 +40,7 @@
 	<!-- 商品リストから1行ずつデータを取得し表示 -->
 	<div class="photogallery">
 		<% for (Product product: productList) { %>
-		<div class="photo shadow">
+		<div class="photo shadow fade1">
 		    <div class="inner">
 		    <a href="/Neutral/OrderServlet?id=<%=product.getProductId()%>">
 		    	<img src="img/<%=product.getProductId()%>.jpg" alt="<%=product.getProductName()%>">
@@ -40,7 +49,7 @@
 		</div>
 		<% } %>
 	</div>
-</main> 
+</main>
 <!-- FOOTER -->
 <jsp:include page="footer.jsp"></jsp:include>
 
