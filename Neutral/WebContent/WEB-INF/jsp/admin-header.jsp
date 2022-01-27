@@ -18,15 +18,16 @@
 </head>
 <body>
 
-<header class="py-3 mb-4 border-bottom">
-	<div class="b-example-divider bg-info">
-		<div class="row align-items-center">
-			<div class="col-3">
-				<p class="logo2">Neutral</p>
-			</div>
-			<div class="col-6">
-				<p class="title2">【　管理画面　】</p>
-			</div>
-		</div>
-	</div>
+<header>
+<div class="header">
+    <div class="col-1">
+    	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-white btn-primary">SHOPへ</button></a>
+    </div>
+    <div class="col-2">
+    	<a href="/Neutral/WelcomeAdminServlet"><p class="logo2">Neutral</p></a>
+    </div>
+    <div class="col-4">
+    	<p class="title2"></p>
+    </div>
+ </div>
 </header>

@@ -136,15 +136,18 @@ body {
 
 .inner img{
     position: absolute;
-    top: 50%;
+    top: 38%;                                                /* 1/27 鈴木変更 */
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: auto;
-    height: 100%;
+    height: 80%;                                             /* 1/27 鈴木変更 */
 	}
+.inner-text {												 /* 1/27 鈴木追加 */
+	text-align:center;
 
+	}
 /* footerのスタイル */
 div#footer {
     width: 960px;
@@ -266,11 +269,12 @@ border-radius: 5px / 5px;
 	background: #000053;
 }
 
+/**** 1/26追加 CSS フェードインアニメーション ****/
 .fade1{
     animation: fadeIn 1s 1 normal;
 }
 
-/**** 1/26追加 CSS フェードインアニメーション ****/
+
 @keyframes fadeIn { /*animation-nameで設定した値を書く*/
     0% {opacity: 0} /*アニメーション開始時は不透明度0%*/
     100% {opacity: 1} /*アニメーション終了時は不透明度100%*/

@@ -30,8 +30,9 @@ public class ProductEditServlet extends HttpServlet {
 		// 商品データを全件取得する命令を呼び出し、戻り値を取得する
 		SKU sku = skuDao.selectBySkuId(id);
 
-		// 商品リストをリクエストスコープに格納
-		request.setAttribute("sku", sku);
+		// 商品リストをセッションスコープに格納
+		HttpSession session = request.getSession();
+		session.setAttribute("sku", sku);
 
 		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/productEdit.jsp");

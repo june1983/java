@@ -66,20 +66,9 @@ Account account = (Account) session.getAttribute("Account");
         <a href="/Neutral/AccountEditServlet"><button type="button" class="btn btn-dark">編集する</button></a><br>
       </div>
     </div>
-
-
-<!--▼FOTTER-->
-
-<div id="footer">
- <ul id="footer-nav">
- <li><a href="https://www.official-store.jp/kinggnugoods/user_data/privacy.php">個人情報の取り扱い</a></li>
- <li>&nbsp;| <a href="https://www.official-store.jp/kinggnugoods/user_data/kiyaku.php">特定商取引法に基づく表記</a></li>
-</ul>
-
- <address>Copyright (c) 2022 lightvan co. ltd. All Rights Reserved. </address>
-</div>
-
-<!--▲FOTTER-->
 </main>
+<!--▼FOTTER-->
+<jsp:include page="footer.jsp"></jsp:include>
+<!--▲FOTTER-->
 </body>
 </html>

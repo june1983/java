@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.AccountDAO;
 import model.Account;
@@ -42,6 +43,13 @@ public class RegisterServlet extends HttpServlet {
 		account.setPass(pass);
 		account.setTel(tel);
 		account.setCard(card);
+
+		//セッションスコープにAccountオブジェクトを保存
+		HttpSession session = request.getSession();
+		session.setAttribute("Account", account);
+
+//		//セッションスコープからAccountオブジェクトを取得
+//		Account a = (Account) session.getAttribute("Account");
 
 		//DAOオブジェクト宣言
 		AccountDAO ad = new AccountDAO();

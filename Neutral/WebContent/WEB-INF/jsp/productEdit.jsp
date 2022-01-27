@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="dao.SkuDAO,model.SKU"%>
 <%
-    // リクエストスコープから商品情報を取得
-    SKU sku = (SKU)request.getAttribute("sku");
+	// セッションスコープから商品情報を取得
+	SKU sku = (SKU)session.getAttribute("sku");
 %>
 
 <!-- HEADER -->

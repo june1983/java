@@ -26,21 +26,21 @@ public class OrderSubmitServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1: カート情報を注文テーブルに移動
+		// 1: カート情報
 
-			// 1-1: セッションスコープからAccountデータを取得
+			// 1-1: セッションスコープからカート情報を取得
 			HttpSession session = request.getSession();
-			Account account = (Account) session.getAttribute("Account");
+			ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 
-			// 1-2: AccountデータからUSER_IDを取得し、カートテーブルから全カート情報を取得
-			int userId =account.getUserId();
-			CartDAO dao = new CartDAO();
-			ArrayList<Cart> cartList = dao.selectByUser_Id(userId);
+//			// 1-2: AccountデータからUSER_IDを取得し、カートテーブルから全カート情報を取得
+//			int userId =account.getUserId();
+//			CartDAO dao = new CartDAO();
+//			ArrayList<Cart> cartList = dao.selectByUser_Id(userId);
 
-		// 2: 注文データを注文テーブルに反映
+		// 2: 現在日時を取得し、カート情報を注文テーブルに移動
 
 			// 2-1: 注文データを格納するエンティティを生成
-			Order order = new Order();
+			
 
 			// 2-2: 注文データに登録する現在日時を取得
 	        Date date= new Date();
@@ -48,11 +48,12 @@ public class OrderSubmitServlet extends HttpServlet {
 	        Timestamp ts = new Timestamp(time);
 	        System.out.println("現在時刻： "+ts);
 
-			// 注文データ格納用のArrayListを生成
+			// 2-3: 注文データ格納用のArrayListを生成
 			ArrayList<Order> orderList = new ArrayList<Order>();
 
-			// 2-3: 注文データを注文エンティティのArrayListに登録
+			// 2-4: カート情報を注文エンティティのArrayListに登録
 	        for (Cart cart : cartList) {
+	        	Order order = new Order();
 	        	//顧客ID
 				order.setUserId(cart.getUserId());
 				//商品ID
@@ -74,17 +75,21 @@ public class OrderSubmitServlet extends HttpServlet {
 	        }
 	        System.out.println(orderList);
 
-			// OrderDAOインスタンスを生成し、注文テーブルに情報を追加
+			// 2-5: OrderDAOインスタンスを生成し、注文テーブルに情報を追加
 			OrderDAO orderDao = new OrderDAO();
 			orderDao.insert(orderList);
+			
+			// 2-6: オーダー情報をリクエストスコープに格納
+			request.setAttribute("orderList", orderList);			
 
-
-		// 3: 最後にカートテーブルの情報を削除
-//			CartDAO cartDao = new CartDAO();
-//			cartDao.delete(cartList);
-
-
-
+		// 3: AccountデータからUSER_IDを取得し、カートテーブル（DB）の情報を削除
+			Account account = (Account) session.getAttribute("Account");
+			int userId =account.getUserId();
+			CartDAO cartDao = new CartDAO();
+			cartDao.delete(userId);
+		
+		// 4: セッションスコープからカートテーブルの情報を削除
+		session.removeAttribute("cartList");
 
 		// フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderOK.jsp");

@@ -39,7 +39,6 @@ public class AccountEditServlet extends HttpServlet {
 			//古いアカウント情報をセッションスコープから取得
 			HttpSession session = request.getSession();
 			Account past_user_data = (Account) session.getAttribute("Account");
-			
 			int user_Id = past_user_data.getUserId();
 
 			//もしパラメータがnullだったら

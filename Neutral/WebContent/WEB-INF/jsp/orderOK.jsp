@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.Cart,java.util.ArrayList"%>
+<%@ page import="dao.CartDAO,model.Order,java.util.ArrayList"%>
 <%
 // セッションスコープからカート情報を取得
-Cart cart = (Cart) session.getAttribute("cart");
+ArrayList<Order> orderList = (ArrayList<Order>)request.getAttribute("orderList");
 %>
 <!DOCTYPE html>
 <html>
@@ -43,19 +43,23 @@ Cart cart = (Cart) session.getAttribute("cart");
             <th scope="col" style="width: 120px">小計</th>
           </tr>
         </thead>
+        <% int totalPrice = 0; %>
         <tbody>
           <tr>
+        	<%  for (Order order: orderList) { %>
             <th scope="row" style="width: 50px"class="checkbox">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
               </svg></th>
-              <td style="width: 100px"><%=cart.getProductId()%></td>
-              <td style="width: 200px"><%=cart.getOrderProduct()%></td>
-              <td style="width: 100px"><%=cart.getOrderSize()%></td>
-              <td style="width: 120px"><input class="kosuu" value="<%=cart.getOrderNumber()%>">個</td>
-              <td style="width: 120px" class="example1"><%=cart.getOrderPrice()%>円</td>
-              <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>
+              <td style="width: 100px"><%=order.getProductId()%></td>
+              <td style="width: 200px"><%=order.getOrderProduct()%></td>
+              <td style="width: 100px"><%=order.getOrderSize()%></td>
+              <td style="width: 120px"><input class="kosuu" value="<%=order.getOrderNumber()%>">個</td>
+              <td style="width: 120px" class="example1"><%=order.getOrderPrice()%>円</td>
+              <td style="width: 120px" class="example1"><%=order.getSubtotal()%>円</td>
           </tr>
+         	<% totalPrice += order.getSubtotal(); %>
+			<% } %>
         </tbody>
         <tfoot>
           <tr>
@@ -65,7 +69,7 @@ Cart cart = (Cart) session.getAttribute("cart");
             <th scope="col" style="width: 100px"></th>
             <th scope="col" style="width: 120px"></th>
             <th scope="col" style="width: 120px" class="example1">合計金額</th>
-            <th scope="col" style="width: 120px" class="example1">円</th>
+            <th scope="col" style="width: 120px" class="example1"><%= totalPrice%>円</th>
           </tr>
         </tfoot>
       </table>

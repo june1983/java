@@ -48,17 +48,22 @@
 }
 
 body {
-    margin: 30px auto;   /* 外側の余白を30pxにする */
+    margin: 0 auto;   /* 外側の余白を30pxにする */
     padding: 0;      /* 内側の余白を消す(念のため) */
-    margin-top: 0;
+/*    margin-top: 0;											/* 無効にしました　1/27 今井  */
     text-align: center;
+    width: 100% ;
+    min-width: fit-content;								/* width:100%; min-width: fit-content;を追加　今井 1/27 */
+ 	background-color: #b0c4de;
  }
 
 main {
-	 margin: 30px auto;   /* 外側の余白を30pxにする */
+	 margin: 0 auto;   /* 外側の余白を30pxにする */
      padding: 0;      /* 内側の余白を消す(念のため) */
-     margin-top: 0;
+/*     margin-top: 0;											/* 無効にしました　1/27 今井  */
      text-align: center;
+     width: 100% ;								/* width:100%; min-width: fit-content;を追加　今井  1/27 */
+     min-width: fit-content;
 }
 
 /* container のスタイル */
@@ -217,10 +222,15 @@ li.page.navi-active a {
 
 /* 商品管理 container のスタイル */
 .container-sl {
-  width: 1500px;
+  width: 1570px;										/* width: 1570px;を追加　1/27 今井  */
   text-align: center;
-  margin: 20px auto ;
+  margin: 20px auto ;									/* margin:20px　を追加　1/27 今井  */
  }
+
+.shadow {												/* shadow を追加  1/27 今井 */
+  text-align: center;
+  margin: 0px auto ;
+}
 
 /* 商品管理 nav div btn のスタイル */
  .example5 {
@@ -274,7 +284,7 @@ p.fileup {
 
 /*index.html*/
 
-.row {
+/*.row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   display: flex;
@@ -283,13 +293,13 @@ p.fileup {
   margin-right: calc(var(--bs-gutter-x) * -.5);
   margin-left: 200px;
 }
-
+																	無効にしました 1/27 今井 */
 .align-items-center {
   text-align: center;
 }
 
-.col2 {
-  margin-left: 200px;
+.m2 {											/* m2 追加しました（colの後ろにつけるなどして使用）1/27 今井  */
+  margin: 20px;
 }
 
 /* 1/26 追加分 */
@@ -301,3 +311,108 @@ table td {
     white-space: nowrap;
 }
 
+
+.search {													/* .search 追加　1/27 今井  */
+  display:flex ;
+  flex-diretion: row;
+  flex-wrap:nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 1500px;
+  height: 70px;
+  height: 70px;
+  background-color: #ffffff ;
+  margin: 0 ;
+  padding-bottom: 30px ;
+
+}
+
+/* pagenation　DELTAのスタイル 													追加しました　1/27 今井 */
+
+.c-pagination__list{
+	display:table;
+	margin:0 auto;
+	border-right:1px solid #dcdcdc;
+	border-left:1px solid #dcdcdc;
+	border-radius:4px;overflow:hidden}
+.c-pagination__list.first-active{
+	border-left:0}
+.c-pagination__list.last-active{
+	border-right:0}
+.c-pagination__item{
+	display:table-cell;
+	border-left:1px solid #dcdcdc}
+.c-pagination__item:first-child{border-left:0}
+.c-pagination__item-link{
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	width:42px;
+	height:42px;
+	font-size:1.2rem;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	align-items:center;
+	text-decoration:none;
+	background-color:#fff;
+	line-height:1;
+	color:#8080ff;
+	border-top:1px solid #dcdcdc;
+	border-bottom:1px solid #dcdcdc
+}
+.c-pagination__item-link.is-current{
+	background-color:#0d6efd;
+	border-color:#0d6efd;
+	color:#8080ff;
+	pointer-events:none
+}
+
+@media screen and (min-width: 744px){
+.c-pagination__item-link:hover{
+	background-color:#ededed}
+}
+
+/* Qittaの　pagenation　のスタイル
+.paginationjs-pages > ul > li > a {
+  padding: 6px 18px;
+  color: white;
+  background-color: lightgreen;
+  border: 1px solid darkcyan;
+}
+.paginationjs-pages > ul > li > a:hover {
+  color: black;
+  background-color: white;
+}
+.paginationjs-pages > ul > li.active > a {
+  color: black;
+  background-color: white;
+}
+.paginationjs-pages > ul > li.disabled > a {
+  color: black;
+  background-color: white;
+}
+.paginationjs-prev {
+  margin: 0 16px 0 0;
+}
+.paginationjs-next {
+  margin: 0 0 0 16px;
+}
+.paginationjs-page {
+  margin: 0 4px;
+}
+.paginationjs-pages > ul {
+  display: flex;
+  align-items: baseline;
+}
+.paginationjs-pages > ul > li.paginationjs-ellipsis.disabled > a {
+  border: none;
+  color: black;
+  margin: 0 4px;
+  padding: 0;
+}
+*/

@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -401,32 +401,32 @@ public class SkuDAO {
 	}
 
 	/**
-	 * 書籍情報を格納するbookinfoテーブルから、引数で与えられたISBNを持つ書籍データの削除をおこなう関数
+	 * 在庫情報を格納するProductテーブルとSKUテーブルから、引数で与えられたskuIdを持つ在庫データの削除をおこなう関数
 	 *
-	 * @param isbn 削除対象のISBN
+	 * @param skuId 削除対象のSKU_ID
 	 *
 	 * @throws IllegalStateException 関数内部で例外が発生した場合
 	 */
-//	public void delete(String isbn) {
-//
-//		try {
-//			// DB接続
-//			connect();
-//
-//			// 指定されたISBN番号の書籍データを削除するSQL文を用意
-//			String sql = "DELETE FROM bookinfo WHERE isbn='" + isbn + "'";
-//
-//			// SQL文を発行
-//			executeUpdate(sql);
-//
-//		} catch (Exception e) {
-//			throw new IllegalStateException(e);
-//		} finally {
-//			// DB接続解除
-//			disconnect();
-//		}
-//
-//	}
+	public void delete(int skuId) {
+
+		try {
+			// DB接続
+			connect();
+
+			// 指定されたISBN番号の書籍データを削除するSQL文を用意
+			String sql = "DELETE sku,product FROM sku LEFT OUTER JOIN product ON sku.PRODUCT_ID = product.PRODUCT_ID LEFT OUTER JOIN category ON product.CATEGORY_ID = category.CATEGORY_ID WHERE sku_id='" + skuId + "'";
+
+			// SQL文を発行
+			executeUpdate(sql);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
+	}
 
 
 }

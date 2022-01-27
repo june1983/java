@@ -4,8 +4,8 @@
 <%
 //リクエストスコープからカート情報を取得
 // Cart cart = (Cart) session.getAttribute("cart");
-// リクエストスコープからカート情報を取得
-ArrayList<Cart> cartList = (ArrayList<Cart>)request.getAttribute("cartList");
+// セッションスコープからカート情報を取得
+ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 %>
 <!DOCTYPE html>
 <html>

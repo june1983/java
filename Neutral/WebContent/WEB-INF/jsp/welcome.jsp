@@ -33,9 +33,13 @@
 		<% for (Product product: productList) { %>
 		<div class="photo shadow fade1">
 		    <div class="inner">
-		    <a href="/Neutral/OrderServlet?id=<%=product.getProductId()%>">
-		    	<img src="img/<%=product.getProductId()%>.jpg" alt="<%=product.getProductName()%>">
-		    </a>
+			    <a href="/Neutral/OrderServlet?id=<%=product.getProductId()%>">
+			    <img src="img/<%=product.getProductId()%>.jpg" alt="<%=product.getProductName()%>">
+			    </a>
+		    </div>
+		    <div class="inner-text">
+				<p><%=product.getProductName()%></p>
+			    <p><%=product.getPrice()%>円</p>
 		    </div>
 		</div>
 		<% } %>

@@ -20,7 +20,7 @@ public class CartDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -235,6 +235,33 @@ public class CartDAO {
 			// 呼び出し元へ商品データを返す
 			System.out.println(cartList);
 			return cartList;
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
+	}
+	/**
+	 * 引数で与えられた顧客ID情報に紐づくカートデータをカートテーブルから削除する関数
+	 *
+	 * @param cart 削除するカート情報のCartオブジェクト
+	 *
+	 * @throws IllegalStateException 関数内部で例外が発生した場合
+	 */
+	public void delete(int userId) {
+
+		try {
+			// DB接続
+			connect();
+
+			// カート情報を削除するSQL文を用意
+			String sql = "DELETE FROM `cart` WHERE USER_ID = " + userId;
+			// SQL文を発行
+			System.out.println(sql);
+			executeUpdate(sql);
 
 		} catch (Exception e) {
 			throw new IllegalStateException(e);

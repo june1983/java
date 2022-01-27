@@ -33,48 +33,38 @@ Account account = (Account) session.getAttribute("Account");
     <div class="container-scr">
      	<div class="shadow p-3 mb-5 bg-body rounded">
       		<p strong>会員登録情報編集ページ</p>
-		      <form action="/Neutral/AccountEditServlet" method="post">
-			      <div class="input-group flex-nowrap">
-
-			       <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
-			       <input type="text" name="user_Name" class="form-control" value="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
-			       </div><br>
-			       <div class="input-group flex-nowrap">
-			       <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
-			       <input type="text" name="adress" class="form-control" value="<c:out value="${sessionScope.Account.getAdress() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
-			       </div><br>
-			       <div class="input-group flex-nowrap">
-			       <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>
-			       <input type="text" name="email" class="form-control" value="<c:out value="${sessionScope.Account.getEmail() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
-			       </div><br>
-			       <div class="input-group flex-nowrap">
-			       <span class="input-group-text bg-dark" id="addon-wrapping">TEL</span>
-			       <input type="text" name="tel" class="form-control" value="<c:out value="${sessionScope.Account.getTel() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
-			       </div><br>            <div class="input-group flex-nowrap">
-			       <span class="input-group-text bg-dark" id="addon-wrapping">パスワード</span>
-			       <input type="text" name="pass" class="form-control" value="<c:out value="${sessionScope.Account.getPass() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
-			       </div><br>            <div class="input-group flex-nowrap">
-			       <span class="input-group-text bg-dark" id="addon-wrapping">CARD</span>
-			       <input type="text" name="card" class="form-control" value="<c:out value="${sessionScope.Account.getCard() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
-			       </div><br>
-
-			        <button type="submit" class="btn btn-dark">変更する</button><br>
-		        </form>
+			<form action="/Neutral/AccountEditServlet" method="post">
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
+				  <input type="text" name="user_Name" class="form-control" value="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+				</div><br>
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
+				  <input type="text" name="adress" class="form-control" value="<c:out value="${sessionScope.Account.getAdress() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+				</div><br>
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>
+				  <input type="text" name="email" class="form-control" value="<c:out value="${sessionScope.Account.getEmail() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+				</div><br>
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text bg-dark" id="addon-wrapping">TEL</span>
+				  <input type="text" name="tel" class="form-control" value="<c:out value="${sessionScope.Account.getTel() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+				</div><br>            
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text bg-dark" id="addon-wrapping">パスワード</span>
+				  <input type="text" name="pass" class="form-control" value="<c:out value="${sessionScope.Account.getPass() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+				</div><br>            
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text bg-dark" id="addon-wrapping">CARD</span>
+				  <input type="text" name="card" class="form-control" value="<c:out value="${sessionScope.Account.getCard() }"/>" aria-label="Username" aria-describedby="addon-wrapping">
+				</div><br>
+				<button type="submit" class="btn btn-dark">変更する</button><br>
+			</form>
       </div>
     </div>
-
 </main>
-</body>
 <!--▼FOTTER-->
-
-<div id="footer">
- <ul id="footer-nav">
- <li><a href="https://www.official-store.jp/kinggnugoods/user_data/privacy.php">個人情報の取り扱い</a></li>
- <li>&nbsp;| <a href="https://www.official-store.jp/kinggnugoods/user_data/kiyaku.php">特定商取引法に基づく表記</a></li>
-</ul>
-
- <address>Copyright (c) 2022 lightvan co. ltd. All Rights Reserved. </address>
-</div>
-
+<jsp:include page="footer.jsp"></jsp:include>
 <!--▲FOTTER-->
+</body>
 </html>

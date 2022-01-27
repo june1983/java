@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>    
 <header class="py-3 mb-4 border-bottom">
 	<nav class="py-2 bg-white border-bottom">
 		<div class="container d-flex flex-wrap">
 			<ul class="nav me-auto">
 				<li class="nav-item"><a href="/Neutral/WelcomeServlet" class="nav-link link-dark px-2 active" aria-current="page">TOP</a></li>
+				<c:if test="${sessionScope.Account != null}">
 				<li class="nav-item"><a href="/Neutral/AccountServlet" class="nav-link link-dark px-2">MYPAGE</a></li>
+				</c:if>
 				<li class="dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				  CATEGORY
@@ -26,8 +29,13 @@
 				<li class="nav-item"><a href="/Neutral/CartServlet" class="nav-link link-dark px-2">CART</a></li>
 			 </ul>
 			<ul class="nav">
+				<c:if test="${sessionScope.Account == null}">
 				<li class="nav-item"><a href="/Neutral/LoginServlet" class="nav-link link-dark px-2">ログイン</a></li>
-			    <li class="nav-item"><a href="/Neutral/AdminLoginServlet" class="nav-link link-dark px-2">お店を管理する</a></li>
+				</c:if>
+				<c:if test="${sessionScope.Account != null}">
+				<li class="nav-item"><a href="/Neutral/LogoutServlet" class="nav-link link-dark px-2">ログアウト</a></li>
+				</c:if>			    
+				<li class="nav-item"><a href="/Neutral/AdminLoginServlet" class="nav-link link-dark px-2">お店を管理する</a></li>
 			</ul>
 		</div>
 	</nav>
