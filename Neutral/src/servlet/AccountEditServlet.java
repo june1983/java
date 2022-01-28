@@ -66,6 +66,7 @@ public class AccountEditServlet extends HttpServlet {
 			
 			// SkuDAOインスタンスを生成し、編集済みのアカウント情報をDBに反映
 			AccountDAO dao = new AccountDAO();
+			
 			dao.update(account);
 
 			//セッションスコープに登録ユーザーを保存

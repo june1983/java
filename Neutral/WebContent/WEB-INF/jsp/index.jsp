@@ -13,10 +13,10 @@
 	<div class="container-sl">
 		<div class="shadow p-3 mb-5 bg-body rounded" style="width:1550px">
     		<div class="search">
-     			<div class="col-2 me-2"><a href="/Neutral/RegisterProductServlet">
+     			<div class="me-2"><a href="/Neutral/RegisterProductServlet">
       				<button type="button" class="btn btn-primary me-2">商品を登録する</button></a>
      			</div>
-     			<div class="col-1 me-2">
+     			<div class="me-2">
 	            	<button class="btn btn-outline-primary dropdown-toggle me-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 	              	CATEGORY
 	            	</button>
@@ -34,7 +34,7 @@
 		            </ul>
           		</div>
           		<!-- <div class="example5"><button type="button" class="btn btn-outline-primary">日付</button></div> -->
-				<div class="col-3">
+				<div class="">
 					<form class="d-flex" action="/Neutral/WelcomeAdminServlet" method="post">
 						<input class="form-control me-2" type="search" name="query" placeholder="Search">
 						<button class="btn btn-outline-primary" type="submit">Search</button>

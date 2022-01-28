@@ -85,6 +85,7 @@ main {
   width: 500px;
   text-align: center;
   margin: 0 auto ;
+  padding-top: 16px;
  }
 
  /* number formのスタイル */
@@ -323,8 +324,6 @@ table td {
   height: 70px;
   background-color: #ffffff ;
   margin: 0 ;
-  padding-bottom: 30px ;
-
 }
 
 /* pagenation　DELTAのスタイル 													追加しました　1/27 今井 */

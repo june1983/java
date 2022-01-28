@@ -23,7 +23,7 @@ public class AccountDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -189,7 +189,7 @@ public class AccountDAO {
 
 	        // SQL文を発行
 	     	executeUpdate(accountSql);
-	     			
+
 	    }catch(Exception e){
 	    	throw new IllegalStateException(e);
 	    }finally{
@@ -219,7 +219,7 @@ public class AccountDAO {
 					   + " ADRESS = '" + account.getAdress() + "',"
 					   + " TEL = '" + account.getTel() + "',"
 					   + " CARD = '" + account.getCard() + "'"
-					   + " WHERE USER_ID = '" + account.getUserId() + "'";
+					   + " WHERE USER_NAME = '" + account.getUserName() + "'";
 
 			// SQL文を発行
 			executeUpdate(SQL);
@@ -231,7 +231,7 @@ public class AccountDAO {
 			disconnect();
 		}
 	}
-	
+
 	/**
 	 * 顧客情報を格納するUSERテーブルから、引数で与えられたuserIdを持つ顧客データの削除をおこなう関数
 	 *

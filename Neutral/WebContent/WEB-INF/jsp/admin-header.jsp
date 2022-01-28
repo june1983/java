@@ -20,14 +20,7 @@
 
 <header>
 <div class="header">
-    <div class="col-1">
-    	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-white btn-primary">SHOPへ</button></a>
-    </div>
-    <div class="col-2">
     	<a href="/Neutral/WelcomeAdminServlet"><p class="logo2">Neutral</p></a>
-    </div>
-    <div class="col-4">
-    	<p class="title2"></p>
-    </div>
- </div>
+    	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-primary shop">SHOPへ</button></a>
+</div>
 </header>
