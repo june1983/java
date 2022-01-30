@@ -15,15 +15,15 @@
 		<div class="shadow p-3 mb-5 bg-body rounded" style="width:500px">
 
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">在庫ID</span>
+		  <span class="input-group-text btn-primary" id="addon-wrapping">在庫ID</span>
 		  <input type="text" name="skuId" class="form-control" value="<%=sku.getSkuId()%>" readonly="readonly" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">商品ID</span>
+		  <span class="input-group-text btn-primary" id="addon-wrapping">商品ID</span>
 		  <input type="text" name="productId" class="form-control" value="<%=sku.getProductId()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">商品名</span>
+		  <span class="input-group-text btn-primary" id="addon-wrapping">商品名</span>
 		  <input type="text" name="productName" class="form-control" value="<%=sku.getProductName()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 
@@ -33,7 +33,7 @@
 		</div><br> -->
 
 		<div class="input-group mb-3">
-		  <label class="input-group-text bg-info" for="inputGroupSelect01">カテゴリ</label>
+		  <label class="input-group-text btn-primary" for="inputGroupSelect01">カテゴリ</label>
 		  <select  name="category" class="form-select" id="inputGroupSelect01">
 		    <option selected><%=sku.getCategoryId()%></option>
 		    <option value="TS">ＴＳ: Tシャツ・カットソー</option>
@@ -49,7 +49,7 @@
 		  </select>
 		</div>
 		<div class="input-group mb-3">
-		  <label class="input-group-text bg-info" for="inputGroupSelect01">サイズ</label>
+		  <label class="input-group-text btn-primary" for="inputGroupSelect01">サイズ</label>
           <select   name="size" class="form-select" name="orderSize" aria-label="Default select example">
             <option selected><%=sku.getSize()%></option>
             <option value="XS">XS</option>
@@ -61,19 +61,19 @@
           </select>
 		</div>
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">単価</span>
+		  <span class="input-group-text btn-primary" id="addon-wrapping">単価</span>
 		  <input type="text" name="price" class="form-control" value="<%=sku.getPrice()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">商品説明</span>
-		  <input type="text" name="description" class="form-control" value="<%=sku.getDescription()%>" aria-label="Username" aria-describedby="addon-wrapping">
+			<span class="input-group-text btn-primary" id="addon-wrapping">商品説明</span>
+			<textarea class="form-control"  name="description" id="exampleFormControlTextarea1" rows="10"><%=sku.getDescription()%></textarea>
 		</div><br>
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">商品属性</span>
-		  <input type="text" name="attribute" class="form-control" value="<%=sku.getAttribute()%>" aria-label="Username" aria-describedby="addon-wrapping">
+			<span class="input-group-text btn-primary" id="addon-wrapping">商品属性</span>
+			<textarea class="form-control" name="attribute" id="exampleFormControlTextarea1" rows="3"><%=sku.getAttribute()%></textarea>
 		</div><br>
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">在庫数量</span>
+		  <span class="input-group-text btn-primary" id="addon-wrapping">在庫数量</span>
 		  <input type="text" name="stock" class="form-control" value="<%=sku.getStock()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		  <button type="submit" class="btn btn-primary">変更する</button>

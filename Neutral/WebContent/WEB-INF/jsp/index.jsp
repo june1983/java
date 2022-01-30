@@ -42,65 +42,59 @@
 				</div>
       		</div>
 
-		    <table class="table table-bordered">
+		    <table id="foo-table" class="table table-bordered">
 		    	<thead>
 			        <tr>
-						<th scope="col" class="example2">在庫ID</th>
-						<th scope="col" class="example4">商品ID</th>
+						<th scope="col" class="example1">在庫ID</th>
+						<th scope="col" class="example1">商品ID</th>
 						<th scope="col" class="example5">商品名</th>
-						<th scope="col" class="example5">カテゴリ</th>
-						<th scope="col" class="example5">サイズ</th>
+						<th scope="col" class="example1">カテゴリ</th>
+						<th scope="col" class="example1">サイズ</th>
 						<th scope="col" class="example4">単価</th>
 						<th scope="col" class="example3">商品説明</th>
 						<th scope="col" class="example2">商品属性</th>
-						<th scope="col" class="example5">在庫数量</th>
+						<th scope="col" class="example1">在庫数量</th>
 						<th scope="col" class="example4"></th>
 			        </tr>
 		    	</thead>
 				<tbody>
 					<% for (SKU sku: skuList) { %>
 					<tr>
-					  <td class="example2"><%=sku.getSkuId()%></td>
-					  <td class="example4"><%=sku.getProductId()%></td>
+					  <td class="example1"><%=sku.getSkuId()%></td>
+					  <td class="example1"><%=sku.getProductId()%></td>
 					  <td class="example5"><%=sku.getProductName()%></td>
-					  <td class="example5"><%=sku.getCategoryId()%></td>
-					  <td class="example5"><%=sku.getSize()%></td>
+					  <td class="example1"><%=sku.getCategoryId()%></td>
+					  <td class="example1"><%=sku.getSize()%></td>
 					  <td class="example4"><%=sku.getPrice()%></td>
 					  <td class="example3"><%=sku.getDescription()%></td>
 					  <td class="example2"><%=sku.getAttribute()%></td>
-					  <td class="example5"><%=sku.getStock()%></td>
+					  <td class="example1"><%=sku.getStock()%></td>
 					  <td class="hensyubotton"><a href="/Neutral/ProductEditServlet?id=<%=sku.getSkuId()%>"><button type="button" class="btn btn-primary btn-sm">編集する</button></a></td>
 					</tr>
 					<% } %>
 				</tbody>
 		    </table>
-
-      		<!-- ページング用div -->
-			<div class="c-pagination">
-				<ul class="c-pagination__list first-active ">
-					<li class="c-pagination__item">
-						<a class="c-pagination__item-link is-current" href="/">1</a>
-					</li>
-					<li class="c-pagination__item">
-						<a rel="next" class="c-pagination__item-link" href="/?page=2">2</a>
-					</li>
-					<li class="c-pagination__item">
-						<a class="c-pagination__item-link" href="/?page=3">3</a>
-					</li>
-					<li class="c-pagination__item">
-						<a class="c-pagination__item-link" href="/?page=4">4</a>
-					</li>
-					<li class="c-pagination__item">
-						<a class="c-pagination__item-link" href="/?page=5">5</a>
-					</li>
-					<li class="c-pagination__item">
-						<a rel="next" class="c-pagination__item-link" href="/?page=2">&rsaquo;</a>
-					</li>
-					<li class="c-pagination__item">
-						<a class="c-pagination__item-link" href="/?page=11">&raquo;</a>
-					</li>
-				</ul>
-			</div>
+	    	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	    	<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+	    	<script type="text/javascript">
+		      jQuery(function($){
+		        // デフォルトの設定を変更
+		        $.extend( $.fn.dataTable.defaults, {
+		            language: {
+		                url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+		            }
+		        });
+		
+		        $("#foo-table").DataTable({
+		            // 検索機能 無効
+		            searching: false,
+		            // 横スクロールバーを有効にする (scrollXはtrueかfalseで有効無効を切り替えます)
+		            //scrollX: true,
+		            // 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
+		            //scrollY: 200
+		        });
+		    });
+	    	</script>
 
 		    <div class="col m2">
 		        <a href="#"><button type="button" class="btn btn-outline-primary">管理画面TOPへ</button></a><br>

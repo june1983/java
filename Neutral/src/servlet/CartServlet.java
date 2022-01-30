@@ -30,7 +30,7 @@ public class CartServlet extends HttpServlet {
 		if(account != null) {
 			CartDAO dao = new CartDAO();
 			int userId =account.getUserId();
-			ArrayList<Cart> cart = dao.selectByUser_Id(userId);
+			ArrayList<Cart> cart = dao.selectByUserId(userId);
 			session.setAttribute("cartList", cart);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogin.jsp");
 			dispatcher.forward(request,  response);
@@ -83,7 +83,7 @@ public class CartServlet extends HttpServlet {
 			cartDao.insert(cart);
 
 			// 特定のユーザーに紐づくカートテーブルのデータを全件取得する命令を呼び出し、戻り値を取得する
-			ArrayList<Cart> cartList = cartDao.selectByUser_Id(userId);
+			ArrayList<Cart> cartList = cartDao.selectByUserId(userId);
 
 			// カート情報をセッションスコープに格納
 			session.setAttribute("cartList", cartList);

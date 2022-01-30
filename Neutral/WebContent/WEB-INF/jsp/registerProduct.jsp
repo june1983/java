@@ -10,16 +10,16 @@
 		<div class="shadow p-3 mb-5 bg-body rounded" style="width:500px">
 		  <p strong>商品登録</p>
 		  <div class="input-group flex-nowrap">
-		    <span class="input-group-text bg-info" id="addon-wrapping">商品ID</span>
-		    <input type="text" name="productId" class="form-control" required placeholder="英数字4桁　※カテゴリーID+商品コード（整数2桁）" aria-label="Username" aria-describedby="addon-wrapping">
+		    <span class="input-group-text btn-primary" id="addon-wrapping">商品ID</span>
+		    <input type="text" name="productId" class="form-control" required placeholder="英数字4桁　※商品コード + カテゴリーID" aria-label="Username" aria-describedby="addon-wrapping">
 		  </div><br>
 		  <div class="input-group flex-nowrap">
-		    <span class="input-group-text bg-info" id="addon-wrapping">商品名</span>
+		    <span class="input-group-text btn-primary" id="addon-wrapping">商品名</span>
 		    <input type="text" name="productName" class="form-control" required aria-label="Username" aria-describedby="addon-wrapping">
 		  </div><br>
 
 		  <div class="input-group mb-3">
-		    <label class="input-group-text bg-info" for="inputGroupSelect01">カテゴリ</label>
+		    <label class="input-group-text btn-primary" for="inputGroupSelect01">カテゴリ</label>
 		    <select class="form-select" name="category" required id="inputGroupSelect01">
 		      <option selected>選択してください</option>
 		      <option value="TS">ＴＳ: Tシャツ・カットソー</option>
@@ -35,7 +35,7 @@
 		    </select>
 		  </div>
 			<div class="input-group mb-3">
-			  <label class="input-group-text bg-info" for="inputGroupSelect01">サイズ</label>
+			  <label class="input-group-text btn-primary" for="inputGroupSelect01">サイズ</label>
 			       <select class="form-select" name="size" required aria-label="Default select example">
 			         <option selected>サイズを選択してください</option>
 			         <option value="XS">XS</option>
@@ -47,19 +47,19 @@
 			       </select>
 			</div>
 			<div class="input-group flex-nowrap">
-			  <span class="input-group-text bg-info" id="addon-wrapping">単価</span>
+			  <span class="input-group-text btn-primary" id="addon-wrapping">単価</span>
 			  <input type="text" class="form-control" name="price" required aria-label="Username" aria-describedby="addon-wrapping">
 			</div><br>
 			<div class="input-group flex-nowrap">
-			  <span class="input-group-text bg-info" id="addon-wrapping">商品説明</span>
-			  <input type="text" class="form-control" name="description" required placeholder="" aria-label="Username" aria-describedby="addon-wrapping">
+			    <span class="input-group-text btn-primary" id="addon-wrapping">商品説明</span>
+			    <textarea class="form-control"  name="description" id="exampleFormControlTextarea1" rows="10"></textarea>
 			</div><br>
 			<div class="input-group flex-nowrap">
-			  <span class="input-group-text bg-info" id="addon-wrapping">商品属性</span>
-			  <input type="text" class="form-control" name="attribute" required placeholder="例）コート,冬,coat,winter　※半角カンマで区切る" aria-label="Username" aria-describedby="addon-wrapping">
+			    <span class="input-group-text btn-primary" id="addon-wrapping">商品属性</span>
+			    <textarea class="form-control" name="attribute" required placeholder="例）コート,冬,coat　※半角カンマで区切る" id="exampleFormControlTextarea1" rows="3"></textarea>
 			</div><br>
 			<div class="input-group flex-nowrap">
-			  <span class="input-group-text bg-info" id="addon-wrapping">在庫数量</span>
+			  <span class="input-group-text btn-primary" id="addon-wrapping">在庫数量</span>
 			  <input type="text" class="form-control" name="stock" required placeholder="  " aria-label="Username" aria-describedby="addon-wrapping">
 			</div><br>
 			<button type="submit" class="btn btn-primary">登録する</button><br><br>

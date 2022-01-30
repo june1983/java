@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.AccountDAO;
 import model.Account;
+import model.Login;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -44,18 +45,19 @@ public class RegisterServlet extends HttpServlet {
 		account.setTel(tel);
 		account.setCard(card);
 
-		//セッションスコープにAccountオブジェクトを保存
-		HttpSession session = request.getSession();
-		session.setAttribute("Account", account);
-
-//		//セッションスコープからAccountオブジェクトを取得
-//		Account a = (Account) session.getAttribute("Account");
-
 		//DAOオブジェクト宣言
 		AccountDAO ad = new AccountDAO();
 
 		//登録メソッドを呼び出し
 		ad.insert(account);
+
+		//ログイン情報の取得
+		Login login = new Login(email, pass);
+		Account user = ad.findByLogin(login);
+
+		//セッションスコープに登録したAccountオブジェクトを保存
+		HttpSession session = request.getSession();
+		session.setAttribute("Account", user);
 
 		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registerOK.jsp");

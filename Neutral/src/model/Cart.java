@@ -1,6 +1,8 @@
 package model;
 
 public class Cart{
+	//カートID
+	private int cartId;
 	//ユーザーID
 	private int userId;
 	//商品のID
@@ -15,7 +17,16 @@ public class Cart{
 	private int orderNumber;
 	//小計
 	private int subtotal;
-
+	
+	//カートIDを取得する
+	public int getCartId(){
+		return cartId;
+	}
+	//カートIDを設定する
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+	
 	//ユーザーIDを取得する
 	public int getUserId(){
 		return userId;

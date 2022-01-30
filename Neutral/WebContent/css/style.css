@@ -190,7 +190,7 @@ div#footer {
  	}
 
  .container-sc{
-	width: 700px;
+	width: 80%;
 	text-align: left;
 	margin: 0 auto ;
 	margin-top: 50px;
@@ -223,6 +223,14 @@ div#footer {
  th.example1 {
 	text-align: right;
 	}
+
+ td.example2 {
+	text-align: center;
+ 	}
+
+ th.example2 {
+	text-align: center;
+	}	
 
  th.checkbox {
 	text-align: center;
