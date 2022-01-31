@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* 管理画面 header　のスタイル */
+.p{
+    font-family: 'Varela Round', sans-serif;
+    line-height: 2.0;
+    padding-top: 5px;
+}
+
+.header {
+	display:flex ;
+	flex-diretion: row;
+	flex-wrap:nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	min-width: fit-content;
+	height: 70px;
+	background-color: #4169e1;
+	margin: 0 ;
+	padding: 0 ;
+}
+
+.header > a {
+	text-decoration: none;
+}
+
+
+#width {
+	width: 100%;
+	margin: 0 ;
+	padding: 0 ;
+}
+
+.logo2 {
+	font-family: 'Lobster', cursive;
+	font-size: 40px;
+	display: inline;
+	color: #ffffff;
+	text-align: left;
+	padding: 12px;
+}
+
+.shop {
+	display: inline;
+}
+
+
+
+.title2 {
+  color: #ffffff;
+  text-align: left;
+  margin-top : 10px ;
+}
+
+.container-h {
+  padding-left: 15px;
+  flex-flow:row nowrap;
+}
