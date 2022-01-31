@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;

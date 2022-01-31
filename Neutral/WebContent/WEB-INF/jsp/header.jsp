@@ -34,7 +34,10 @@
 				</c:if>
 				<c:if test="${sessionScope.Account != null}">
 				<li class="nav-item"><a href="/Neutral/LogoutServlet" class="nav-link link-dark px-2">ログアウト</a></li>
-				</c:if>			    
+				</c:if>
+				<c:if test="${sessionScope.Account == null}">
+				<li class="nav-item"><a href="/Neutral/RegisterServlet" class="nav-link link-dark px-2">会員登録</a></li>
+				</c:if>	    
 				<li class="nav-item"><a href="/Neutral/AdminLoginServlet" class="nav-link link-dark px-2">お店を管理する</a></li>
 			</ul>
 		</div>

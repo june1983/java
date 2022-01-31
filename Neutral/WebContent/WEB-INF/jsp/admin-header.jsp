@@ -18,6 +18,11 @@
 <link rel="stylesheet" href="css/style-ad2.css">
 <!-- dataTables -->
 <link rel="stylesheet" type="text/css" href="css/tables.css">
+<style>
+.label-danger {
+	color:red;
+}
+</style>
 </head>
 <body>
 

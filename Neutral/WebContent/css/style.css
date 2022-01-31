@@ -291,3 +291,24 @@ border-radius: 5px / 5px;
     0% {opacity: 0} /*アニメーション開始時は不透明度0%*/
     100% {opacity: 1} /*アニメーション終了時は不透明度100%*/
 }
+
+/* スマートフォン向けcss */
+@media screen and (max-width: 600px) {
+	.photo {
+     position: relative;
+    width: 48%;
+    height: auto;
+    margin: 1%;
+    overflow: hidden;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.photo {
+     position: relative;
+    width: 98%;
+    height: auto;
+    margin: 1%;
+    overflow: hidden;
+	}
+}

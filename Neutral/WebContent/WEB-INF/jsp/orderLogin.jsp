@@ -7,6 +7,7 @@
 // セッションスコープからカート情報を取得
 ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,9 +112,9 @@ ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 		    <p>上記内容でよろしければご注文を確定するボタンをクリックしてください。</p>
 		    <div><br>
 		    	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
-		    	<%// if (cart != null) { %>
-		        <button type="submit" class="btn btn-dark <% System.out.println("off");%>">ご注文内容を確定する</button>
-		        <%// } %>
+		    		<% if (cartList.size() != 0) { %>		        
+		    		<button type="submit" class="btn btn-dark <% System.out.println("off");%>">ご注文内容を確定する</button>
+		        	<% } %>
 		        <br><br>
 		    </div>
 	    </form>
