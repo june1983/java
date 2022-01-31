@@ -142,10 +142,14 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: auto;
-    height: 80%;                                             /* 1/27 鈴木変更 */
+    height: 80%;
+    padding-bottom: 10px;                                           /* 1/27 鈴木変更 */
 	}
 .inner-text {												 /* 1/27 鈴木追加 */
 	text-align:center;
+	padding: 0px 25px;
+	color: #666666;
+	}
 
 	}
 /* footerのスタイル */
@@ -230,7 +234,7 @@ div#footer {
 
  th.example2 {
 	text-align: center;
-	}	
+	}
 
  th.checkbox {
 	text-align: center;

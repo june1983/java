@@ -20,7 +20,7 @@
 		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text btn-primary" id="addon-wrapping">商品ID</span>
-		  <input type="text" name="productId" class="form-control" value="<%=sku.getProductId()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="productId" class="form-control" value="<%=sku.getProductId()%>"  readonly="readonly" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text btn-primary" id="addon-wrapping">商品名</span>
