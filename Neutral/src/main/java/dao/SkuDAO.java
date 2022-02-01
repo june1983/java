@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "";
+	private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -135,6 +135,7 @@ public class SkuDAO {
 				sku.setProductId(rs.getString("product_id"));
 				sku.setCategoryId(rs.getString("category_id"));
 				sku.setProductName(rs.getString("product_name"));
+				sku.setProductImage(rs.getString("image"));
 				sku.setSize(rs.getString("product_size"));
 				sku.setStock(rs.getInt("sku_number"));
 				sku.setPrice(rs.getInt("price"));
@@ -185,6 +186,7 @@ public class SkuDAO {
 				sku.setProductId(rs.getString("product_id"));
 				sku.setCategoryId(rs.getString("category_id"));
 				sku.setProductName(rs.getString("product_name"));
+				sku.setProductImage(rs.getString("image"));
 				sku.setSize(rs.getString("product_size"));
 				sku.setStock(rs.getInt("sku_number"));
 				sku.setPrice(rs.getInt("price"));
@@ -236,6 +238,7 @@ public class SkuDAO {
 				sku.setProductId(rs.getString("product_id"));
 				sku.setCategoryId(rs.getString("category_id"));
 				sku.setProductName(rs.getString("product_name"));
+				sku.setProductImage(rs.getString("image"));
 				sku.setSize(rs.getString("product_size"));
 				sku.setStock(rs.getInt("sku_number"));
 				sku.setPrice(rs.getInt("price"));
@@ -271,10 +274,11 @@ public class SkuDAO {
 			connect();
 
 			// 商品データを登録するSQL文を用意
-			String productSql = "INSERT INTO product (PRODUCT_ID, CATEGORY_ID, PRODUCT_NAME, PRICE, DESCRIPTION, ATTRIBUTE) VALUES("
+			String productSql = "INSERT INTO product (PRODUCT_ID, CATEGORY_ID, PRODUCT_NAME, IMAGE, PRICE, DESCRIPTION, ATTRIBUTE) VALUES("
 					   + "'" + sku.getProductId()  + "',"
 					   + "'" + sku.getCategoryId() + "',"
 					   + "'" + sku.getProductName() + "',"
+					   + "'" + sku.getProductImage() + "',"
 					   + "'" + sku.getPrice() + "',"
 					   + "'" + sku.getDescription() + "',"
 					   + "'" + sku.getAttribute() + "')";
@@ -318,6 +322,7 @@ public class SkuDAO {
 					   + " PRODUCT_ID = '" + skuUd.getProductId() + "',"
 					   + " CATEGORY_ID = '" + skuUd.getCategoryId() + "',"
 					   + " PRODUCT_NAME = '" + skuUd.getProductName() + "',"
+					   + " IMAGE = '" + skuUd.getProductImage() + "',"
 					   + " PRICE = '" + skuUd.getPrice() + "',"
 					   + " DESCRIPTION = '" + skuUd.getDescription() + "',"
 					   + " ATTRIBUTE = '" + skuUd.getAttribute() + "'"
@@ -380,6 +385,7 @@ public class SkuDAO {
 				sku.setProductId(rs.getString("product_id"));
 				sku.setCategoryId(rs.getString("category_id"));
 				sku.setProductName(rs.getString("product_name"));
+				sku.setProductImage(rs.getString("image"));
 				sku.setSize(rs.getString("product_size"));
 				sku.setStock(rs.getInt("sku_number"));
 				sku.setPrice(rs.getInt("price"));

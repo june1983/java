@@ -26,7 +26,7 @@
 <style>
 .searchWord {
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 }
 </style>
 </head>
@@ -49,7 +49,7 @@
 		<div class="photo shadow fade1">
 		    <div class="inner">
 			    <a href="/Neutral/OrderServlet?id=<%=product.getProductId()%>">
-			    <img src="img/<%=product.getProductId()%>.jpg" alt="<%=product.getProductName()%>">
+			    <img src="img/<%=product.getProductImage()%>" alt="<%=product.getProductName()%>">
 			    </a>
 		    </div>
 		    <div class="inner-text">

@@ -43,7 +43,7 @@ color:red;
         <div class="shadow p-3 mb-5 bg-body rounded">
           <div id="content">
             <div id="featured_img">
-            <img id="img" src="img/<%=product.getProductId()%>.jpg"alt="<%=product.getProductName()%>">
+            <img id="img" src="img/<%=product.getProductImage()%>"alt="<%=product.getProductName()%>">
             </div>
             <!--
             <div id="thumb_img" class="cf">

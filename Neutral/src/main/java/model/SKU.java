@@ -9,6 +9,8 @@ public class SKU {
 	private String categoryId;
 	//商品名
 	private String productName;
+	//商品写真
+	private String productImage;
 	//単価
 	private int price;
 	//サイズ
@@ -26,6 +28,7 @@ public class SKU {
 		this.productId = null;
 		this.categoryId = null;
 		this.productName = null;
+		this.productImage = null;
 		this.price = 0;
 		this.size = null;
 		this.stock = 0;
@@ -68,7 +71,14 @@ public class SKU {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	
+	//商品写真ファイル名を取得する
+	public String getProductImage() {
+		return productImage;
+	}
+	//商品写真ファイル名を設定する
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
 	//商品単価を取得する
 	public int getPrice() {
 		return price;

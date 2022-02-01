@@ -7,6 +7,8 @@ public class Product {
 	private String categoryId;
 	//商品名
 	private String productName;
+	//商品写真
+	private String productImage;
 	//単価
 	private int price;
 	//商品説明
@@ -19,6 +21,7 @@ public class Product {
 		this.productId = null;
 		this.categoryId = null;
 		this.productName = null;
+		this.productImage = null;
 		this.price = 0;
 		this.description = null;
 		this.attribute = null;
@@ -49,6 +52,15 @@ public class Product {
 	//商品名を設定する
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+	
+	//商品写真ファイル名を取得する
+	public String getProductImage() {
+		return productImage;
+	}
+	//商品写真ファイル名を設定する
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
 	}
 
 	//商品単価を取得する

@@ -38,11 +38,11 @@ color:red;
       <p strong>会員登録</p>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
-        <input type="text" class="form-control"  name="userName"  placeholder="Username" maxlength='20' pattern="^[0-9A-Za-z]+$" required>
+        <input type="text" class="form-control"  name="userName"  placeholder="Username" maxlength='20' required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
-        <input type="text" class="form-control"  name="adress"  placeholder="Address" maxlength='50' pattern="^[0-9A-Za-z.!?/-@]+$" required>
+        <input type="text" class="form-control"  name="adress"  placeholder="Address" maxlength='50' required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>

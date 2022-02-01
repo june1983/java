@@ -37,11 +37,11 @@ Account account = (Account) session.getAttribute("Account");
 			<form action="/Neutral/AccountEditServlet" method="post">
 				<div class="input-group flex-nowrap">
 				  <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
-				  <input type="text" name="user_Name" class="form-control" value="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping" maxlength='20' pattern="^[0-9A-Za-z]+$">
+				  <input type="text" name="user_Name" class="form-control" value="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping" maxlength='20'>
 				</div><br>
 				<div class="input-group flex-nowrap">
 				  <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
-				  <input type="text" name="adress" class="form-control" value="<c:out value="${sessionScope.Account.getAdress() }"/>" aria-label="Username" aria-describedby="addon-wrapping" maxlength='50' pattern="^[0-9A-Za-z.!?/-@]+$" >
+				  <input type="text" name="adress" class="form-control" value="<c:out value="${sessionScope.Account.getAdress() }"/>" aria-label="Username" aria-describedby="addon-wrapping" maxlength='50'>
 				</div><br>
 				<div class="input-group flex-nowrap">
 				  <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>

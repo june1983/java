@@ -18,10 +18,10 @@ import model.SKU;
 
 @WebServlet("/RegisterProductServlet")
 @MultipartConfig(
-location="C:/tmp",
+location="/tmp"
 //maxFileSize=1000000,
-maxRequestSize=1000000,
-fileSizeThreshold=1000000
+//maxRequestSize=1000000,
+//fileSizeThreshold=1000000
 )
 public class RegisterProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -86,6 +86,7 @@ public class RegisterProductServlet extends HttpServlet {
 		SKU sku = new SKU();
 		sku.setProductId(ProductId);
 		sku.setProductName(ProductName);
+		sku.setProductImage(fileName);
 		sku.setCategoryId(category);
 		sku.setSize(size);
 		sku.setPrice(price);
