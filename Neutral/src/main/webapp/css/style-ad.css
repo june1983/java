@@ -106,11 +106,11 @@ th,td {
 	vertical-align: middle;
 }
 
- td.example1 {
-  text-align: right;
+/* td.example1 {
+  text-align: right;							1/31 無効にしました 今井	*/
  }
- th.example1 {
-  text-align: right;
+/* th.example1 {
+  text-align: right;							1/31 無効にしました 今井	*/
  }
  th.checkbox {
    text-align: center;
@@ -119,66 +119,74 @@ th,td {
  /* 商品登録・編集table のスタイル */
   th.example1 {
   text-align: center;
-  width: 30px;
+  width: 20px;
   background-color: #9ec5fe;
  }
  th.example2 {
   text-align: center;
-  width: 100px;
+  max-width: 100px;											/* 追加 */
+  width: 100px;											/* 400を100に 1/31 変更　今井*/
   background-color: #9ec5fe;
  }
  th.example3 {
   text-align: center;
-  width: 400px;
+  max-width: 200px;										/* 追加 */
+  width: 200px;											/* 400を100に 1/31 変更　今井 */
   background-color: #9ec5fe;
  }
  th.example4 {
   text-align: center;
-  width: 100px;
+  width: 30px;
   background-color: #9ec5fe;
  }
  th.example5 {
   text-align: center;
-  width: 100px;
+  max-width: 150px;										/* 追加 */
+  width: 150px;											/* 400を100に 1/31 変更　今井 */
   background-color: #9ec5fe;
  }
 
  td.example1 {
   text-align: center;
-  width: 30px;
+								/* 追加  1/31 今井 */
+  width: 20px;
  }
  td.example2 {
   text-align: left;
-  width: 50px;
+  max-width: 100px;										/* 追加 */
+  width: 100px;											/* 400を100に 1/31 変更　今井 */
  }
- th.example3 {
+ td.example3 {											/* th.をtd.に */
+  text-align: left;										/* centerをleftに */
+  max-width: 200px;										/* 追加 */
+  width: 200px;											/* 400を100に */
+  														/* bcをなしに　1/31 変更　今井 */
+ }
+ td.example4 {											/* th.をtd.に */
   text-align: center;
-  width: 400px;
-  background-color: #9ec5fe;
+  width: 30px;
+ 														/* bcをなしに　1/31 変更　今井 */
  }
- th.example4 {
-  text-align: center;
-  width: 100px;
-  background-color: #9ec5fe;
+ td.example5 {											/* th.をtd.に */
+  text-align: left;										/* centerをleftに */
+  max-width: 150px;										/* 追加 */
+  width: 150px;											/* 400を100に */
+  														/* bcをなしに　1/31 変更　今井 */
  }
- th.example5 {
-  text-align: center;
-  width: 100px;
-  background-color: #9ec5fe;
- }
- td.fileulimg {
+/* td.fileulimg {
   text-align: center;
   width: 200px;
- }
- td.hensyubotton {
+ }													1/31 無効にしました　今井　*/
+ td.hensyubutton {
   text-align: center;
   margin: 0 auto ;
-  width: 100px;
+  width: 35px;											/* 100pxを30pxに */
  }
- th.bottom {
+ th.button {
   text-align: center;
   margin: 0 auto ;
-  width: 100px;
+  background-color: #9ec5fe;
+  width: 35px;											/* 100pxを30pxに */
  }
 
  /* form fontのスタイル(bg-dark) */
@@ -232,7 +240,7 @@ li.page.navi-active a {
 
 /* 商品管理 container のスタイル */
 .container-sl {
-  width: 1570px;										/* width: 1570px;を追加　1/27 今井  */
+  width: 1250px;										/* width: 1570px;を1250に変更　1/31 今井  */
   text-align: center;
   margin: 20px auto ;									/* margin:20px　を追加　1/27 今井  */
  }
@@ -315,13 +323,14 @@ p.fileup {
 /* 1/26 追加分 */
 
 table td {
-    max-width: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 15px;
 }
-
+table {
+	table-layout: fixed;									/* 1/31 追加　今井  */
+}
 
 .search {													/* .search 追加　1/27 今井  */
   display:flex ;
@@ -329,7 +338,7 @@ table td {
   flex-wrap:nowrap;
   justify-content: flex-start;
   align-items: center;
-  width: 1500px;
+  width: 1200px;											/* 1200pxに変更 1/31 今井 */
   height: 70px;
   height: 70px;
   background-color: #ffffff ;

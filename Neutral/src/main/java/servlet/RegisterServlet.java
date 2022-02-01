@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import dao.AccountDAO;
 import model.Account;
 import model.Login;
+import model.RegisterLogic;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -45,23 +46,42 @@ public class RegisterServlet extends HttpServlet {
 		account.setTel(tel);
 		account.setCard(card);
 
+		// USER_IDを取得して変数に代入
+		int userId = account.getUserId();
+
 		//DAOオブジェクト宣言
 		AccountDAO ad = new AccountDAO();
 
-		//登録メソッドを呼び出し
-		ad.insert(account);
+		//登録処理の実行
+		RegisterLogic rl = new RegisterLogic();
+		boolean b = rl.execute(account);
 
-		//ログイン情報の取得
-		Login login = new Login(email, pass);
-		Account user = ad.findByLogin(login);
+		//登録処理成功時
+		if(b == true) {
+			//ログイン情報の取得
+			Login login = new Login(email, pass);
+			Account user = ad.findByLogin(login);
 
-		//セッションスコープに登録したAccountオブジェクトを保存
-		HttpSession session = request.getSession();
-		session.setAttribute("Account", user);
+			//セッションスコープに登録したAccountオブジェクトを保存
+			HttpSession session = request.getSession();
+			session.setAttribute("Account", user);
 
-		//フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registerOK.jsp");
-		dispatcher.forward(request, response);
+			//フォワード
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registerOK.jsp");
+			dispatcher.forward(request, response);
+
+		//登録処理失敗時
+		} else {
+
+			//アカウント削除
+			ad.delete(userId);
+
+			//フォワード
+			request.setAttribute("message", "このメールアドレスまたはパスワードは既に使用されています");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
+			dispatcher.forward(request, response);
+
+		}
 	}
 }
 

@@ -18,10 +18,10 @@ import model.SKU;
 
 @WebServlet("/RegisterProductServlet")
 @MultipartConfig(
-location="/tmp"
+location="C:/tmp",
 //maxFileSize=1000000,
-//maxRequestSize=1000000,
-//fileSizeThreshold=1000000
+maxRequestSize=1000000,
+fileSizeThreshold=1000000
 )
 public class RegisterProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -47,14 +47,22 @@ public class RegisterProductServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String attribute = request.getParameter("attribute");
 		int stock = Integer.parseInt(request.getParameter("stock"));
-		
+
+		// SQLエラーの原因になりうるシングルコーテーションを半角スペースに変換
+		String pattern = "'" ;
+		String ProductId = productId.replaceAll(pattern,"");
+		String ProductName = productName.replaceAll(pattern,"");
+		String Description = description.replaceAll(pattern,"");
+		String Attribute = attribute.replaceAll(pattern,"");
+
+
 		//name属性がpictのファイルをPartオブジェクトとして取得
 		Part part = request.getPart("pict");
-		
+
 		//ファイル名を取得
 		String filename = part.getSubmittedFileName();//ie対応が不要な場合
 		//String filename=Paths.get(part.getSubmittedFileName()).getFileName().toString();
-		
+
 		//アップロードされたファイルの拡張子を取得
 		String fe = "";
 		int i = filename.lastIndexOf('.');
@@ -67,22 +75,22 @@ public class RegisterProductServlet extends HttpServlet {
 
 		//アップロードするフォルダ
 		String path=getServletContext().getRealPath("/img");
-		
+
 		//実際にファイルが保存されるパス確認
 		System.out.println(path);
-		
+
 		//書き込み
 		part.write(path+File.separator+fileName);
 
 		// 商品在庫データ格納用のSKUオブジェクトを生成
 		SKU sku = new SKU();
-		sku.setProductId(productId);
-		sku.setProductName(productName);
+		sku.setProductId(ProductId);
+		sku.setProductName(ProductName);
 		sku.setCategoryId(category);
 		sku.setSize(size);
 		sku.setPrice(price);
-		sku.setDescription(description);
-		sku.setAttribute(attribute);
+		sku.setDescription(Description);
+		sku.setAttribute(Attribute);
 		sku.setStock(stock);
 
 		// SkuDAOインスタンスを生成し、商品在庫テーブルに情報を追加

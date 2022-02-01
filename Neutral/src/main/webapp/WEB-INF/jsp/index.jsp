@@ -47,11 +47,11 @@
 			        <tr>
 						<th scope="col" class="example1">在庫ID</th>
 						<th scope="col" class="example4">商品ID</th>
-						<th scope="col" class="example2">商品名</th>
+						<th scope="col" class="example5">商品名</th>
 						<th scope="col" class="example4">カテゴリ</th>
 						<th scope="col" class="example4">サイズ</th>
 						<th scope="col" class="example4">単価</th>
-						<th scope="col" class="example3">商品説明</th>
+						<th scope="col" class="example5">商品説明</th>
 						<th scope="col" class="example5">商品属性</th>
 						<th scope="col" class="example1">在庫数量</th>
 						<th scope="col" class="button"></th>
@@ -62,14 +62,14 @@
 					<tr>
 					  <td class="example1"><%=sku.getSkuId()%></td>
 					  <td class="example4"><%=sku.getProductId()%></td>
-					  <td class="example2"><%=sku.getProductName()%></td>
+					  <td class="example5"><%=sku.getProductName()%></td>
 					  <td class="example4"><%=sku.getCategoryId()%></td>
 					  <td class="example4"><%=sku.getSize()%></td>
 					  <td class="example4"><%=sku.getPrice()%></td>
-					  <td class="example3"><%=sku.getDescription()%></td>
+					  <td class="example5"><%=sku.getDescription()%></td>
 					  <td class="example5"><%=sku.getAttribute()%></td>
 					  <td class="example1"><%=sku.getStock()%></td>
-					  <td class="hensyubotton"><a href="/Neutral/ProductEditServlet?id=<%=sku.getSkuId()%>"><button type="button" class="btn btn-primary btn-sm">編集する</button></a></td>
+					  <td class="hensyubutton"><a href="/Neutral/ProductEditServlet?id=<%=sku.getSkuId()%>"><button type="button" class="btn btn-primary btn-sm">編集する</button></a></td>
 					</tr>
 					<% } %>
 				</tbody>
@@ -84,7 +84,7 @@
 		                url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
 		            }
 		        });
-		
+
 		        $("#foo-table").DataTable({
 		            // 検索機能 無効
 		            searching: false,

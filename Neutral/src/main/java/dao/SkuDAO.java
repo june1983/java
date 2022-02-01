@@ -20,7 +20,7 @@ public class SkuDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -427,19 +427,51 @@ public class SkuDAO {
 		}
 
 	}
-	
+
 	//商品の在庫があるかを確認するメソッド
-	public void checkSku(ArrayList<SKU> skuList) {
+	public int checkSizeSku(String productId, String productSize) {
 
 		try {
 			// DB接続
 			connect();
 
-			for(SKU sku:skuList) {
+			// 指定された商品IDの商品の各サイズの在庫数データを取得するSQL文を用意
+			String sql = "SELECT SKU_NUMBER FROM `sku`"
+			+ " WHERE PRODUCT_ID = '" + productId + "' AND PRODUCT_SIZE = '" + productSize + "'";
+			// SQL文を発行
+			System.out.println(sql);
+			smt.execute(sql);
+
+			//SQLの実行結果を変数stockにセット
+			ResultSet rs = smt.getResultSet();
+			//resultsetがnullかどうかを確認
+			if(rs.next()) {
+				//nullじゃなかった場合の処理
+				int stock = rs.getInt("SKU_NUMBER");
+				return stock;
+			}else {
+				//nullだった場合の処理
+				return 0;
+			}
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			// DB接続解除
+			disconnect();
+		}
+
+	}
+
+	//引数を渡すパターンの在庫チェック
+	public int checkSku(String productId, String productSize, int orderNumber) {
+
+		try {
+			// DB接続
+			connect();
 
 			// 指定された商品ID・サイズの在庫数データを取得するSQL文を用意
 			String sql = "SELECT SKU_NUMBER FROM `sku`"
-			+ " WHERE PRODUCT_ID = '" + sku.getProductId() + "' AND PRODUCT_SIZE = '" + sku.getSize() + "'";
+			+ " WHERE PRODUCT_ID = '" + productId + "' AND PRODUCT_SIZE = '" + productSize + "'";
 			// SQL文を発行
 			System.out.println(sql);
 			smt.execute(sql);
@@ -447,11 +479,7 @@ public class SkuDAO {
 			ResultSet rs = smt.getResultSet();
 			rs.next();
 			int stock = rs.getInt("SKU_NUMBER");
-			//在庫数量が注文数量より多いかを確認
-			if(stock - sku.getStock() < 0) {
-				System.out.println("在庫なし");
-			}
-			}
+			return stock;
 
 		} catch (Exception e) {
 			throw new IllegalStateException(e);

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="dao.ProductDAO,model.Product,java.util.ArrayList"%>
+<%@ page import="dao.ProductDAO,model.Product,model.SizeSku,java.util.ArrayList"%>
 <%
 //セッションスコープから商品情報を取得
 Product product = (Product) session.getAttribute("Product");
+//アプリケーションスコープからサイズごとの在庫情報を取得
+SizeSku sizeSku = (SizeSku) session.getAttribute("SizeSku");
 %>
 <!DOCTYPE html>
 <html>
@@ -21,6 +23,11 @@ Product product = (Product) session.getAttribute("Product");
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/item-image.scss">
+<style>
+.label-danger {
+color:red;
+}
+</style>
 </head>
 <body>
 <!-- HEADER -->
@@ -61,12 +68,24 @@ Product product = (Product) session.getAttribute("Product");
           サイズ：
           <select class="form-select-s" name="orderSize" required>
             <option value="">サイズを選択してください</option>
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="FREE">FREE</option>
+            <option value="XS" <% if(sizeSku.getXS() < 1) { out.println("disabled"); }; %>>
+            	XS<% if(sizeSku.getXS() < 1 ) { out.println("　　※在庫なし"); }; %>
+            </option>
+	        <option value="S" <% if(sizeSku.getS() < 1) { out.println("disabled"); }; %>>
+	        	 S<% if(sizeSku.getS() < 1 ) { out.println("　　※在庫なし"); }; %>
+	        </option>
+            <option value="M" <% if(sizeSku.getM() < 1) { out.println("disabled"); }; %>>
+            	 M<% if(sizeSku.getM() < 1 ) { out.println("　　※在庫なし"); }; %>
+            </option>
+            <option value="L" <% if(sizeSku.getL() < 1) { out.println("disabled"); }; %>>
+            	 L<% if(sizeSku.getL() < 1 ) { out.println("　　※在庫なし"); }; %>
+            </option>
+            <option value="XL" <% if(sizeSku.getXL() < 1) { out.println("disabled"); }; %>>
+            	XL<% if(sizeSku.getXL() < 1 ) { out.println("　　※在庫なし"); }; %>
+            </option>
+            <option value="FREE" <% if(sizeSku.getFREE() < 1) { out.println("disabled"); }; %>>
+            	FREE<% if(sizeSku.getFREE() < 1 ) { out.println("　※在庫なし"); }; %>
+            </option>
           </select><br><br>
           個数：
           <input type="number" name="orderNumber" min="1" value="1"><br><br>
@@ -78,6 +97,7 @@ Product product = (Product) session.getAttribute("Product");
             <option value="3">3</option>
           </select><br><br><br>
 		  -->
+		  <p><span class="label label-danger">${message}</span></p>
           <button type="submit" class="btn btn-dark">カートに追加</button>
         </form>
       </div>

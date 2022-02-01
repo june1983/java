@@ -62,7 +62,7 @@
 		</div>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text btn-primary" id="addon-wrapping">単価</span>
-		  <input type="text" name="price" class="form-control" value="<%=sku.getPrice()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="price" class="form-control" value="<%=sku.getPrice()%>" oninput="value = value.replace(/[^0-9]+/i,'');" placeholder="半角数字のみ入力可" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		<div class="input-group flex-nowrap">
 			<span class="input-group-text btn-primary" id="addon-wrapping">商品説明</span>
@@ -74,7 +74,7 @@
 		</div><br>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text btn-primary" id="addon-wrapping">在庫数量</span>
-		  <input type="text" name="stock" class="form-control" value="<%=sku.getStock()%>" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="stock" class="form-control" value="<%=sku.getStock()%>" oninput="value = value.replace(/[^0-9]+/i,'');"  placeholder="半角数字のみ入力可" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		  <button type="submit" class="btn btn-primary">変更する</button>
 		  <a href="/Neutral/ProductCancelServlet"><button type="button" class="btn btn-outline-danger">商品情報を削除する</button><br><br>

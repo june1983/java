@@ -7,7 +7,6 @@
 // セッションスコープからカート情報を取得
 ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +22,11 @@ ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 <link rel="stylesheet" href="css/headers.css">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/style.css">
+<style>
+.label-danger {
+color:red;
+}
+</style>
 </head>
 <body>
 <!-- HEADER -->
@@ -49,7 +53,7 @@ ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 		        </tr>
 		      </thead>
 		      <tbody>
-		
+
 			    <% if (cartList != null) { %>
 			    	<% int totalPrice = 0; %>
 		        	<%  for (Cart cart: cartList) { %>
@@ -106,15 +110,15 @@ ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 		      </tfoot>
 			        <% } %>
 		    </table>
-		    
-		
+		    <p><span class="label label-danger">${message}</span></p>
+
 		    <p>ご購入の商品にチェックを入れてください。</p>
 		    <p>上記内容でよろしければご注文を確定するボタンをクリックしてください。</p>
 		    <div><br>
 		    	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
-		    		<% if (cartList.size() != 0) { %>		        
-		    		<button type="submit" class="btn btn-dark <% System.out.println("off");%>">ご注文内容を確定する</button>
-		        	<% } %>
+		    	<%// if (cart != null) { %>
+		        <button type="submit" class="btn btn-dark <% System.out.println("off");%>">ご注文内容を確定する</button>
+		        <%// } %>
 		        <br><br>
 		    </div>
 	    </form>

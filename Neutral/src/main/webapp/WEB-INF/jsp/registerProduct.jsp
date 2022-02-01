@@ -21,7 +21,7 @@
 				<span class="input-group-text btn-primary" id="addon-wrapping">写真</span>
 				<input type="file" name="pict" class="form-control" placeholder="img" accept="image/jpeg, image/png">
 			</div><br>
-	
+
 			<div class="input-group mb-3">
 			  <label class="input-group-text btn-primary" for="inputGroupSelect01">カテゴリ</label>
 			  <select class="form-select" name="category" required id="inputGroupSelect01">
@@ -50,9 +50,9 @@
 			         <option value="FREE">FREE</option>
 			       </select>
 			</div>
-			<div class="input-group flex-nowrap">
+		 	<div class="input-group flex-nowrap">
 			  <span class="input-group-text btn-primary" id="addon-wrapping">単価</span>
-			  <input type="text" class="form-control" name="price">
+			  <input type="text" class="form-control" name="price" oninput="value = value.replace(/[^0-9]+/i,'');" required  placeholder="半角数字のみ入力可" aria-label="Username" aria-describedby="addon-wrapping">
 			</div><br>
 			<div class="input-group flex-nowrap">
 			    <span class="input-group-text btn-primary" id="addon-wrapping">商品説明</span>
@@ -62,11 +62,11 @@
 			    <span class="input-group-text btn-primary" id="addon-wrapping">商品属性</span>
 			    <textarea class="form-control" name="attribute" required placeholder="例）コート,冬,coat　※半角カンマで区切る" id="exampleFormControlTextarea1" rows="3"></textarea>
 			</div><br>
-			<div class="input-group flex-nowrap">
+ 			<div class="input-group flex-nowrap">
 				<span class="input-group-text btn-primary" id="addon-wrapping">在庫数量</span>
-				<input type="text" class="form-control" name="stock" required placeholder="">
+				<input type="text" class="form-control" name="stock" oninput="value = value.replace(/[^0-9]+/i,'');" required placeholder="半角数字のみ入力可">
 			</div><br>
-			
+
 			<button type="submit" class="btn btn-primary">登録する</button><br><br>
 			<a href="/Neutral/AdminLoginServlet"><button type="button" class="btn btn-outline-primary">戻る</button></a>
 		</div>

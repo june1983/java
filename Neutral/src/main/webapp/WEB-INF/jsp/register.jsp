@@ -18,6 +18,11 @@
 <link rel="stylesheet" href="css/headers.css">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/style.css">
+<style>
+.label-danger {
+color:red;
+}
+</style>
 </head>
 <body>
 <!-- HEADER -->
@@ -28,31 +33,32 @@
     <p>ユニセックスアイテムでもっと自由に。もっと楽しく。</p>
 
     <div class="container-scr">
+ 	<span class="label label-danger">${message}</span>
       <form class="shadow p-3 mb-5 bg-body rounded" action="/Neutral/RegisterServlet" method="post">
       <p strong>会員登録</p>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
-        <input type="text" class="form-control"  name="userName"  placeholder="Username" required>
+        <input type="text" class="form-control"  name="userName"  placeholder="Username" maxlength='20' pattern="^[0-9A-Za-z]+$" required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">住 所</span>
-        <input type="text" class="form-control"  name="adress"  placeholder="Address"  required>
+        <input type="text" class="form-control"  name="adress"  placeholder="Address" maxlength='50' pattern="^[0-9A-Za-z.!?/-@]+$" required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">メール</span>
-        <input type="text" class="form-control"  name="email"  placeholder="E-mail"  required>
+        <input type="email" class="form-control"  name="email"  placeholder="E-mail" maxlength='50' pattern="^[0-9A-Za-z.!?/-@]+$" required>
       </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">TEL</span>
-        <input type="text" class="form-control"  name="tel"  placeholder="Tel"  required>
-      </div><br>            
+        <input type="text" class="form-control"  name="tel"  placeholder="Tel" maxlength='15' pattern="^[0-9A-Za-z-]+$" required>
+      </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">パスワード</span>
-        <input type="text" class="form-control"  name="pass"  placeholder="Password"  required>
-      </div><br>            
+        <input type="password" class="form-control"  name="pass"  placeholder="Password" maxlength='10' pattern="^[0-9A-Za-z.!?/-@]+$" required>
+      </div><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">CARD</span>
-        <input type="text" class="form-control"  name="card"  placeholder="CARD"  required>
+        <input type="text" class="form-control"  name="card"  placeholder="CARD" maxlength='16' pattern="^[0-9A-Za-z]+$" required>
       </div><br>
 
         <button type="submit" class="btn btn-dark">登録する</button><br>

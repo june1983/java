@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ProductDAO;
+import dao.SkuDAO;
 import model.Product;
+import model.SizeSku;
 
 
 @WebServlet("/OrderServlet")
@@ -33,6 +35,19 @@ public class OrderServlet extends HttpServlet {
 		// 商品リストをセッションスコープに格納
 		HttpSession session = request.getSession();
 		session.setAttribute("Product", product);
+
+		//各サイズごとの在庫情報を取得
+		SizeSku sizeSku = new SizeSku();
+		SkuDAO skuDao = new SkuDAO();
+		sizeSku.setXS(skuDao.checkSizeSku(id, "XS"));
+		sizeSku.setS(skuDao.checkSizeSku(id, "S"));
+		sizeSku.setM(skuDao.checkSizeSku(id, "M"));
+		sizeSku.setL(skuDao.checkSizeSku(id, "L"));
+		sizeSku.setXL(skuDao.checkSizeSku(id, "XL"));
+		sizeSku.setFREE(skuDao.checkSizeSku(id, "FREE"));
+
+		//サイズ別の在庫情報をリクエストスコープに格納
+		session.setAttribute("SizeSku", sizeSku);
 
 		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/order.jsp");

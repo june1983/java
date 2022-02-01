@@ -15,6 +15,7 @@ import dao.CartDAO;
 import model.Account;
 import model.Cart;
 import model.Product;
+import model.StockCheck;
 
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
@@ -34,7 +35,7 @@ public class CartServlet extends HttpServlet {
 			session.setAttribute("cartList", cart);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogin.jsp");
 			dispatcher.forward(request,  response);
-			
+
 		// Accountデータが空の場合（非ログイン時）
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderLogout.jsp");
@@ -67,6 +68,15 @@ public class CartServlet extends HttpServlet {
 		cart.setOrderSize(orderSize);
 		cart.setOrderNumber(orderNumber);
 		cart.setSubtotal();
+
+		//商品の在庫有無を確認
+    	StockCheck stockCheck = new StockCheck();
+    	boolean result = stockCheck.execute(cart.getProductId(), cart.getOrderSize(), cart.getOrderNumber());
+    	if(!result) {
+    		//フォワード
+			request.setAttribute("message", "※選択した商品は在庫切れです");
+			request.getRequestDispatcher("/WEB-INF/jsp/order.jsp").forward(request, response);
+    	}
 
 		// セッションスコープにCartインスタンスを保存
 		session.setAttribute("cart", cart);

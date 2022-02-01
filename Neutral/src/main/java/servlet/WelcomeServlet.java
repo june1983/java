@@ -60,6 +60,9 @@ public class WelcomeServlet extends HttpServlet {
 			// 商品データを全件取得する命令を呼び出し、戻り値を取得する
 			ArrayList<Product> productList = productDao.search(search);
 
+			//searchをリクエストスコープに格納
+			request.setAttribute("search", search);
+
 			// 商品リストをリクエストスコープに格納
 			request.setAttribute("productList", productList);
 

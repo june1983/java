@@ -54,16 +54,23 @@ public class ProductEditServlet extends HttpServlet {
 		String attribute = request.getParameter("attribute");
 		int stock = Integer.parseInt(request.getParameter("stock"));
 
+		// SQLエラーの原因になりうるシングルコーテーションを半角スペースに変換
+		String pattern = "'" ;
+		String ProductId = productId.replaceAll(pattern,"");
+		String ProductName = productName.replaceAll(pattern,"");
+		String Description = description.replaceAll(pattern,"");
+		String Attribute = attribute.replaceAll(pattern,"");
+
 		// 編集した商品在庫データ格納用のSKUオブジェクトを生成
 		SKU skuUd = new SKU();
 		skuUd.setSkuId(skuId);
-		skuUd.setProductId(productId);
-		skuUd.setProductName(productName);
+		skuUd.setProductId(ProductId);
+		skuUd.setProductName(ProductName);
 		skuUd.setCategoryId(category);
 		skuUd.setSize(size);
 		skuUd.setPrice(price);
-		skuUd.setDescription(description);
-		skuUd.setAttribute(attribute);
+		skuUd.setDescription(Description);
+		skuUd.setAttribute(Attribute);
 		skuUd.setStock(stock);
 
 		// 商品リストをセッションスコープに格納

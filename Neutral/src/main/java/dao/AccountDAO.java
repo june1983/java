@@ -23,7 +23,7 @@ public class AccountDAO {
 	private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	private static final String DB_PASS = "";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -47,6 +47,7 @@ public class AccountDAO {
 			this.smt = this.con.createStatement();
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new IllegalStateException(e);
 		}
 
@@ -87,6 +88,7 @@ public class AccountDAO {
 		try {
 			return this.smt.executeQuery(sql);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new IllegalStateException(e);
 		}
 
@@ -106,6 +108,7 @@ public class AccountDAO {
 		try {
 			return this.smt.executeUpdate(sql);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new IllegalStateException(e);
 		}
 
@@ -123,6 +126,9 @@ public class AccountDAO {
 	public Account findByLogin(Login login) {
 
 		try {
+			// ユーザーデータ格納用のAccountオブジェクトを生成
+			Account account = null;
+
 			// DB接続
 			connect();
 
@@ -134,9 +140,6 @@ public class AccountDAO {
 
 			// SQL文を発行し、結果セットを取得
 			ResultSet rs = pStmt.executeQuery();
-
-			// 商品データ格納用のAccountオブジェクトを生成
-			Account account = null;
 
 			// 結果セットからユーザーデータを取得
 			if (rs.next()) {
@@ -154,6 +157,7 @@ public class AccountDAO {
 			return account;
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new IllegalStateException(e);
 		} finally {
 			// DB接続解除
@@ -171,15 +175,14 @@ public class AccountDAO {
 	 *
 	 * @throws IllegalStateException 関数内部で例外が発生した場合
 	 */
-	public void insert(Account account){
+	public boolean insert(Account account){
 
 	    try{
 			// DB接続
 			connect();
 
 	        //SQL文
-	        String accountSql = "INSERT INTO user (USER_ID, USER_NAME, ADRESS, EMAIL, PASS, TEL, CARD) VALUES("
-					   + "'" + account.getUserId()  + "',"
+	        String accountSql = "INSERT INTO user (USER_NAME, ADRESS, EMAIL, PASS, TEL, CARD) VALUES("
 					   + "'" + account.getUserName() + "',"
 					   + "'" + account.getAdress() + "',"
 					   + "'" + account.getEmail() + "',"
@@ -188,14 +191,17 @@ public class AccountDAO {
 	        		   + "'" + account.getCard() + "')";
 
 	        // SQL文を発行
-	     	executeUpdate(accountSql);
+	        Statement stmt = con.createStatement();
+	     	int i = stmt.executeUpdate(accountSql);
 
 	    }catch(Exception e){
+	    	e.printStackTrace();
 	    	throw new IllegalStateException(e);
 	    }finally{
 	    	// DB接続解除
 	        disconnect();
 	    }
+		return false;
 	}
 
 	/**
@@ -225,6 +231,7 @@ public class AccountDAO {
 			executeUpdate(SQL);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new IllegalStateException(e);
 		} finally {
 			// DB接続解除
@@ -252,6 +259,7 @@ public class AccountDAO {
 	        executeUpdate(sql);
 
 	    } catch (Exception e) {
+	    	e.printStackTrace();
 	        throw new IllegalStateException(e);
 	    } finally {
 	        // DB接続解除
@@ -260,4 +268,31 @@ public class AccountDAO {
 
 	}
 
+	//データベースに同じデータがあるかを確認するメソッド
+	public boolean select(Account account) {
+
+		try {
+	        // DB接続
+	        connect();
+
+			 //メールアドレスとパスワードが重複したデータの有無を調べるSELECT文を準備
+		    String sql = "SELECT USER_ID, USER_NAME, EMAIL, PASS, ADRESS, TEL, CARD FROM USER WHERE EMAIL = ? OR PASS = ?";
+			pStmt = con.prepareStatement(sql);
+			pStmt.setString(1, account.getEmail());
+			pStmt.setString(2, account.getPass());
+
+		    //SELECT文を実行し、結果表を取得
+		    ResultSet rs = pStmt.executeQuery();
+
+		    //一致したユーザーが存在しなかった場合
+		    if(!rs.next()) {
+		    	return true;
+		    }else {
+		    	return false;
+		    }
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
