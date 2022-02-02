@@ -8,10 +8,11 @@
 
 <!-- HEADER -->
 <jsp:include page="admin-header.jsp"></jsp:include>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <main>
 <div class="container-scr">
-	<form action="/Neutral/ProductEditServlet" method="post">
+	<form action="/Neutral/ProductEditServlet" method="post" enctype="multipart/form-data">
 		<div class="shadow p-3 mb-5 bg-body rounded" style="width:500px">
 
 		<div class="input-group flex-nowrap">
@@ -26,11 +27,15 @@
 		  <span class="input-group-text btn-primary" id="addon-wrapping">商品名</span>
 		  <input type="text" name="productName" class="form-control" value="<%=sku.getProductName()%>" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
-
-<!-- 	<div class="input-group flex-nowrap">
-		  <span class="input-group-text bg-info" id="addon-wrapping">写真</span>
-		  <input type="file" class="form-control" placeholder="img" aria-label="Username" aria-describedby="addon-wrapping"name="example" accept="image/jpeg, image/png">
-		</div><br> -->
+		<div class="input-group flex-nowrap">
+			<span class="input-group-text btn-primary" id="addon-wrapping">写真</span>
+			<!-- 選択した画像を出力 -->
+			<img width="80%" id="preview" src="img/<%=sku.getProductImage()%>" alt="<%=sku.getProductName()%>">
+		</div><br>
+		<div class="input-group flex-nowrap">
+			<input type="file" name="pict" class="form-control"  id="myImage" accept="image/*" placeholder="img" accept="image/jpeg, image/png">
+		</div><br>
+		<p><script>$('#myImage').on('change', function (e) {var reader = new FileReader();reader.onload = function (e) {$("#preview").attr('src', e.target.result);}; reader.readAsDataURL(e.target.files[0]);});</script></p>
 
 		<div class="input-group mb-3">
 		  <label class="input-group-text btn-primary" for="inputGroupSelect01">カテゴリ</label>

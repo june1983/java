@@ -36,12 +36,12 @@ ArrayList<Order> orderList = (ArrayList<Order>)request.getAttribute("orderList")
         <thead>
           <tr>
             <th scope="col" style="width: 50px"></th>
-            <th scope="col" style="width: 150px">商品ID</th>
-            <th scope="col" style="width: 200px">商品名</th>
-            <th scope="col" style="width: 100px">サイズ</th>
-            <th scope="col" style="width: 90px">個数</th>
-            <th scope="col" style="width: 120px">単価</th>
-            <th scope="col" style="width: 120px">小計</th>
+            <th scope="col" style="width: 150px" class="example2">商品ID</th>
+            <th scope="col" style="width: 200px" class="example2">商品名</th>
+            <th scope="col" style="width: 100px" class="example2">サイズ</th>
+            <th scope="col" style="width: 90px" class="example2">個数</th>
+            <th scope="col" style="width: 120px" class="example2">単価</th>
+            <th scope="col" style="width: 120px" class="example2">小計</th>
           </tr>
         </thead>
         <% int totalPrice = 0; %>
@@ -54,8 +54,8 @@ ArrayList<Order> orderList = (ArrayList<Order>)request.getAttribute("orderList")
               </svg></th>
               <td style="width: 100px"><%=order.getProductId()%></td>
               <td style="width: 200px"><%=order.getOrderProduct()%></td>
-              <td style="width: 100px"><%=order.getOrderSize()%></td>
-              <td style="width: 120px"><input class="kosuu" value="<%=order.getOrderNumber()%>">個</td>
+              <td style="width: 100px" class="example2"><%=order.getOrderSize()%></td>
+              <td style="width: 120px" class="example2"><%=order.getOrderNumber()%>個</td>
               <td style="width: 120px" class="example1"><%=order.getOrderPrice()%>円</td>
               <td style="width: 120px" class="example1"><%=order.getSubtotal()%>円</td>
           </tr>

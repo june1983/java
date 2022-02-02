@@ -43,12 +43,12 @@ color:red;
 		      <thead>
 		        <tr>
 		          <th scope="col" style="width: 50px"></th>
-		          <th scope="col" style="width: 150px">商品ID</th>
-		          <th scope="col" style="width: 200px">商品名</th>
-		          <th scope="col" style="width: 100px">サイズ</th>
-		          <th scope="col" style="width: 90px">個数</th>
-		          <th scope="col" style="width: 120px">単価</th>
-		          <th scope="col" style="width: 120px">小計</th>
+		          <th scope="col" style="width: 150px" class="example2">商品ID</th>
+		          <th scope="col" style="width: 200px" class="example2">商品名</th>
+		          <th scope="col" style="width: 100px" class="example2">サイズ</th>
+		          <th scope="col" style="width: 90px" class="example2">個数</th>
+		          <th scope="col" style="width: 120px" class="example2">単価</th>
+		          <th scope="col" style="width: 120px" class="example2">小計</th>
 		          <th scope="col" style="width: 120px"></th>
 		        </tr>
 		      </thead>
@@ -63,8 +63,8 @@ color:red;
 			          </div></th>
 			          <td style="width: 100px"><%=cart.getProductId()%></td>
 			          <td style="width: 200px"><%=cart.getOrderProduct()%></td>
-			          <td style="width: 100px"><%=cart.getOrderSize()%></td>
-			          <td style="width: 120px"><input class="kosuu" type="number" name="orderNumber<%=cart.getCartId()%>" min="1" value="<%=cart.getOrderNumber()%>">個</td>
+			          <td style="width: 100px" class="example2"><%=cart.getOrderSize()%></td>
+			          <td style="width: 120px" class="example1"><input class="kosuu" type="number" name="orderNumber<%=cart.getCartId()%>" min="1" value="<%=cart.getOrderNumber()%>">個</td>
 			          <td style="width: 120px" class="example1"><%=cart.getOrderPrice()%>円</td>
 			          <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>
 			          <td style="width: 120px" class="example2"><a href="/Neutral/CartDeleteServlet?id=<%=cart.getCartId()%>"><button type="button" class="btn btn-outline-danger">削除</button></a></td>
@@ -92,7 +92,7 @@ color:red;
 			          <td style="width: 100px"></td>
 			          <td style="width: 200px"></td>
 			          <td style="width: 100px"></td>
-			          <td style="width: 120px"><input class="kosuu" value=""> 個</td>
+			          <td style="width: 120px" class="example1"><input class="kosuu" value=""> 個</td>
 			          <td style="width: 120px" class="example1"> 円</td>
 			          <td style="width: 120px" class="example1"> 円</td>
 			        </tr>

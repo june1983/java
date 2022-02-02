@@ -18,7 +18,7 @@ import model.SKU;
 
 @WebServlet("/RegisterProductServlet")
 @MultipartConfig(
-location="/tmp"
+//location="/tmp"
 //maxFileSize=1000000,
 //maxRequestSize=1000000,
 //fileSizeThreshold=1000000

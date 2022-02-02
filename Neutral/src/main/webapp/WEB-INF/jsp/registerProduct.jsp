@@ -3,6 +3,7 @@
 
 <!-- HEADER -->
 <jsp:include page="admin-header.jsp"></jsp:include>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <main>
 <div class="container-scr wrapper">
@@ -18,10 +19,13 @@
 				<input type="text" name="productName" class="form-control">
 			</div><br>
 			<div class="input-group flex-nowrap">
-				<span class="input-group-text btn-primary" id="addon-wrapping">写真</span>
-				<input type="file" name="pict" class="form-control" placeholder="img" accept="image/jpeg, image/png">
+				<span class="input-group-text btn-primary">写真</span>
+				<input type="file" name="pict" id="myImage" accept="image/*" class="form-control" placeholder="img" accept="image/jpeg, image/png">
 			</div><br>
-
+			<!-- 選択した画像を出力 -->
+			<div style="display:inline-block;min-width:200px; min-height:200px; border:5px dashed #eee; padding:10px;"><img width="100%" id="preview"></div>
+			<p><script>$('#myImage').on('change', function (e) {var reader = new FileReader();reader.onload = function (e) {$("#preview").attr('src', e.target.result);}; reader.readAsDataURL(e.target.files[0]);});</script></p>
+	    	
 			<div class="input-group mb-3">
 			  <label class="input-group-text btn-primary" for="inputGroupSelect01">カテゴリ</label>
 			  <select class="form-select" name="category" required id="inputGroupSelect01">
