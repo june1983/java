@@ -44,8 +44,8 @@
 		  </tbody>
 		</table>
 		<div>
-		 <a href="/Neutral/ProductEditOkServlet"><button type="button" class="btn btn-primary">はい、変更します</button></a>
-		 <a href="/Neutral/ProductEditServlet?id=<%=sku.getSkuId()%>"><button type="button" class="btn btn-outline-primary">戻る</button></a>
+		 <a href="/productEditOk"><button type="button" class="btn btn-primary">はい、変更します</button></a>
+		 <a href="/productEdit?id=<%=sku.getSkuId()%>"><button type="button" class="btn btn-outline-primary">戻る</button></a>
 		</div>
 	</div>
 </div>

@@ -1,5 +1,6 @@
 package dao;
 
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,13 +18,13 @@ public class AdminUserDAO {
 	private static final String RDB_DRIVE = "com.mysql.jdbc.Driver";
 
 	// 接続するMySQLデータベースパス
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/neutral?characterEncoding=UTF-8&serverTimezone=JST";
+	//private static final String JDBC_URL = "jdbc:mysql://localhost:3306/neutral?characterEncoding=UTF-8&serverTimezone=JST";
 
 	// データベースのユーザー名
-	private static final String DB_USER = "root";
+	//private static final String DB_USER = "root";
 
 	// データベースのパスワード
-	private static final String DB_PASS = "root";
+	//private static final String DB_PASS = "root";
 
 	// DBコネクション保持用
 	private Connection con = null;
@@ -41,11 +42,20 @@ public class AdminUserDAO {
 	private void connect() {
 
 		try {
-
+			
 			Class.forName(RDB_DRIVE);
+			// heroku configに設定されている値を取得。
+			URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+			
+	        // :をデリミタとして必要な情報を抜き取る。
+	        String DB_USER = dbUri.getUserInfo().split(":")[0];
+	        String DB_PASS = dbUri.getUserInfo().split(":")[1];
+	        
+	        // JDBC用のURLを生成。
+	        String JDBC_URL = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath() + "?characterEncoding=UTF-8&serverTimezone=JST";
 			this.con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 			this.smt = this.con.createStatement();
-
+			
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		}

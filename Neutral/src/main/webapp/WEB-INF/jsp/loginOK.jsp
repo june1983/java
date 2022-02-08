@@ -32,7 +32,7 @@ Account account = (Account) session.getAttribute("Account");
 	<div class="container-scr">
 	  <div class="p-3 border bg-light">
 	  <p strong>ようこそ<%= account.getUserName() %>さん</p><br>
-	    <a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">TOPへ</button></a><br>
+	    <a href="/"><button type="button" class="btn btn-outline-dark">TOPへ</button></a><br>
 	  </div>
 	</div>
 </main>

@@ -38,7 +38,7 @@ color:red;
 
   <div class="container-sc">
     <div class="shadow p-3 mb-5 bg-body rounded">
-	    <form action="/Neutral/OrderSubmitServlet" method="post">
+	    <form action="/orderSubmit" method="post">
 		    <table class="table table-bordered border-secondary">
 		      <thead>
 		        <tr>
@@ -67,7 +67,7 @@ color:red;
 			          <td style="width: 120px" class="example1"><input class="kosuu" type="number" name="orderNumber<%=cart.getCartId()%>" min="1" value="<%=cart.getOrderNumber()%>">個</td>
 			          <td style="width: 120px" class="example1"><%=cart.getOrderPrice()%>円</td>
 			          <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>
-			          <td style="width: 120px" class="example2"><a href="/Neutral/CartDeleteServlet?id=<%=cart.getCartId()%>"><button type="button" class="btn btn-outline-danger">削除</button></a></td>
+			          <td style="width: 120px" class="example2"><a href="/CartDeleteServlet?id=<%=cart.getCartId()%>"><button type="button" class="btn btn-outline-danger">削除</button></a></td>
 			        </tr>
 			        <% totalPrice += cart.getSubtotal(); %>
 					<% } %>
@@ -115,7 +115,7 @@ color:red;
 		    <p>ご購入の商品にチェックを入れてください。</p>
 		    <p>上記内容でよろしければご注文を確定するボタンをクリックしてください。</p>
 		    <div><br>
-		    	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
+		    	<a href="/"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
 		    	<%// if (cart != null) { %>
 		        <button type="submit" class="btn btn-dark <% System.out.println("off");%>">ご注文内容を確定する</button>
 		        <%// } %>

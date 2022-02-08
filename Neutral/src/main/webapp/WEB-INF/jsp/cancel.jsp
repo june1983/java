@@ -31,7 +31,7 @@
       <div class="shadow p-3 mb-5 bg-body rounded">
       <p strong>本当に退会しますか？</p>
 
-        <a href="/Neutral/CancelOkServlet"><button type="button" class="btn btn-outline-danger">はい、退会します</button></a><br>
+        <a href="/cancelOk"><button type="button" class="btn btn-outline-danger">はい、退会します</button></a><br>
 
       </div>
     </div>

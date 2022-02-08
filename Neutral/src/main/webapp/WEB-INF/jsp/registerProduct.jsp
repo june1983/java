@@ -7,7 +7,7 @@
 
 <main>
 <div class="container-scr wrapper">
-	<form action="/Neutral/RegisterProductServlet" method="post" enctype="multipart/form-data">
+	<form action="/registerProduct" method="post" enctype="multipart/form-data">
 		<div class="shadow p-3 mb-5 bg-body rounded" style="width:500px">
 			<p strong>商品登録</p>
 			<div class="input-group flex-nowrap">
@@ -72,7 +72,7 @@
 			</div><br>
 
 			<button type="submit" class="btn btn-primary">登録する</button><br><br>
-			<a href="/Neutral/AdminLoginServlet"><button type="button" class="btn btn-outline-primary">戻る</button></a>
+			<a href="/admin"><button type="button" class="btn btn-outline-primary">戻る</button></a>
 		</div>
 	 </form>
 </div>

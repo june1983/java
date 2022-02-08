@@ -64,7 +64,7 @@ color:red;
 
         ＜商品説明＞<br><%=product.getDescription()%><br><br>
 
-        <form action="/Neutral/CartServlet" method="post">
+        <form action="/cart" method="post">
           サイズ：
           <select class="form-select-s" name="orderSize" required>
             <option value="">サイズを選択してください</option>

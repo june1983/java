@@ -32,7 +32,7 @@
     <div class="container-scr">
       <div class="shadow p-3 mb-5 bg-body rounded">
       	<p strong>会員登録が完了しました！</p><br>
-      	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a><br>         
+      	<a href="/"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a><br>         
       </div>  
     </div>
 </main> 

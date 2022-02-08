@@ -25,7 +25,7 @@ color:red;
 <jsp:include page="header.jsp"></jsp:include>
 
 <span class="label label-danger">${message}</span>
-<form action="/Neutral/LoginServlet" method="post">
+<form action="/login" method="post">
 	<div class="container-scr">
 	  <div class="p-3 border bg-light">
 	

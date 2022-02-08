@@ -28,7 +28,7 @@
 
 <header>
 <div class="header">
-    	<a href="/Neutral/WelcomeAdminServlet"><p class="logo2">Neutral</p></a>
-    	<a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-primary shop">SHOPへ</button></a>
+    	<a href="/admin"><p class="logo2">Neutral</p></a>
+    	<a href="/"><button type="button" class="btn btn-primary shop">SHOPへ</button></a>
 </div>
 </header>

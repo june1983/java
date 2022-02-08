@@ -92,8 +92,8 @@ Cart cart = (Cart) session.getAttribute("cart");
 		    <p>※まだ会員登録がお済みでないかたは、新規会員登録ボタンから新規会員登録をして<br>
 		      ログインされてからご注文をお願いいたします。</p>
 		    <div><br>
-				 <a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
-			     <a href="/Neutral/RegisterServlet"><button type="button" class="btn btn-dark">新規会員登録</button><br><br></a>
+				 <a href="/"><button type="button" class="btn btn-outline-dark">買い物を続ける</button></a>
+			     <a href="/register"><button type="button" class="btn btn-dark">新規会員登録</button><br><br></a>
 		    </div>
 	    </div>
     </div>

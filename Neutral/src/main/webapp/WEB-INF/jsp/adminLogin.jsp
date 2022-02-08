@@ -7,7 +7,7 @@
 
 <main>
 <span class="label label-danger">${message}</span>
-<form action="/Neutral/AdminLoginServlet" method="post">
+<form action="/adminLogin" method="post">
    <div class="container-scr">
        <div class="shadow p-3 mb-5 bg-body rounded" style="width:500px">
            <div class="input-group flex-nowrap">

@@ -34,7 +34,7 @@ Account account = (Account) session.getAttribute("Account");
     <div class="container-scr">
      	<div class="shadow p-3 mb-5 bg-body rounded">
       		<p strong>会員登録情報編集ページ</p>
-			<form action="/Neutral/AccountEditServlet" method="post">
+			<form action="/accountEdit" method="post">
 				<div class="input-group flex-nowrap">
 				  <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>
 				  <input type="text" name="user_Name" class="form-control" value="<c:out value="${sessionScope.Account.getUserName() }"/>" aria-label="Username" aria-describedby="addon-wrapping" maxlength='20'>

@@ -34,7 +34,8 @@ color:red;
 
     <div class="container-scr">
  	<span class="label label-danger">${message}</span>
-      <form class="shadow p-3 mb-5 bg-body rounded" action="/Neutral/RegisterServlet" method="post">
+ 	
+      <form class="shadow p-3 mb-5 bg-body rounded" action="/register" method="post">
       <p strong>会員登録</p>
       <div class="input-group flex-nowrap">
         <span class="input-group-text bg-dark" id="addon-wrapping">名 前</span>

@@ -79,7 +79,7 @@ ArrayList<Order> orderList = (ArrayList<Order>)request.getAttribute("orderList")
       <p strong>ご注文ありがとうございました！</p>
       <p>上記内容でご注文が確定しました。</p>
       <div><br>
-      <a href="/Neutral/WelcomeServlet"><button type="button" class="btn btn-outline-dark">TOPへ戻る</button></a>
+      <a href="/"><button type="button" class="btn btn-outline-dark">TOPへ戻る</button></a>
       </div>
       </div>
     </div>

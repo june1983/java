@@ -63,8 +63,8 @@ Account account = (Account) session.getAttribute("Account");
         </table>
         </form>
 <br>
-       <a href="/Neutral/CancelServlet"> <button type="button" class="btn btn-outline-dark">退会する</button></a>
-        <a href="/Neutral/AccountEditServlet"><button type="button" class="btn btn-dark">編集する</button></a><br>
+       <a href="/cancel"> <button type="button" class="btn btn-outline-dark">退会する</button></a>
+        <a href="/accountEdit"><button type="button" class="btn btn-dark">編集する</button></a><br>
       </div>
     </div>
 </main>

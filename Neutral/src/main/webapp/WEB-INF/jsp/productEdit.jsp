@@ -12,7 +12,7 @@
 
 <main>
 <div class="container-scr">
-	<form action="/Neutral/ProductEditServlet" method="post" enctype="multipart/form-data">
+	<form action="/productEdit" method="post" enctype="multipart/form-data">
 		<div class="shadow p-3 mb-5 bg-body rounded" style="width:500px">
 
 		<div class="input-group flex-nowrap">
@@ -82,8 +82,8 @@
 		  <input type="text" name="stock" class="form-control" value="<%=sku.getStock()%>" oninput="value = value.replace(/[^0-9]+/i,'');"  placeholder="半角数字のみ入力可" aria-label="Username" aria-describedby="addon-wrapping">
 		</div><br>
 		  <button type="submit" class="btn btn-primary">変更する</button>
-		  <a href="/Neutral/ProductCancelServlet"><button type="button" class="btn btn-outline-danger">商品情報を削除する</button><br><br>
-		  <a href="/Neutral/AdminLoginServlet"><button type="button" class="btn btn-outline-primary">戻る</button></a>
+		  <a href="/productCancel"><button type="button" class="btn btn-outline-danger">商品情報を削除する</button><br><br>
+		  <a href="/admin"><button type="button" class="btn btn-outline-primary">戻る</button></a>
 		</div>
 	</form>
 </div>
