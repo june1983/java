@@ -67,7 +67,7 @@ color:red;
 			          <td style="width: 120px" class="example1"><input class="kosuu" type="number" name="orderNumber<%=cart.getCartId()%>" min="1" value="<%=cart.getOrderNumber()%>">個</td>
 			          <td style="width: 120px" class="example1"><%=cart.getOrderPrice()%>円</td>
 			          <td style="width: 120px" class="example1"><%=cart.getSubtotal()%>円</td>
-			          <td style="width: 120px" class="example2"><a href="/CartDeleteServlet?id=<%=cart.getCartId()%>"><button type="button" class="btn btn-outline-danger">削除</button></a></td>
+			          <td style="width: 120px" class="example2"><a href="/cartDelete?id=<%=cart.getCartId()%>"><button type="button" class="btn btn-outline-danger">削除</button></a></td>
 			        </tr>
 			        <% totalPrice += cart.getSubtotal(); %>
 					<% } %>
